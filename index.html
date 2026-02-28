@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sejarah Penebusan — Buku 3: The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Buku 3: The Unquenchable Lamp of the Covenant
+   Mengikuti DESIGN-SYSTEM_Buku3.md — LOCKED
+   ============================================================ */
+:root {
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --green:       #2bb673;
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-ui); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ============================================================ NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--teal-dark);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 20px; height: 48px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-brand { color: white; font-weight: 800; font-size: 13px; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+.nav-link {
+  color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 600;
+  white-space: nowrap; padding: 4px 8px; border-radius: var(--radius-sm); flex-shrink: 0; transition: background 0.2s;
+}
+.nav-link:hover, .nav-link:focus-visible { background: rgba(255,255,255,0.15); color: white; outline: none; }
+.nav-badge { margin-left: auto; flex-shrink: 0; background: rgba(255,255,255,0.2); color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em; }
+
+#storage-warning { display: none; background: #fff3cd; color: #7a5c00; padding: 8px 20px; font-size: 13px; text-align: center; }
+
+/* ============================================================ HERO — Tier L */
+.hero {
+  background: linear-gradient(150deg, #0a4f4e 0%, var(--teal-dark) 50%, var(--teal) 100%);
+  color: white;
+  padding: 60px 24px 52px;
+  text-align: center;
+}
+.hero-eyebrow { color: rgba(255,255,255,0.75); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; display: block; }
+.hero h1 { font-size: clamp(24px, 5vw, 42px); font-family: var(--font-ui); font-weight: 800; line-height: 1.15; color: white; margin-bottom: 8px; }
+.hero-book { font-size: 15px; font-style: italic; color: rgba(255,255,255,0.75); font-family: var(--font-content); margin-bottom: 12px; display: block; }
+.hero-subtitle { color: rgba(255,255,255,0.85); font-size: 16px; max-width: 520px; margin: 0 auto 28px; font-family: var(--font-content); font-style: italic; line-height: 1.75; }
+
+/* Flame row */
+.hero-stats { display: flex; gap: 0; justify-content: center; max-width: 480px; margin: 0 auto; }
+.hero-stat { flex: 1; text-align: center; padding: 12px 8px; border-right: 1px solid rgba(255,255,255,0.15); }
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num { font-size: 26px; font-weight: 800; color: white; display: block; line-height: 1; margin-bottom: 4px; }
+.hero-stat-label { font-size: 10px; color: rgba(255,255,255,0.7); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ============================================================ PROGRESS CARD */
+.progress-section { max-width: 860px; margin: 0 auto; padding: 28px 20px 0; }
+.progress-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px 24px; display: none;
+}
+.progress-card.visible { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.progress-card-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 14px; }
+.progress-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.prog-item { background: var(--bg3); border-radius: var(--radius-sm); padding: 12px; text-align: center; }
+.prog-val { font-size: 22px; font-weight: 800; color: var(--teal-dark); display: block; line-height: 1; margin-bottom: 4px; }
+.prog-label { font-size: 10px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ============================================================ PERSONA SELECTOR */
+.persona-section { max-width: 860px; margin: 0 auto; padding: 32px 20px 0; }
+.persona-section-label { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); text-align: center; margin-bottom: 16px; }
+.persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 32px; }
+
+.persona-card {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: var(--radius); padding: 16px 14px;
+  cursor: pointer; transition: all 0.15s;
+  text-align: center; text-decoration: none;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  min-height: 44px;
+}
+.persona-card:hover { border-color: var(--teal); box-shadow: var(--shadow); }
+.persona-card.active { border-color: var(--teal-dark); background: var(--teal-light); }
+.persona-icon { font-size: 24px; }
+.persona-name { font-size: 13px; font-weight: 800; color: var(--text); }
+.persona-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+/* ============================================================ PERSONA PANELS */
+.persona-panel { display: none; }
+.persona-panel.active { display: block; animation: fadeIn 0.25s ease; }
+
+.panel-provocation {
+  font-family: var(--font-content); font-style: italic;
+  font-size: 17px; line-height: 1.75; color: var(--text);
+  max-width: 600px; margin: 0 auto 12px; text-align: center;
+}
+.panel-intro {
+  font-size: 14px; color: var(--text-light);
+  text-align: center; max-width: 500px;
+  margin: 0 auto 28px;
+}
+
+/* ============================================================ TOOL GRID */
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 12px; }
+
+.tool-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px;
+  text-decoration: none; display: flex; flex-direction: column; gap: 8px;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  min-height: 44px;
+}
+.tool-card:hover { box-shadow: var(--shadow); border-color: var(--teal); }
+.tool-card.primary { border-left: 4px solid var(--teal-dark); }
+.tool-card.secondary { border-left: 4px solid var(--gold); }
+.tool-card.tertiary { border-left: 4px solid var(--green); }
+.tool-card.depth { border-left: 4px solid #6b21a8; }
+
+.tc-tag {
+  font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 2px 8px; border-radius: 10px; display: inline-block; align-self: flex-start;
+}
+.tag-primer { background: var(--teal-light); color: var(--teal-dark); }
+.tag-ref { background: #fef3c7; color: #92400e; }
+.tag-alat { background: var(--bg2); color: var(--text-muted); }
+.tag-cermin { background: #f3effe; color: #6b21a8; }
+.tag-formasi { background: #f0fdf4; color: #166534; }
+
+.tc-icon { font-size: 22px; }
+.tc-title { font-size: 15px; font-weight: 800; color: var(--text); line-height: 1.25; }
+.tc-desc { font-size: 13px; color: var(--text-light); line-height: 1.55; font-family: var(--font-content); }
+.tc-arrow { font-size: 12px; color: var(--teal); font-weight: 700; margin-top: auto; }
+
+/* ============================================================ ALL TOOLS SECTION */
+.all-tools-section { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; border-top: 1px solid var(--border); }
+.section-header { margin-bottom: 20px; }
+.section-header h2 { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.section-header p { font-size: 14px; color: var(--text-light); font-family: var(--font-content); font-style: italic; }
+
+/* Perjalanan flow */
+.journey-flow {
+  display: flex; align-items: center; gap: 0;
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px 20px; margin-bottom: 24px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.jf-step { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; min-width: 80px; text-align: center; }
+.jf-icon { font-size: 20px; }
+.jf-label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3; }
+.jf-arrow { font-size: 14px; color: var(--border); flex-shrink: 0; padding: 0 6px; }
+
+/* Book info */
+.book-info {
+  background: var(--bg3); border-radius: var(--radius); padding: 24px;
+  margin-bottom: 24px; display: flex; gap: 20px; align-items: flex-start;
+}
+.book-flame { font-size: 48px; flex-shrink: 0; }
+.book-text h3 { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.book-text p { font-size: 14px; color: var(--text-light); font-family: var(--font-content); line-height: 1.7; }
+.book-text .author { font-size: 13px; color: var(--teal-dark); font-weight: 700; margin-top: 8px; }
+
+/* ============================================================ RESPONSIVE */
+@media (max-width: 640px) {
+  .persona-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .persona-card { padding: 12px 8px; }
+  .persona-icon { font-size: 20px; }
+  .persona-name { font-size: 11px; }
+  .persona-desc { display: none; }
+  .tool-grid { grid-template-columns: 1fr; }
+  .progress-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .journey-flow { padding: 12px 16px; }
+  .book-info { flex-direction: column; gap: 12px; }
+  .hero-stats { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">Sejarah Penebusan</span>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<div id="storage-warning">
+  ⚠️ Progress tidak bisa disimpan di mode penyamaran. Gunakan browser biasa untuk menyimpan perjalananmu.
+</div>
+
+<div class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Abraham Park</span>
+  <h1>Lampu yang Tidak Padam</h1>
+  <span class="hero-book">The Unquenchable Lamp of the Covenant</span>
+  <p class="hero-subtitle">"The genealogy of Jesus Christ is a synopsis of God's redemptive administration by which His covenants have manifested throughout history." — Abraham Park</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">14</span>
+      <span class="hero-stat-label">Generasi Abraham→Daud</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">±340</span>
+      <span class="hero-stat-label">Tahun era hakim</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">6</span>
+      <span class="hero-stat-label">Kovenan satu alur</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">17</span>
+      <span class="hero-stat-label">Ayat silsilah Matius</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS CARD -->
+<div class="progress-section">
+  <div class="progress-card" id="progressCard">
+    <div class="progress-card-title">Progres Perjalananmu</div>
+    <div class="progress-grid">
+      <div class="prog-item">
+        <span class="prog-val" id="progress-bab">0/26</span>
+        <span class="prog-label">Bab Selesai</span>
+      </div>
+      <div class="prog-item">
+        <span class="prog-val" id="progress-cermin">0/4</span>
+        <span class="prog-label">Cermin Pribadi</span>
+      </div>
+      <div class="prog-item">
+        <span class="prog-val" id="progress-jurnal">Minggu 0/8</span>
+        <span class="prog-label">Jurnal Pelita</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONA SELECTOR -->
+<div class="persona-section">
+  <div class="persona-section-label">Di mana kamu sekarang?</div>
+  <div class="persona-grid">
+    <button class="persona-card" id="pcardA" onclick="selectPersona('A')" aria-pressed="false">
+      <span class="persona-icon">📖</span>
+      <span class="persona-name">Belum Baca</span>
+      <span class="persona-desc">Ingin tahu isi buku ini sebelum mulai</span>
+    </button>
+    <button class="persona-card" id="pcardB" onclick="selectPersona('B')" aria-pressed="false">
+      <span class="persona-icon">🕯</span>
+      <span class="persona-name">Sedang Membaca</span>
+      <span class="persona-desc">Butuh alat bantu selama membaca</span>
+    </button>
+    <button class="persona-card" id="pcardC" onclick="selectPersona('C')" aria-pressed="false">
+      <span class="persona-icon">✦</span>
+      <span class="persona-name">Sudah Selesai</span>
+      <span class="persona-desc">Sudah tamat, ingin mendalami lebih jauh</span>
+    </button>
+  </div>
+
+  <!-- PANEL A — Belum Baca -->
+  <div class="persona-panel" id="panel-A">
+    <p class="panel-provocation">"Tujuh belas ayat yang biasanya dilewati orang menyimpan seluruh sejarah penebusan. Sebelum kamu membuka halaman pertama — lihat dulu siapa yang membawa api itu."</p>
+    <p class="panel-intro">Mulai dari gambaran besar. Pahami skala perjalanan ini sebelum masuk ke detail.</p>
+    <div class="tool-grid">
+      <a href="peta-kovenan.html" class="tool-card primary">
+        <span class="tc-tag tag-ref">Referensi</span>
+        <span class="tc-icon">🗺</span>
+        <div class="tc-title">Peta Kovenan</div>
+        <div class="tc-desc">Panorama dari Adam sampai Daud — enam kovenan dan 14 generasi dalam satu peta. Lihat besarnya sebelum membaca detailnya.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="galeri-nama-pelita.html" class="tool-card secondary">
+        <span class="tc-tag tag-ref">Referensi</span>
+        <span class="tc-icon">🔦</span>
+        <div class="tc-title">Galeri Nama Pelita</div>
+        <div class="tc-desc">14 kartu generasi Abraham→Daud. Setiap nama Ibrani, peran kovenan, dan cermin bagi pembaca. Kenali siapa yang membawa lampu itu.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="kalkulator-kovenan.html" class="tool-card secondary">
+        <span class="tc-tag tag-alat">Alat</span>
+        <span class="tc-icon">⚡</span>
+        <div class="tc-title">Kalkulator Kovenan</div>
+        <div class="tc-desc">Enam kovenan yang membentuk satu lampu. Kovenan mana yang sedang aktif saat Tamar bertindak? Saat Gideon mengangkat obornya?</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="pendamping-baca.html" class="tool-card primary">
+        <span class="tc-tag tag-primer">Mulai di Sini</span>
+        <span class="tc-icon">📖</span>
+        <div class="tc-title">Pendamping Baca</div>
+        <div class="tc-desc">Panduan bab demi bab — dari Part 1 sampai Conclusion. Baca bersama buku, jangan sebelum atau sesudahnya.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- PANEL B — Sedang Membaca -->
+  <div class="persona-panel" id="panel-B">
+    <p class="panel-provocation">"Kamu sedang di tengah 1.163 tahun perjalanan. Di mana tepatnya kamu sekarang — dan lampu apa yang sedang kamu bawa?"</p>
+    <p class="panel-intro">Tools referensi untuk dibuka saat membaca — gunakan sesuai bab yang sedang kamu baca.</p>
+    <div class="tool-grid">
+      <a href="pendamping-baca.html" class="tool-card primary">
+        <span class="tc-tag tag-primer">Primer</span>
+        <span class="tc-icon">📖</span>
+        <div class="tc-title">Pendamping Baca</div>
+        <div class="tc-desc">Ikuti perjalanan bab demi bab. Pertanyaan reflektif setiap bab. Jangan lewati — urutan pengalaman ini dijaga.</div>
+        <span class="tc-arrow">Lanjutkan →</span>
+      </a>
+      <a href="galeri-nama-pelita.html" class="tool-card secondary">
+        <span class="tc-tag tag-ref">Referensi Cepat</span>
+        <span class="tc-icon">🔦</span>
+        <div class="tc-title">Galeri Nama Pelita</div>
+        <div class="tc-desc">Buka saat membaca Part 3 (Bab 8–21). Lihat arti nama Ibrani + peran kovenan setiap tokoh yang baru kamu baca.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="peta-hakim.html" class="tool-card secondary">
+        <span class="tc-tag tag-ref">Referensi</span>
+        <span class="tc-icon">⏱</span>
+        <div class="tc-title">Peta Era Hakim</div>
+        <div class="tc-desc">Buka saat membaca Part 4 (Bab 22–24). Timeline 340 tahun yang terasa seperti 340 tahun — lampu yang tidak padam di tengah kegelapan terpanjang.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="tabel-generasi.html" class="tool-card tertiary">
+        <span class="tc-tag tag-alat">Data</span>
+        <span class="tc-icon">📊</span>
+        <div class="tc-title">Tabel Generasi</div>
+        <div class="tc-desc">14 generasi dalam tabel yang bisa diurutkan dan difilter. Gunakan untuk verifikasi data saat membaca.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="peta-kovenan.html" class="tool-card tertiary">
+        <span class="tc-tag tag-ref">Referensi Visual</span>
+        <span class="tc-icon">🗺</span>
+        <div class="tc-title">Peta Kovenan</div>
+        <div class="tc-desc">Gunakan sebagai peta visual saat membaca Part 1–2. Setiap kovenan baru yang Park bahas, temukan di sini posisinya dalam alur besar.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="kalkulator-kovenan.html" class="tool-card tertiary">
+        <span class="tc-tag tag-alat">Alat</span>
+        <span class="tc-icon">⚡</span>
+        <div class="tc-title">Kalkulator Kovenan</div>
+        <div class="tc-desc">Saat membaca momen tertentu — tanyakan: kovenan apa yang sedang aktif di titik ini? Alat ini menjawab secara interaktif.</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- PANEL C — Sudah Selesai -->
+  <div class="persona-panel" id="panel-C">
+    <p class="panel-provocation">"Buku sudah tutup. Tapi apakah sesuatu sudah berubah? Atau lampu itu masih menunggu untuk dinyalakan di hidupmu?"</p>
+    <p class="panel-intro">Dari pemahaman ke pembentukan. Langkah berikutnya bukan membaca lebih banyak — tapi duduk lebih dalam.</p>
+    <div class="tool-grid">
+      <a href="cermin-pribadi.html" class="tool-card depth">
+        <span class="tc-tag tag-cermin">Cermin</span>
+        <span class="tc-icon">🪞</span>
+        <div class="tc-title">Cermin Pribadi</div>
+        <div class="tc-desc">Empat pertanyaan pasca-baca yang tidak bisa dijawab secara intelektual. Allah yang besar, kovenan yang tidak padam, kegagalanmu, dan lampu di generasimu.</div>
+        <span class="tc-arrow">Mulai →</span>
+      </a>
+      <a href="jurnal-pelita.html" class="tool-card depth">
+        <span class="tc-tag tag-formasi">Formasi 8 Minggu</span>
+        <span class="tc-icon">🕯</span>
+        <div class="tc-title">Jurnal Pelita</div>
+        <div class="tc-desc">Delapan minggu dari memahami lampu ke menjadi lampu. Setiap minggu terkunci sampai yang sebelumnya selesai — karena perjalanan ini punya urutan yang dijaga.</div>
+        <span class="tc-arrow">Mulai →</span>
+      </a>
+      <a href="galeri-nama-pelita.html" class="tool-card secondary">
+        <span class="tc-tag tag-ref">Pendalaman</span>
+        <span class="tc-icon">🔦</span>
+        <div class="tc-title">Galeri Nama Pelita</div>
+        <div class="tc-desc">Kembali ke 14 kartu dengan mata yang baru. Kartu mana yang berbicara paling keras tentang dirimu sendiri?</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+      <a href="peta-hakim.html" class="tool-card secondary">
+        <span class="tc-tag tag-ref">Pendalaman</span>
+        <span class="tc-icon">⏱</span>
+        <div class="tc-title">Peta Era Hakim</div>
+        <div class="tc-desc">Kembali ke 340 tahun dengan perspektif baru. Salmon, Boaz, Obed — tiga titik cahaya di tengah periode paling gelap. Di mana kamu dalam peta ini?</div>
+        <span class="tc-arrow">Buka →</span>
+      </a>
+    </div>
+  </div>
+</div><!-- /persona-section -->
+
+<!-- ALL TOOLS SECTION -->
+<div class="all-tools-section">
+  <div class="section-header">
+    <h2>Semua Tools</h2>
+    <p>Akses langsung ke seluruh ekosistem — dalam urutan perjalanan dari orientasi ke formasi.</p>
+  </div>
+
+  <!-- Journey flow diagram -->
+  <div class="journey-flow">
+    <div class="jf-step"><span class="jf-icon">🗺</span><span class="jf-label">Lihat Besar</span></div>
+    <div class="jf-arrow">→</div>
+    <div class="jf-step"><span class="jf-icon">📖</span><span class="jf-label">Baca Bersama</span></div>
+    <div class="jf-arrow">→</div>
+    <div class="jf-step"><span class="jf-icon">🔦</span><span class="jf-label">Kenali Tokoh</span></div>
+    <div class="jf-arrow">→</div>
+    <div class="jf-step"><span class="jf-icon">⏱</span><span class="jf-label">Rasakan Gelap</span></div>
+    <div class="jf-arrow">→</div>
+    <div class="jf-step"><span class="jf-icon">⚡</span><span class="jf-label">Pahami Kovenan</span></div>
+    <div class="jf-arrow">→</div>
+    <div class="jf-step"><span class="jf-icon">🪞</span><span class="jf-label">Bercermin</span></div>
+    <div class="jf-arrow">→</div>
+    <div class="jf-step"><span class="jf-icon">🕯</span><span class="jf-label">Menjadi Lampu</span></div>
+  </div>
+
+  <div class="tool-grid">
+    <a href="pendamping-baca.html" class="tool-card primary">
+      <span class="tc-tag tag-primer">Tulang Punggung</span>
+      <span class="tc-icon">📖</span>
+      <div class="tc-title">Pendamping Baca</div>
+      <div class="tc-desc">26 bab + Conclusion. Baca bersama buku Park, bukan sebagai pengganti.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+    <a href="peta-kovenan.html" class="tool-card secondary">
+      <span class="tc-tag tag-ref">Referensi Visual</span>
+      <span class="tc-icon">🗺</span>
+      <div class="tc-title">Peta Kovenan</div>
+      <div class="tc-desc">Timeline panoramik dari kovenan pertama sampai Daud.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+    <a href="galeri-nama-pelita.html" class="tool-card secondary">
+      <span class="tc-tag tag-ref">Referensi</span>
+      <span class="tc-icon">🔦</span>
+      <div class="tc-title">Galeri Nama Pelita</div>
+      <div class="tc-desc">14 kartu generasi — nama Ibrani, peran kovenan, karakter Kristus.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+    <a href="tabel-generasi.html" class="tool-card tertiary">
+      <span class="tc-tag tag-alat">Data</span>
+      <span class="tc-icon">📊</span>
+      <div class="tc-title">Tabel Generasi</div>
+      <div class="tc-desc">14 generasi dalam format tabel yang bisa diurutkan dan difilter.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+    <a href="peta-hakim.html" class="tool-card secondary">
+      <span class="tc-tag tag-ref">Referensi</span>
+      <span class="tc-icon">⏱</span>
+      <div class="tc-title">Peta Era Hakim</div>
+      <div class="tc-desc">340 tahun kegelapan + jalur kovenan Salmon, Boaz, Obed.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+    <a href="kalkulator-kovenan.html" class="tool-card tertiary">
+      <span class="tc-tag tag-alat">Alat</span>
+      <span class="tc-icon">⚡</span>
+      <div class="tc-title">Kalkulator Kovenan</div>
+      <div class="tc-desc">Eksplorasi 6 kovenan dan hubungannya dengan 14 generasi.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+    <a href="cermin-pribadi.html" class="tool-card depth">
+      <span class="tc-tag tag-cermin">Pasca-Baca</span>
+      <span class="tc-icon">🪞</span>
+      <div class="tc-title">Cermin Pribadi</div>
+      <div class="tc-desc">Empat pertanyaan reflektif yang tidak bisa dijawab secara intelektual.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+    <a href="jurnal-pelita.html" class="tool-card depth">
+      <span class="tc-tag tag-formasi">Formasi</span>
+      <span class="tc-icon">🕯</span>
+      <div class="tc-title">Jurnal Pelita</div>
+      <div class="tc-desc">Program 8 minggu — dari memahami lampu ke menjadi lampu.</div>
+      <span class="tc-arrow">Buka →</span>
+    </a>
+  </div>
+
+  <!-- Book info -->
+  <div class="book-info">
+    <div class="book-flame">🕯</div>
+    <div class="book-text">
+      <h3>The Unquenchable Lamp of the Covenant</h3>
+      <p>Buku ketiga dari seri "Redemptive History" Abraham Park. Membaca 17 ayat silsilah di Matius 1:1–17 sebagai synopsis dari seluruh administrasi kovenan Allah — dari Abraham sampai Daud, 14 generasi, 1.163 tahun perjalanan. Lampu kovenan menyala bukan karena manusianya setia, tapi karena kovenan Allah bersifat unilateral dan tidak bisa dibatalkan.</p>
+      <div class="author">Abraham Park · Seri Pemahaman Alkitab Komprehensif</div>
+    </div>
+  </div>
+</div><!-- /all-tools-section -->
+
+<script>
+// ============================================================
+// PROGRESS AGGREGATOR
+// ============================================================
+function loadProgress() {
+  try {
+    const pendamping = JSON.parse(localStorage.getItem('sp-buku3-pendamping-v1') || '{}');
+    const cermin     = JSON.parse(localStorage.getItem('sp-buku3-cermin-v1')     || '{}');
+    const jurnal     = JSON.parse(localStorage.getItem('sp-buku3-jurnal-v1')     || '{}');
+
+    const babSelesai    = Object.values(pendamping.chapters  || {}).filter(Boolean).length;
+    const cerminSelesai = Object.values(cermin.completed    || {}).filter(Boolean).length;
+    const mingguJurnal  = Object.values(jurnal.completed    || {}).filter(Boolean).length;
+
+    // Only show if any progress exists
+    const hasProgress = babSelesai > 0 || cerminSelesai > 0 || mingguJurnal > 0;
+    if (hasProgress) {
+      document.getElementById('progress-bab').textContent    = babSelesai + '/26';
+      document.getElementById('progress-cermin').textContent = cerminSelesai + '/4';
+      document.getElementById('progress-jurnal').textContent = 'Minggu ' + mingguJurnal + '/8';
+      document.getElementById('progressCard').classList.add('visible');
+    }
+  } catch(e) {
+    // Private browsing — silently ignore, no progress to show
+  }
+}
+
+// ============================================================
+// PERSONA
+// ============================================================
+const PERSONA_STORAGE = 'sp-buku3-persona-v1';
+
+function selectPersona(id) {
+  // Update buttons
+  ['A','B','C'].forEach(p => {
+    const btn = document.getElementById('pcard' + p);
+    btn.classList.toggle('active', p === id);
+    btn.setAttribute('aria-pressed', p === id ? 'true' : 'false');
+  });
+
+  // Show panel
+  ['A','B','C'].forEach(p => {
+    document.getElementById('panel-' + p).classList.toggle('active', p === id);
+  });
+
+  // Scroll to panel
+  const panel = document.getElementById('panel-' + id);
+  setTimeout(() => {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+
+  // Save
+  try { localStorage.setItem(PERSONA_STORAGE, id); } catch(e) {}
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  loadProgress();
+
+  // Restore last persona or default to B
+  let savedPersona = 'B';
+  try {
+    const saved = localStorage.getItem(PERSONA_STORAGE);
+    if (saved && ['A','B','C'].includes(saved)) savedPersona = saved;
+  } catch(e) {}
+
+  // Select persona without scroll on init
+  const id = savedPersona;
+  ['A','B','C'].forEach(p => {
+    const btn = document.getElementById('pcard' + p);
+    btn.classList.toggle('active', p === id);
+    btn.setAttribute('aria-pressed', p === id ? 'true' : 'false');
+    document.getElementById('panel-' + p).classList.toggle('active', p === id);
+  });
+}
+
+init();
+</script>
+</body>
+</html>

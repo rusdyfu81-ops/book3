@@ -1,0 +1,2734 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendamping Baca — The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Buku 3: The Unquenchable Lamp of the Covenant
+   Mengikuti DESIGN-SYSTEM_Buku3.md — LOCKED
+   ============================================================ */
+
+:root {
+  /* BRAND COLORS */
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --green:       #2bb673;
+
+  /* NEUTRALS */
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+
+  /* SHADOWS */
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+
+  /* RADIUS */
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+
+  /* FONT */
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* FOCUS & ACCESSIBILITY */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+button, .nav-link, .tool-card, .persona-card {
+  min-height: 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   NAV BAR — komponen standar
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  height: 48px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+
+.nav-brand {
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  outline: none;
+}
+
+.nav-badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* STORAGE WARNING */
+#storage-warning {
+  display: none;
+  background: #fff3cd;
+  color: #7a5c00;
+  padding: 8px 20px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ============================================================
+   HERO — Tier M (content page)
+   ============================================================ */
+.hero {
+  background: var(--bg3);
+  border-bottom: 2px solid var(--border);
+  color: var(--text);
+  padding: 48px 24px 40px;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  color: var(--teal);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.hero h1 {
+  font-size: clamp(22px, 4.5vw, 36px);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.hero .subtitle {
+  color: var(--text-light);
+  font-size: 16px;
+  max-width: 560px;
+  margin: 0 auto;
+  font-family: var(--font-content);
+  font-style: italic;
+}
+
+/* ============================================================
+   LAYOUT UTAMA
+   ============================================================ */
+.main-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: calc(100vh - 48px - 136px);
+}
+
+/* ============================================================
+   SIDEBAR — navigasi part & bab
+   ============================================================ */
+.sidebar {
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+  position: sticky;
+  top: 48px;
+  height: calc(100vh - 48px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.sidebar-section {
+  margin-bottom: 4px;
+}
+
+.sidebar-part-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 16px 20px 6px;
+  display: block;
+}
+
+.sidebar-part-label:first-child {
+  padding-top: 4px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+  border-left: 3px solid transparent;
+  min-height: 36px;
+}
+
+.sidebar-link:hover {
+  background: var(--bg);
+  color: var(--teal-dark);
+}
+
+.sidebar-link.active {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border-left-color: var(--teal);
+}
+
+.sidebar-link .check-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.sidebar-link.done .check-dot {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.sidebar-link .chapter-num {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Progress bar mini di sidebar */
+.sidebar-progress {
+  padding: 12px 20px 8px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.sidebar-progress-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.progress-bar-wrap {
+  background: var(--border);
+  border-radius: 20px;
+  height: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: var(--teal);
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+.sidebar-progress-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   KONTEN UTAMA — panel bab
+   ============================================================ */
+.content-area {
+  padding: 0;
+}
+
+/* Panel default — sebelum pilih bab */
+.welcome-panel {
+  padding: 48px 40px;
+  max-width: 680px;
+}
+
+.welcome-panel h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.welcome-panel p {
+  font-family: var(--font-content);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.welcome-panel .start-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* Panel bab */
+.chapter-panel {
+  display: none;
+  padding: 40px 40px 80px;
+  max-width: 760px;
+}
+
+.chapter-panel.active {
+  display: block;
+}
+
+/* Part header di atas bab */
+.part-header-strip {
+  background: var(--teal-dark);
+  color: white;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.chapter-title {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.chapter-subtitle {
+  font-family: var(--font-content);
+  font-style: italic;
+  color: var(--text-light);
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+/* Divider */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* ============================================================
+   KOMPONEN KONTEN BAB
+   ============================================================ */
+
+/* Peta Argumen */
+.arg-map {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  border-left: 4px solid var(--teal);
+}
+
+.arg-map-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 10px;
+}
+
+.arg-map-content {
+  font-family: var(--font-content);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.arg-map-content strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Kutipan Park */
+.park-quote {
+  background: var(--bg3);
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 20px 0;
+}
+
+.park-quote blockquote {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.park-quote cite {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Pertanyaan Orientasi */
+.questions-block {
+  margin-bottom: 24px;
+}
+
+.questions-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.questions-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.question-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.question-item:last-child {
+  border-bottom: none;
+}
+
+.question-num {
+  width: 22px;
+  height: 22px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.question-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  font-family: var(--font-content);
+  font-style: italic;
+}
+
+/* Pertanyaan Penghenti */
+.stop-question {
+  background: linear-gradient(135deg, #1a3a3a 0%, var(--teal-dark) 100%);
+  color: white;
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 28px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.stop-question::before {
+  content: '⏸';
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 28px;
+  opacity: 0.2;
+}
+
+.stop-question-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+
+.stop-question-text {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.7;
+  color: white;
+}
+
+/* Catatan Pribadi */
+.notes-block {
+  margin: 24px 0;
+}
+
+.notes-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 120px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-family: var(--font-content);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.notes-textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.notes-textarea::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.notes-save-status {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  text-align: right;
+  min-height: 18px;
+}
+
+/* Tool Links */
+.tool-links-block {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+
+.tool-links-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.tool-links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal-dark);
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+  min-height: 36px;
+}
+
+.tool-link:hover {
+  background: var(--teal-light);
+  border-color: var(--teal);
+}
+
+.tool-link .icon {
+  font-size: 14px;
+}
+
+/* Checkbox selesai */
+.done-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0 8px;
+}
+
+.done-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-light);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--white);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  min-height: 44px;
+}
+
+.done-checkbox-label:hover {
+  border-color: var(--green);
+  color: var(--text);
+}
+
+.done-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+.done-checkbox-label.checked {
+  background: #f0faf5;
+  border-color: var(--green);
+  color: #1a6b3a;
+}
+
+/* Navigation antar bab */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.chapter-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-light);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  min-height: 44px;
+}
+
+.chapter-nav-btn:hover {
+  background: var(--bg2);
+  border-color: var(--teal);
+  color: var(--teal-dark);
+}
+
+.chapter-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.chapter-nav-btn.next {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+  color: white;
+  margin-left: auto;
+}
+
+.chapter-nav-btn.next:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: white;
+}
+
+/* ============================================================
+   SLOW GATE — gerbang antar Part
+   ============================================================ */
+.slow-gate {
+  background: linear-gradient(150deg, #2a1a00 0%, #5a3a00 100%);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  margin: 36px 0;
+  color: white;
+  border: 1px solid rgba(184,134,11,0.3);
+}
+
+.slow-gate-tag {
+  display: inline-block;
+  background: rgba(184,134,11,0.25);
+  color: #f0c040;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.slow-gate h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.slow-gate-question {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+}
+
+.slow-gate textarea {
+  width: 100%;
+  min-height: 100px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-family: var(--font-content);
+  font-size: 15px;
+  color: white;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.slow-gate textarea::placeholder {
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+}
+
+.slow-gate textarea:focus {
+  outline: none;
+  border-color: rgba(184,134,11,0.6);
+}
+
+.gate-unlock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--gold);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  min-height: 44px;
+}
+
+.gate-unlock-btn:hover { opacity: 0.85; }
+.gate-unlock-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.gate-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* ============================================================
+   PART OVERVIEW CARDS
+   ============================================================ */
+.part-overview {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+
+.part-overview-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.part-overview-thesis {
+  font-family: var(--font-content);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  font-style: italic;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile
+   ============================================================ */
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    display: none; /* toggle via JS */
+  }
+
+  .sidebar.open {
+    display: block;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .chapter-panel,
+  .welcome-panel {
+    padding: 24px 20px 60px;
+  }
+
+  .slow-gate {
+    padding: 24px 20px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-nav-toggle {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Sejarah Penebusan</a>
+  <a href="index.html" class="nav-link">← Beranda</a>
+  <a href="galeri-nama-pelita.html" class="nav-link">Galeri Nama Pelita</a>
+  <a href="peta-kovenan.html" class="nav-link">Peta Kovenan</a>
+  <a href="peta-hakim.html" class="nav-link">Peta Era Hakim</a>
+  <a href="cermin-pribadi.html" class="nav-link">Cermin Pribadi</a>
+  <a href="jurnal-pelita.html" class="nav-link">Jurnal Pelita</a>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<!-- STORAGE WARNING -->
+<div id="storage-warning">
+  ⚠️ Progress tidak bisa disimpan di mode penyamaran. Gunakan browser biasa untuk menyimpan perjalananmu.
+</div>
+
+<!-- HERO — Tier M -->
+<section class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Buku 3</span>
+  <h1>Pendamping Baca</h1>
+  <p class="subtitle">Bukan untuk membaca lebih cepat — tapi untuk tidak bisa membaca buku ini dengan cepat.</p>
+</section>
+
+<!-- MOBILE TOGGLE -->
+<div class="mobile-nav-toggle" onclick="toggleSidebar()" aria-expanded="false" aria-controls="sidebar">
+  <span id="mobile-toggle-label">📖 Pilih Bab</span>
+  <span>☰</span>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <!-- Intro -->
+    <span class="sidebar-part-label">Pendahuluan</span>
+    <button class="sidebar-link" onclick="showChapter('intro')" id="link-intro">
+      <span class="check-dot"></span>
+      <span class="chapter-num">—</span>
+      Introduction
+    </button>
+
+    <!-- Part 1 -->
+    <span class="sidebar-part-label">Part 1 — Allah yang Lebih Besar</span>
+    <button class="sidebar-link" onclick="showChapter('p1c1')" id="link-p1c1">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 1</span>
+      Allah yang Lebih Besar dari Segalanya
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p1c2')" id="link-p1c2">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 2</span>
+      Sejarah Penebusan dan Kovenan
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p1c3')" id="link-p1c3">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 3</span>
+      Yesus Kristus, Penggenap Kovenan Kekal
+    </button>
+
+    <!-- Part 2 -->
+    <span class="sidebar-part-label">Part 2 — Administrasi Kovenan</span>
+    <button class="sidebar-link" onclick="showChapter('p2c4')" id="link-p2c4">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 4</span>
+      Kitab Silsilah Yesus Kristus
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p2c5')" id="link-p2c5">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 5</span>
+      Struktur Silsilah
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p2c6')" id="link-p2c6">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 6</span>
+      Tiga Periode: 14+14+14 Generasi
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p2c7')" id="link-p2c7">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 7</span>
+      Generasi yang Dihilangkan dan yang Dicatat
+    </button>
+
+    <!-- Part 3 -->
+    <span class="sidebar-part-label">Part 3 — 14 Generasi Abraham–Daud</span>
+    <button class="sidebar-link" onclick="showChapter('p3c8')" id="link-p3c8">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 8</span>
+      Abraham — Sahabat Allah
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c9')" id="link-p3c9">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 9</span>
+      Ishak — Ketaatan Mutlak
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c10')" id="link-p3c10">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 10</span>
+      Yakub — Fondasi Bangsa
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c11')" id="link-p3c11">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 11</span>
+      Yehuda — Lampu di Tengah Skandal
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c12')" id="link-p3c12">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 12</span>
+      Perez — Hak Lahir Sebelum Lahir
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c13')" id="link-p3c13">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 13</span>
+      Hezron — Dikuburkan di Caleb-Efrata
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c14')" id="link-p3c14">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 14</span>
+      Ram — Anak Kedua yang Dipilih
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c15')" id="link-p3c15">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 15</span>
+      Amminadab — Pemimpin Sebelum Kanaan
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c16')" id="link-p3c16">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 16</span>
+      Nahason — Pemimpin di Padang Gurun
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c17')" id="link-p3c17">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 17</span>
+      Salmon — Menikahi Rahab, Pelacur dari Yerikho
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c18')" id="link-p3c18">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 18</span>
+      Boaz — Penebus bagi Ruth
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c19')" id="link-p3c19">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 19</span>
+      Obed — Menjadi Penopang bagi Naomi
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c20')" id="link-p3c20">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 20</span>
+      Isai — Bapa dari Daud
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p3c21')" id="link-p3c21">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 21</span>
+      Daud — Raja Dipilih Allah
+    </button>
+
+    <!-- Part 4 -->
+    <span class="sidebar-part-label">Part 4 — Zaman Hakim: 340 Tahun</span>
+    <button class="sidebar-link" onclick="showChapter('p4c22')" id="link-p4c22">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 22</span>
+      Memahami Para Hakim
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p4c23')" id="link-p4c23">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 23</span>
+      Kronologi Para Hakim
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p4c24')" id="link-p4c24">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 24</span>
+      Karya Para Hakim
+    </button>
+
+    <!-- Part 5 -->
+    <span class="sidebar-part-label">Part 5 — Saul dan Daud</span>
+    <button class="sidebar-link" onclick="showChapter('p5c25')" id="link-p5c25">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 25</span>
+      Sejarah Raja Saul
+    </button>
+    <button class="sidebar-link" onclick="showChapter('p5c26')" id="link-p5c26">
+      <span class="check-dot"></span>
+      <span class="chapter-num">Kh. 26</span>
+      Sejarah Raja Daud
+    </button>
+
+    <!-- Conclusion -->
+    <span class="sidebar-part-label">Penutup</span>
+    <button class="sidebar-link" onclick="showChapter('conclusion')" id="link-conclusion">
+      <span class="check-dot"></span>
+      <span class="chapter-num">—</span>
+      Kesimpulan — Lampu Masih Menyala
+    </button>
+
+    <!-- Progress -->
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-label">Progress Membaca</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="sidebar-progress-count" id="progress-count">0 dari 28 bab selesai</div>
+    </div>
+
+  </aside>
+
+  <!-- CONTENT AREA -->
+  <main class="content-area" id="content-area">
+
+    <!-- WELCOME PANEL -->
+    <div class="welcome-panel" id="panel-welcome">
+      <h2>Mulai dari mana?</h2>
+      <p>Pilih bab di sebelah kiri untuk membuka panduan membaca. Setiap bab menyediakan peta argumen Park, tiga pertanyaan orientasi sebelum membaca, dan satu pertanyaan penghenti yang tidak bisa dijawab dengan cepat.</p>
+      <p>Ini bukan ringkasan buku. Ini teman perjalanan. Baca bersama buku dan Alkitab.</p>
+      <span class="start-hint">← Pilih bab di panel kiri untuk mulai</span>
+    </div>
+
+    <!-- ============================================================
+         PENDAHULUAN
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-intro">
+      <div class="part-header-strip">Pendahuluan</div>
+      <h2 class="chapter-title">Introduction</h2>
+      <p class="chapter-subtitle">Surat dari seorang gembala tua kepada generasi yang akan hidup setelah kematiannya.</p>
+
+      <div class="part-overview">
+        <div class="part-overview-label">Apa yang sedang kamu baca</div>
+        <p class="part-overview-thesis">Ini bukan buku tentang silsilah. Ini wasiat teologis dari seseorang yang telah berkhotbah 50 tahun lebih — dan memutuskan untuk menuliskan semuanya karena takut kasih karunia itu terbuang begitu saja setelah ia pergi.</p>
+      </div>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Park membuka dengan tiga hal sekaligus: <strong>motivasi menulis</strong> (tidak ingin kasih karunia terbuang), <strong>definisi buku</strong> (silsilah sebagai epitome seluruh sejarah penebusan), dan <strong>tujuan akhir</strong> (pembaca menjadi lampu Allah yang hidup). Tiga hal ini menentukan cara membaca seluruh buku.
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"I did not want any of the grace that I had received to be lost just as our Lord said, 'Gather up the leftover fragments that nothing may be lost.'"</blockquote>
+        <cite>— Abraham Park, Introduction</cite>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"There would be no greater joy than to see the readers of this humble book become true people of the cross...and become living lamps of God."</blockquote>
+        <cite>— Abraham Park, Introduction</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Kapan terakhir kali kamu membaca tujuh belas ayat pertama Matius 1? Apa yang kamu rasakan saat membacanya?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Apa yang membuatmu memilih membaca buku ini? Apa yang kamu harapkan temukan?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Park menulis buku ini di usia lanjut, saat "matahari hampir terbenam dalam hidupnya." Apa yang seseorang tulis ketika ia tahu waktu hampir habis — berbeda dari apa yang ia tulis saat masih muda?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Jika hidupmu adalah buku tentang kasih karunia yang kamu terima — fragmen apa yang belum pernah kamu ceritakan kepada siapapun, dan mengapa?</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-intro" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('intro')"></textarea>
+        <div class="notes-save-status" id="save-status-intro"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-intro">
+          <input type="checkbox" class="done-checkbox" id="done-intro" onchange="markDone('intro')">
+          Sudah membaca Introduction
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" disabled>← Sebelumnya</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p1c1')">Bab 1 →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 1 — BAB 1
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p1c1">
+      <div class="part-header-strip">Part 1 — Allah yang Lebih Besar dari Segalanya</div>
+      <h2 class="chapter-title">Bab 1 — Allah yang Lebih Besar dari Segalanya</h2>
+      <p class="chapter-subtitle">Sebelum ada silsilah — ada Allah. Dan skala-Nya tidak bisa dibandingkan.</p>
+
+      <div class="part-overview">
+        <div class="part-overview-label">Tesis Part 1</div>
+        <p class="part-overview-thesis">Part 1 bukan pengantar — ia adalah pengukur. Semakin besar Allah yang diperkenalkan di sini, semakin ajaib kesetiaan-Nya yang akan terlihat di seluruh buku. Pembaca tidak boleh masuk ke Part 2 sebelum benar-benar merasakan besarnya Allah.</p>
+      </div>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Bab 1 bergerak dari <strong>kosmologi ke soteriologi</strong>: Allah yang menciptakan 10²⁵ bintang dan memanggil setiap satu dengan nama — Allah itu yang turun ke silsilah sempit manusia. Paradoks ini adalah pondasi seluruh buku: mengapa Allah yang sebesar itu peduli dengan satu jiwa, satu garis keturunan?
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"The works that the Lord carries out to save one soul are so great and His thoughts are so deep that even the boundlessly vast universe cannot be compared to one soul."</blockquote>
+        <cite>— Abraham Park, hal. 34–35</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Ketika kamu membayangkan Allah — seberapa besar Allah itu di imajinasimu? Apakah ukurannya lebih kecil dari alam semesta, sama besarnya, atau melampaui kategori itu?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Park mengklaim bahwa satu jiwa manusia lebih berharga dari seluruh alam semesta. Apa reaksi pertamamu mendengar klaim itu?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Mengapa penting untuk memulai buku tentang silsilah dengan kosmologi? Apa yang hilang jika Park langsung mulai dari Abraham?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Allah yang menciptakan 10²⁵ bintang tahu namamu. Duduk dengan itu sejenak. Apa yang kamu rasakan — dan mengapa kamu merasakan itu?</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p1c1" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p1c1')"></textarea>
+        <div class="notes-save-status" id="save-status-p1c1"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p1c1">
+          <input type="checkbox" class="done-checkbox" id="done-p1c1" onchange="markDone('p1c1')">
+          Sudah membaca Bab 1
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('intro')">← Pendahuluan</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p1c2')">Bab 2 →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 1 — BAB 2
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p1c2">
+      <div class="part-header-strip">Part 1 — Allah yang Lebih Besar dari Segalanya</div>
+      <h2 class="chapter-title">Bab 2 — Sejarah Penebusan dan Kovenan</h2>
+      <p class="chapter-subtitle">Enam kovenan. Satu garis merah dari Kejadian 3:15 sampai Kristus.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Bab ini memperkenalkan <strong>enam kovenan utama</strong> (Adam, Nuh, Abraham, Sinai, Daud, Baru) sebagai lapisan struktur sejarah penebusan. Park memilih kata <em>administration</em> — bukan "rencana" atau "kehendak" — untuk menggambarkan cara Allah bekerja. Ini pilihan teologis yang sangat sadar: Allah tidak hanya berencana, Ia mengadministrasikan sejarah dengan presisi.
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"The links between generation to generation in this history of redemption are the covenants that God made with His people, and these covenants became the lamp, shining upon each era."</blockquote>
+        <cite>— Abraham Park, Introduction (definisi operasional yang berlaku sepanjang buku)</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Apa perbedaan antara Allah yang "berencana" dan Allah yang "mengadministrasikan" sejarah? Apa nuansa yang berbeda dari kedua kata itu?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Jika kovenan adalah "lampu" — apa artinya jika lampu itu berpindah dari satu generasi ke generasi berikutnya? Siapa yang memegang lampu itu saat ini?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Dari enam kovenan yang akan kamu baca — mana yang paling kamu pahami? Mana yang paling asing?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Kovenan Allah bersifat unilateral — Ia yang berjanji, Ia yang menanggung konsekuensi jika gagal. Pernahkah kamu sungguh-sungguh mengerti bahwa keselamatanmu tidak bergantung pada kemampuanmu memegang lampu itu?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan untuk bab ini</div>
+        <div class="tool-links-grid">
+          <a href="kalkulator-kovenan.html" class="tool-link"><span class="icon">⚡</span> Kalkulator Kovenan</a>
+          <a href="peta-kovenan.html" class="tool-link"><span class="icon">🗺</span> Peta Kovenan</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p1c2" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p1c2')"></textarea>
+        <div class="notes-save-status" id="save-status-p1c2"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p1c2">
+          <input type="checkbox" class="done-checkbox" id="done-p1c2" onchange="markDone('p1c2')">
+          Sudah membaca Bab 2
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p1c1')">← Bab 1</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p1c3')">Bab 3 →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 1 — BAB 3
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p1c3">
+      <div class="part-header-strip">Part 1 — Allah yang Lebih Besar dari Segalanya</div>
+      <h2 class="chapter-title">Bab 3 — Yesus Kristus, Penggenap Kovenan Kekal</h2>
+      <p class="chapter-subtitle">Lima kovenan bertemu pada satu titik. Semua janji menemukan penggenapannya dalam satu Pribadi.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Bab ini menempatkan Kristus bukan di awal, tapi di ujung Part 1 — setelah pembaca melewati kosmologi dan struktur kovenan. Park berkata secara implisit: <strong>kamu harus mengerti Allah dan sejarahnya dulu, baru kamu boleh menyebut nama Yesus.</strong> Kristus bukan nama yang disebut lebih dulu — Ia adalah penggenapan dari seluruh struktur yang sudah ada sebelum-Nya.
+        </div>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Biasanya kita memulai dengan Yesus dan bergerak mundur ke Perjanjian Lama. Park membalik urutan itu. Apa yang berubah jika kita memulai dari sejarah panjang dan bergerak maju ke Kristus?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Apa artinya Kristus "menggenapi" kovenan — bukan hanya "memulai" sesuatu yang baru?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Setelah membaca dua bab pertama tentang Allah yang besar dan kovenan yang kekal — bagaimana pandanganmu tentang Kristus berubah, jika ada yang berubah?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Yesus yang kamu kenal sehari-hari — apakah Ia sebesar Penggenap Kovenan Kekal yang Park gambarkan? Atau ada sesuatu yang lebih kecil dari itu yang menggantikan-Nya dalam pikiranmu?</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p1c3" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p1c3')"></textarea>
+        <div class="notes-save-status" id="save-status-p1c3"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p1c3">
+          <input type="checkbox" class="done-checkbox" id="done-p1c3" onchange="markDone('p1c3')">
+          Sudah membaca Bab 3
+        </label>
+      </div>
+
+      <!-- SLOW GATE PART 1 -->
+      <hr class="section-divider">
+
+      <div class="slow-gate" id="gate-part1">
+        <div class="slow-gate-tag">🕯 Gerbang Part 1</div>
+        <h3>Sebelum masuk ke Part 2</h3>
+        <p class="slow-gate-question">Park menghabiskan seluruh Part 1 untuk memperkenalkan Allah yang lebih besar dari alam semesta — Allah yang memanggil 10²⁵ bintang dengan nama, dan yang menganggap satu jiwa lebih berharga dari seluruh semesta itu. Sebelum kamu masuk ke struktur silsilah dan nama-nama generasi: bagaimana Allah yang Park gambarkan berbeda dari Allah yang kamu kenal sebelum membaca buku ini?</p>
+        <textarea id="gate-p1-text" placeholder="Tulis jawabanmu di sini. Tidak ada jawaban yang benar atau salah — tapi pertanyaan ini perlu dijawab dari dalam, bukan dari ingatan teologi." oninput="checkGate('p1')"></textarea>
+        <br>
+        <button class="gate-unlock-btn" id="gate-btn-p1" onclick="unlockGate('p1')" disabled>
+          Lanjut ke Part 2 →
+        </button>
+        <p class="gate-note">Tombol ini akan aktif setelah kamu menulis sesuatu di sini.</p>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p1c2')">← Bab 2</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p2c4')" id="next-from-p1c3">Bab 4 →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 2 — BAB 4
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p2c4">
+      <div class="part-header-strip">Part 2 — Administrasi Kovenan & Struktur Silsilah</div>
+      <h2 class="chapter-title">Bab 4 — Kitab Silsilah Yesus Kristus</h2>
+      <p class="chapter-subtitle">"Anak Daud, Anak Abraham" — dua gelar yang merangkum seluruh sejarah penebusan.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Bab ini menganalisis dua frasa pembuka Matius 1:1 — <em>"Anak Daud"</em> (kovenan kerajaan) dan <em>"Anak Abraham"</em> (kovenan janji). Park menunjukkan bahwa dua gelar ini bukan sekadar penanda genealogis — keduanya adalah <strong>deklarasi teologis</strong> tentang siapa Yesus dalam kerangka sejarah penebusan.
+        </div>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Mengapa Matius memulai Injilnya dengan silsilah — bukan dengan kelahiran, bukan dengan baptisan, bukan dengan pengajaran? Apa yang ingin ia katakan kepada pembacanya sejak awal?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">"Anak Daud" dan "Anak Abraham" — mana yang kamu anggap lebih penting? Mengapa?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Park menyebut silsilah sebagai "epitome" atau rangkuman seluruh sejarah penebusan. Apa yang kamu harapkan temukan dalam tujuh belas ayat itu?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Jika seseorang menulis silsilahmu — dan hanya memasukkan momen-momen yang benar-benar membentuk imanmu — apa yang akan tertulis di sana? Dan apa yang tidak akan tertulis?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan untuk bab ini</div>
+        <div class="tool-links-grid">
+          <a href="tabel-generasi.html" class="tool-link"><span class="icon">📊</span> Tabel 14 Generasi</a>
+          <a href="peta-kovenan.html" class="tool-link"><span class="icon">🗺</span> Peta Kovenan</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p2c4" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p2c4')"></textarea>
+        <div class="notes-save-status" id="save-status-p2c4"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p2c4">
+          <input type="checkbox" class="done-checkbox" id="done-p2c4" onchange="markDone('p2c4')">
+          Sudah membaca Bab 4
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p1c3')">← Bab 3</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p2c5')">Bab 5 →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 2 — BAB 5
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p2c5">
+      <div class="part-header-strip">Part 2 — Administrasi Kovenan & Struktur Silsilah</div>
+      <h2 class="chapter-title">Bab 5 — Struktur Silsilah</h2>
+      <p class="chapter-subtitle">Matius vs. Lukas. 77 nama. Mengapa dua penulis menulis silsilah yang berbeda?</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Bab ini membandingkan silsilah Matius dan Lukas — yang bergerak ke arah berbeda (Matius turun dari Abraham, Lukas naik sampai Adam). Park menunjukkan bahwa keduanya tidak bertentangan — mereka melayani tujuan teologis yang berbeda. 77 nama dalam silsilah Lukas bukan kecelakaan — angka ini dalam tradisi Ibrani mengandung makna kesempurnaan.
+        </div>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Apakah perbedaan antara silsilah Matius dan Lukas pernah membingungkanmu? Bagaimana kamu menyikapinya selama ini?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Matius menulis untuk pembaca Yahudi, Lukas untuk Gentil. Bagaimana latar belakang pembaca bisa mengubah cara penulis menceritakan kisah yang sama?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Apa artinya jika sebuah dokumen memiliki dua versi yang sedikit berbeda — apakah itu melemahkan kepercayaanmu, atau justru memperkuatnya?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Silsilah Matius berakhir di Kristus. Silsilah Lukas berakhir di Allah. Kamu ada di antara keduanya. Siapa yang kamu lihat di ujung ceritamu?</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p2c5" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p2c5')"></textarea>
+        <div class="notes-save-status" id="save-status-p2c5"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p2c5">
+          <input type="checkbox" class="done-checkbox" id="done-p2c5" onchange="markDone('p2c5')">
+          Sudah membaca Bab 5
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p2c4')">← Bab 4</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p2c6')">Bab 6 →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 2 — BAB 6
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p2c6">
+      <div class="part-header-strip">Part 2 — Administrasi Kovenan & Struktur Silsilah</div>
+      <h2 class="chapter-title">Bab 6 — Tiga Periode: 14+14+14 Generasi</h2>
+      <p class="chapter-subtitle">Mengapa Matius memilih angka 14? Dan mengapa ia menyederhanakan sejarah menjadi tiga periode yang sama panjangnya?</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Angka 14 bukan angka acak. Dalam tradisi Ibrani, 14 adalah dua kali 7 (angka kesempurnaan). Park juga menunjukkan bahwa 14 adalah nilai numerik dari nama <em>David</em> dalam tulisan Ibrani (D=4, V=6, D=4). Dengan membagi silsilah menjadi tiga periode 14, Matius sedang menyampaikan satu pesan: <strong>seluruh sejarah bergerak menuju dan keluar dari Daud — dan penggenapannya adalah Kristus.</strong>
+        </div>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Penulis kuno menggunakan angka dengan makna simbolis yang kita sering abaikan. Setelah tahu bahwa 14 = nilai numerik "David" — apa yang berubah dari cara kamu membaca struktur silsilah ini?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Tiga periode: Abraham→Daud, Daud→Pembuangan, Pembuangan→Kristus. Buku ini hanya membahas periode pertama. Apa yang kamu harapkan dari dua periode berikutnya di buku-buku Park yang lain?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Jika sejarahmu dibagi menjadi tiga periode — apa judulnya masing-masing?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Matius menyederhanakan 1.163 tahun menjadi tiga baris dengan 14+14+14 generasi. Apa yang hilang dari penyederhanaan itu — dan apa yang justru terlihat lebih jelas?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan untuk bab ini</div>
+        <div class="tool-links-grid">
+          <a href="tabel-generasi.html" class="tool-link"><span class="icon">📊</span> Tabel 14 Generasi</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p2c6" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p2c6')"></textarea>
+        <div class="notes-save-status" id="save-status-p2c6"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p2c6">
+          <input type="checkbox" class="done-checkbox" id="done-p2c6" onchange="markDone('p2c6')">
+          Sudah membaca Bab 6
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p2c5')">← Bab 5</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p2c7')">Bab 7 →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 2 — BAB 7
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p2c7">
+      <div class="part-header-strip">Part 2 — Administrasi Kovenan & Struktur Silsilah</div>
+      <h2 class="chapter-title">Bab 7 — Generasi yang Dihilangkan dan yang Dicatat</h2>
+      <p class="chapter-subtitle">Yang tidak ada dalam silsilah sama pentingnya dengan yang ada. Penghapusan adalah pernyataan teologis.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Ini bab kunci hermeneutis buku ini. Park menunjukkan bahwa <strong>generasi yang dihilangkan dari silsilah bukan diabaikan oleh Allah — mereka dihilangkan karena iman dan pengabdian mereka kepada Allah telah luntur.</strong> Penghapusan bukan hukuman yang sewenang-wenang — ia adalah cermin teologis. Dan sebaliknya: yang masuk adalah "lampu yang menerangi perjalanan iman kita."
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"Those generations whose faith and devotion to God had dissipated were entirely removed from Jesus' genealogy."</blockquote>
+        <cite>— Abraham Park, hal. 87–88</cite>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"Jesus could have kept His genealogy undefiled... He did not mind being called a descendant of women who were stained with lawlessness, adultery and even incest."</blockquote>
+        <cite>— Abraham Park, hal. 80</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Jika masuk atau tidak masuk dalam silsilah adalah pernyataan teologis — bukan sekadar catatan historis — apa yang berubah dari cara kamu membaca nama-nama yang ada?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Yesus bisa saja "membersihkan" silsilah-Nya dari orang-orang yang penuh skandal. Ia memilih tidak melakukannya. Apa yang ini katakan tentang karakter-Nya?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Park berkata orang-orang yang masuk silsilah adalah "lampu yang menerangi perjalanan iman kita." Siapa yang menjadi lampu dalam perjalanan imanmu sendiri?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Jika Allah menulis silsilah rohanimu sekarang — generasi mana yang akan Ia masukkan, dan generasi mana yang akan Ia hilangkan? Bukan sebagai hukuman — tapi sebagai cermin yang jujur tentang iman yang menyala atau yang padam.</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan untuk bab ini</div>
+        <div class="tool-links-grid">
+          <a href="galeri-nama-pelita.html" class="tool-link"><span class="icon">🕯</span> Galeri Nama Pelita</a>
+          <a href="tabel-generasi.html" class="tool-link"><span class="icon">📊</span> Tabel 14 Generasi</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p2c7" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p2c7')"></textarea>
+        <div class="notes-save-status" id="save-status-p2c7"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p2c7">
+          <input type="checkbox" class="done-checkbox" id="done-p2c7" onchange="markDone('p2c7')">
+          Sudah membaca Bab 7
+        </label>
+      </div>
+
+      <!-- SLOW GATE PART 2 -->
+      <hr class="section-divider">
+
+      <div class="slow-gate" id="gate-part2">
+        <div class="slow-gate-tag">🕯 Gerbang Part 2</div>
+        <h3>Sebelum masuk ke 14 Generasi</h3>
+        <p class="slow-gate-question">Part 2 mengajarkan cara membaca silsilah: penghapusan adalah pernyataan teologis, yang masuk adalah lampu, dan Yesus memilih tidak membersihkan silsilah-Nya dari skandal. Sebelum kamu bertemu satu per satu dengan 14 pembawa kovenan: apa satu hal yang sudah berubah dari cara kamu akan membaca nama-nama itu, dibanding sebelum kamu membaca Part 1 dan 2?</p>
+        <textarea id="gate-p2-text" placeholder="Tulis di sini. Bahkan satu kalimat sudah cukup — asal jujur." oninput="checkGate('p2')"></textarea>
+        <br>
+        <button class="gate-unlock-btn" id="gate-btn-p2" onclick="unlockGate('p2')" disabled>
+          Masuk ke Part 3 — 14 Generasi →
+        </button>
+        <p class="gate-note">Tombol ini akan aktif setelah kamu menulis sesuatu di sini.</p>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p2c6')">← Bab 6</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p3c8')">Bab 8: Abraham →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 3 — Template untuk 14 generasi (Bab 8–21)
+         Menampilkan beberapa bab kunci secara lengkap
+         ============================================================ -->
+
+    <!-- BAB 8 — ABRAHAM -->
+    <div class="chapter-panel" id="panel-p3c8">
+      <div class="part-header-strip">Part 3 — 14 Generasi Abraham–Daud · Generasi ke-1</div>
+      <h2 class="chapter-title">Bab 8 — Abraham: Sahabat Allah</h2>
+      <p class="chapter-subtitle">Dipanggil bukan karena layak. Dipilih bukan karena sempurna. Tapi karena Allah bebas memilih.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Park menyoroti <strong>tiga kovenan yang diterima Abraham</strong> (Kej. 12, 15, 17) sebagai satu proses penyempurnaan yang progresif. Setiap kovenan membawa Abraham lebih dalam ke dalam hubungan dengan Allah — sampai pada sunat sebagai tanda kovenan tubuh. Tapi yang Park tekankan lebih dari segalanya: Abraham dipanggil dari <em>Ur Kasdim</em> — bukan dari komunitas yang saleh, tapi dari pusat penyembahan berhala.
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"It would not be an exaggeration to say that they had been born, had lived, and died for the purpose of fulfilling the divine work of redemption through Jesus Christ."</blockquote>
+        <cite>— Abraham Park, hal. 62 (tentang seluruh generasi dalam silsilah)</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Allah memanggil Abraham dari tengah penyembah berhala. Apa yang ini katakan tentang cara Allah memilih orang untuk memulai sesuatu yang baru?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Abraham disebut "Sahabat Allah" — bukan "hamba Allah." Apa perbedaan antara dua gelar itu dalam hubunganmu sendiri dengan Allah?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Tiga kovenan dalam hidup Abraham — apakah ada momen dalam hidupmu di mana Allah memperdalam komitmen-Nya kepadamu secara bertahap?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Abraham lahir, hidup, dan mati untuk menggenapi satu tujuan ilahi yang lebih besar dari dirinya. Jika kalimat itu benar tentang Abraham — apakah kamu berani mengklaim kalimat itu juga benar tentangmu? Dan mengapa itu sulit untuk diklaim?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan untuk bab ini</div>
+        <div class="tool-links-grid">
+          <a href="galeri-nama-pelita.html" class="tool-link"><span class="icon">🕯</span> Galeri Nama Pelita</a>
+          <a href="peta-kovenan.html" class="tool-link"><span class="icon">🗺</span> Peta Kovenan</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p3c8" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c8')"></textarea>
+        <div class="notes-save-status" id="save-status-p3c8"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p3c8">
+          <input type="checkbox" class="done-checkbox" id="done-p3c8" onchange="markDone('p3c8')">
+          Sudah membaca Bab 8
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p2c7')">← Bab 7</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p3c9')">Bab 9: Ishak →</button>
+      </div>
+    </div>
+
+    <!-- BAB 9–16: Panel ringkas untuk generasi menengah -->
+    <!-- Dibangun dengan pola yang sama tapi lebih singkat -->
+
+    <div class="chapter-panel" id="panel-p3c9">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-2</div>
+      <h2 class="chapter-title">Bab 9 — Ishak: Ketaatan Mutlak</h2>
+      <p class="chapter-subtitle">Anak yang lahir dari janji — dan yang hampir menjadi korban dari janji itu sendiri.</p>
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">Park memusatkan perhatian pada satu momen: <strong>peristiwa Moriah</strong>. Tapi bukan dari sudut pandang Abraham — dari sudut pandang Ishak. Ishak adalah anak yang tahu ia adalah korban, dan tetap menyerahkan dirinya. Park melihat ini sebagai bayangan Kristus yang paling langsung: anak yang taat sampai mati, yang diselamatkan oleh pengganti ilahi.
+        </div>
+      </div>
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Ishak hampir tidak punya cerita "heroik" sendiri — sebagian besar hidupnya ada di bawah bayangan Abraham. Apa yang kamu pikirkan tentang seseorang yang perannya adalah "menjadi jembatan" bagi orang berikutnya?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Ketaatan mutlak — itu gelar yang Park berikan kepada Ishak. Apakah ketaatan adalah sesuatu yang kamu anggap indah atau menakutkan?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Moriah adalah gunung di mana pengorbanan terjadi — dan kemudian menjadi lokasi Bait Suci. Allah sering memakai tempat penderitaan menjadi tempat penyembahan. Adakah "Moriah" dalam hidupmu?</span></div>
+      </div>
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Ishak tidak punya cerita dramatis selain Moriah. Tapi ia ada di silsilah Yesus. Apakah ada bagian dari hidupmu yang terasa seperti "hanya jembatan" — dan apakah kamu bisa melihat bahwa itu sudah cukup?</p>
+      </div>
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p3c9" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c9')"></textarea>
+        <div class="notes-save-status" id="save-status-p3c9"></div>
+      </div>
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p3c9">
+          <input type="checkbox" class="done-checkbox" id="done-p3c9" onchange="markDone('p3c9')">
+          Sudah membaca Bab 9
+        </label>
+      </div>
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p3c8')">← Bab 8</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p3c10')">Bab 10: Yakub →</button>
+      </div>
+    </div>
+
+    <!-- BAB 10 — YAKUB -->
+    <div class="chapter-panel" id="panel-p3c10">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-3</div>
+      <h2 class="chapter-title">Bab 10 — Yakub: Fondasi bagi Bangsa</h2>
+      <p class="chapter-subtitle">Penipu yang menjadi Israel. Kecurangan yang menjadi fondasi dua belas suku.</p>
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">Park tidak memperhalus gambaran Yakub: ia menipu, ia melarikan diri, ia bergulat dengan Allah sampai pagi. Tapi Park menunjukkan bahwa pergumulan itu sendiri adalah bukti iman — seseorang yang tidak mau melepaskan Allah, meski caranya salah. <strong>Nama "Israel" (bergulat dengan Allah dan menang) menjadi nama bangsa yang melaluinya kovenan mengalir.</strong>
+        </div>
+      </div>
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Yakub adalah penipu — dan ia dipilih. Esau adalah pemburu yang jujur — dan ia dilewati. Apa yang Park ingin tunjukkan tentang logika pilihan Allah?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Bergulat dengan Allah adalah gambaran iman yang aneh dan jarang kita bicarakan. Apakah kamu pernah "bergulat" dengan Allah? Bagaimana rasanya?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Yakub menjadi fondasi dua belas suku — dengan semua cacatnya. Apa yang ini katakan tentang fondasi yang Allah pilih untuk sesuatu yang besar?</span></div>
+      </div>
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Allah mengganti nama Yakub menjadi Israel di tengah pergumulan — bukan setelah Yakub berhasil menjadi baik. Apakah ada identitas baru yang Allah sedang tawarkan kepadamu — di tengah pergumulanmu sekarang, bukan setelah kamu "sembuh"?</p>
+      </div>
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p3c10" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c10')"></textarea>
+        <div class="notes-save-status" id="save-status-p3c10"></div>
+      </div>
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p3c10">
+          <input type="checkbox" class="done-checkbox" id="done-p3c10" onchange="markDone('p3c10')">
+          Sudah membaca Bab 10
+        </label>
+      </div>
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p3c9')">← Bab 9</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p3c11')">Bab 11: Yehuda →</button>
+      </div>
+    </div>
+
+    <!-- BAB 11 — YEHUDA (bab penting — tiga perempuan Gentil dimulai dari sini) -->
+    <div class="chapter-panel" id="panel-p3c11">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-4</div>
+      <h2 class="chapter-title">Bab 11 — Yehuda: Lampu di Tengah Skandal</h2>
+      <p class="chapter-subtitle">Ia menjual adiknya. Ia menikah karena nafsu. Ia hampir membunuh menantunya sendiri. Dan ia ada di silsilah Yesus.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Ini adalah bab yang paling tidak nyaman di Part 3. Park tidak menyembunyikan kejahatan Yehuda — ia menceritakannya dengan lengkap. Tapi ia menunjukkan bahwa <strong>kegagalan Yehuda membuka ruang bagi Tamar</strong>: perempuan Gentil yang iman dan kecemburuannya (<em>zeal</em>) terhadap garis kovenan melebihi iman pemegang kovenan itu sendiri. Tamar adalah "crucial link" pertama — mata rantai kritis yang menjaga lampu tetap menyala ketika pemegang aslinya hampir memadamkannya.
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"These three women became the crucial links that helped the lamp of the covenant to continue burning... No obstacle on this earth could stand in the way of their living faith."</blockquote>
+        <cite>— Abraham Park, Conclusion hal. 326–327 (tentang Tamar, Rahab, Ruth)</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Yehuda adalah anak Yakub — pemegang sah garis kovenan. Tamar adalah Gentil, janda, dan dianggap memalukan. Namun yang menjaga lampu tetap menyala adalah Tamar, bukan Yehuda. Apa yang ini katakan tentang asumsimu tentang siapa yang "seharusnya" memegang api iman?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Park menggunakan kata <em>zeal</em> (kecemburuan yang membara) untuk menggambarkan iman Tamar. Apa bedanya antara iman biasa dan iman yang <em>zealous</em>?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Yehuda akhirnya mengakui: "Ia lebih benar dari aku." Apa yang membuat seseorang bisa berkata demikian tentang orang yang secara sosial dianggap lebih rendah darinya?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Adakah seseorang dalam hidupmu yang iman dan kecemburuannya terhadap Allah melebihi milikmu — tapi yang tidak kamu anggap sebagai "orang beriman yang benar"? Mengapa kamu tidak melihatnya sebagai Tamar?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan untuk bab ini</div>
+        <div class="tool-links-grid">
+          <a href="galeri-nama-pelita.html" class="tool-link"><span class="icon">🕯</span> Galeri Nama Pelita — lihat kartu Yehuda & Tamar</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p3c11" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c11')"></textarea>
+        <div class="notes-save-status" id="save-status-p3c11"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p3c11">
+          <input type="checkbox" class="done-checkbox" id="done-p3c11" onchange="markDone('p3c11')">
+          Sudah membaca Bab 11
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p3c10')">← Bab 10</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p3c12')">Bab 12: Perez →</button>
+      </div>
+    </div>
+
+    <!-- BAB 12–16 Ringkas -->
+
+    <div class="chapter-panel" id="panel-p3c12">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-5</div>
+      <h2 class="chapter-title">Bab 12 — Perez: Hak Lahir Sebelum Lahir</h2>
+      <p class="chapter-subtitle">Ia merebut garis kovenan dari dalam rahim — dengan tangan yang keluar lebih dahulu.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Perez adalah anak Tamar dari Yehuda — lahir dari skandal. Tapi ketika bidan mengikat benang merah di tangan Zerah yang keluar lebih dahulu, justru Perez yang menerobos keluar lebih dulu. Park melihat ini sebagai gambaran <strong>pilihan Allah yang melangkahi logika manusia</strong>: yang berhak menurut tradisi dilewati, yang dipilih Allah menerobos masuk.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Perez belum melakukan apa-apa — ia baru lahir — tapi sudah dipilih. Apa yang ini katakan tentang dasar pilihan Allah?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Benang merah di tangan Zerah — dan Kristus lahir dari garis Perez, bukan Zerah. Pernah merasa bahwa sesuatu yang "lebih berhak" melewatimu? Bagaimana kamu menyikapinya?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Park berkata orang-orang ini "lahir, hidup, dan mati" untuk menggenapi tujuan ilahi. Apakah hidupmu terasa memiliki tujuan yang lebih besar dari dirimu sendiri?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Perez lahir dari skandal, tapi ada di silsilah Yesus. Adakah sesuatu dalam asal-usulmu — sesuatu yang kamu anggap memalukan atau tidak layak — yang Allah bisa pakai sebagai bagian dari cerita yang lebih besar?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c12" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c12')"></textarea><div class="notes-save-status" id="save-status-p3c12"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c12"><input type="checkbox" class="done-checkbox" id="done-p3c12" onchange="markDone('p3c12')"> Sudah membaca Bab 12</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p3c11')">← Bab 11</button><button class="chapter-nav-btn next" onclick="showChapter('p3c13')">Bab 13 →</button></div>
+    </div>
+
+    <!-- Bab 13 Hezron -->
+    <div class="chapter-panel" id="panel-p3c13">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-6</div>
+      <h2 class="chapter-title">Bab 13 — Hezron: Dikuburkan di Caleb-Efrata</h2>
+      <p class="chapter-subtitle">Yang Park catat bukan apa yang ia capai — tapi di mana ia dikuburkan. Bahkan kematiannya ada maknanya.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Hezron adalah salah satu nama yang paling tidak dikenal dalam silsilah. Park memilih untuk menyoroti <strong>tempat kematiannya</strong>: Caleb-Efrata — tempat di mana Efrata dikuburkan, dekat Betlehem tempat Kristus akan lahir. Ini bukan kebetulan geografis. Ini adalah sinyal: bahkan tempat seseorang dikuburkan dapat menjadi bagian dari administrasi Allah.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Mengapa Park menghabiskan waktu untuk seseorang yang hampir tidak ada catatannya? Apa yang ia ingin tunjukkan?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Jika bahkan tempat kematian seseorang bisa bermakna dalam rencana Allah — apa yang ini katakan tentang aspek hidupmu yang terasa paling tidak penting?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Hezron ada di silsilah Yesus — meskipun hampir tidak ada yang tahu kisahnya. Apakah anonimitas bisa berdampingan dengan makna yang dalam?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Jika namamu muncul di silsilah seseorang seribu tahun dari sekarang, tanpa konteks apa pun — satu hal apa yang kamu ingin tercatat tentang hidupmu?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c13" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c13')"></textarea><div class="notes-save-status" id="save-status-p3c13"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c13"><input type="checkbox" class="done-checkbox" id="done-p3c13" onchange="markDone('p3c13')"> Sudah membaca Bab 13</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p3c12')">← Bab 12</button><button class="chapter-nav-btn next" onclick="showChapter('p3c14')">Bab 14 →</button></div>
+    </div>
+
+    <!-- Bab 14 Ram -->
+    <div class="chapter-panel" id="panel-p3c14">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-7</div>
+      <h2 class="chapter-title">Bab 14 — Ram: Anak Kedua yang Dipilih</h2>
+      <p class="chapter-subtitle">Anak kedua dari Hezron. Bukan yang sulung. Tapi yang masuk silsilah.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Ram adalah anak kedua — bukan sulung — namun masuk dalam garis kovenan. Park menggunakan Ram untuk memperkuat pola yang sudah terlihat sejak awal: <strong>Allah tidak bekerja dengan logika kelahiran manusia.</strong> Isak bukan Ismael. Yakub bukan Esau. Perez bukan Zerah. Ram bukan Yerahmeel. Setiap pilihan melangkahi ekspektasi tradisi — dan setiap kali, itu adalah pernyataan tentang kebebasan Allah.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Sudahkah kamu memperhatikan pola ini? Allah terus memilih "yang kedua." Mengapa Allah sepertinya menghindari pilihan yang paling obvious?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Ram nyaris tidak dikenal. Apakah penting untuk dikenal, jika yang penting adalah ada di dalam garis yang benar?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Apakah kamu pernah merasa menjadi "anak kedua" — bukan yang paling terlihat atau paling diakui — dalam konteks iman atau pelayanan?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Allah memilih Ram karena Ia bebas memilih — bukan karena Ram lebih baik. Apakah ada sumber keamanan dalam pilihanmu sendiri yang masih bergantung pada prestasimu, bukan pada kebebasan Allah?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c14" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c14')"></textarea><div class="notes-save-status" id="save-status-p3c14"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c14"><input type="checkbox" class="done-checkbox" id="done-p3c14" onchange="markDone('p3c14')"> Sudah membaca Bab 14</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p3c13')">← Bab 13</button><button class="chapter-nav-btn next" onclick="showChapter('p3c15')">Bab 15 →</button></div>
+    </div>
+
+    <!-- Bab 15-16 Singkat -->
+    <div class="chapter-panel" id="panel-p3c15">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-8</div>
+      <h2 class="chapter-title">Bab 15 — Amminadab: Pemimpin Sebelum Kanaan</h2>
+      <p class="chapter-subtitle">Ia hidup di Mesir, di tengah perbudakan. Dan ia tetap memegang lampu.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Amminadab hidup di era perbudakan Mesir — periode paling gelap sebelum Keluaran. Park menunjukkan bahwa ia adalah pemimpin suku Yehuda saat Israel keluar dari Mesir, dan ia berjalan di garis depan. <strong>Ia memimpin bukan di saat kemuliaan — ia memimpin saat umat masih budak.</strong></div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Amminadab memimpin di tengah perbudakan, bukan setelah kemerdekaan. Apa artinya menjadi pemimpin saat situasi belum berubah?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Empat ratus tahun Israel di Mesir — hampir tidak ada catatan tentang iman individual yang bertahan. Bagaimana lampu kovenan menyala di masa yang hampir gelap total?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Apakah ada periode dalam hidupmu yang terasa seperti "perbudakan Mesir" — menunggu pembebasan yang belum datang?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Amminadab setia di tempat yang tidak ada yang melihat. Bagian mana dari imanmu yang hanya dilakukan ketika tidak ada yang melihat — dan apakah itu sama kualitasnya dengan yang dilakukan di depan umum?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c15" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c15')"></textarea><div class="notes-save-status" id="save-status-p3c15"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c15"><input type="checkbox" class="done-checkbox" id="done-p3c15" onchange="markDone('p3c15')"> Sudah membaca Bab 15</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p3c14')">← Bab 14</button><button class="chapter-nav-btn next" onclick="showChapter('p3c16')">Bab 16 →</button></div>
+    </div>
+
+    <div class="chapter-panel" id="panel-p3c16">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-9</div>
+      <h2 class="chapter-title">Bab 16 — Nahason: Pemimpin di Padang Gurun</h2>
+      <p class="chapter-subtitle">Kepala suku Yehuda yang masuk Kanaan pertama kali — dan yang barisannya berjalan di garis depan.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Nahason adalah menantu Amminadab dan pemimpin suku Yehuda di padang gurun. Park menyoroti bahwa barisan Yehuda berjalan <strong>paling pertama</strong> di segala perjalanan Israel — posisi yang paling berbahaya, tapi juga yang paling bertanggung jawab. Ini bukan kebetulan: Yehuda adalah suku dari mana Kristus akan lahir, dan kepemimpinannya dimulai dari sini.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Berjalan di garis paling depan adalah posisi yang paling berbahaya — tapi itu yang Allah berikan kepada suku Yehuda. Apa hubungan antara tanggung jawab besar dan risiko besar dalam kepemimpinan yang dari Allah?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Padang gurun adalah tempat ujian — bukan tempat tujuan. Apa yang menjaga Nahason tetap di garis depan selama empat puluh tahun di padang gurun?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Adakah "padang gurun" dalam hidupmu sekarang — tempat di antara janji dan penggenapan?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Nahason memimpin di padang gurun — bukan setelah sampai di tanah perjanjian. Apakah kamu bisa memimpin dengan setia di tempat yang belum sampai tujuannya?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c16" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c16')"></textarea><div class="notes-save-status" id="save-status-p3c16"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c16"><input type="checkbox" class="done-checkbox" id="done-p3c16" onchange="markDone('p3c16')"> Sudah membaca Bab 16</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p3c15')">← Bab 15</button><button class="chapter-nav-btn next" onclick="showChapter('p3c17')">Bab 17: Salmon →</button></div>
+    </div>
+
+    <!-- BAB 17 — SALMON & RAHAB -->
+    <div class="chapter-panel" id="panel-p3c17">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-10 · Perempuan Gentil ke-2: Rahab</div>
+      <h2 class="chapter-title">Bab 17 — Salmon: Menikahi Rahab dari Yerikho</h2>
+      <p class="chapter-subtitle">Seorang prajurit Israel menikahi pelacur dari kota yang baru saja dihancurkan. Dan keduanya masuk dalam silsilah Yesus.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Rahab adalah perempuan Gentil ke-2 dalam silsilah Yesus — dan satu-satunya yang sebelumnya bekerja sebagai pelacur. Park menunjukkan bahwa imannya bukan hanya emosional: ia <strong>bertindak</strong>. Benang merah di jendela adalah tanda aktif kepercayaan, sama seperti darah paskah di tiang pintu. Dan ketika seluruh kota Yerikho jatuh — satu keluarga yang bertanda benang merah tetap hidup. <em>Zeal</em> Rahab menjaga lampu menyala ketika Israel sendiri hampir kehilangan identitas mereka di Kanaan.
+        </div>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Rahab adalah orang yang paling tidak "memenuhi syarat" untuk masuk silsilah Yesus — Gentil, pelacur, dari bangsa musuh. Apa yang membuat Allah memasukkan namanya?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Benang merah adalah tanda kepercayaan aktif — bukan pasif. Apa tanda aktif kepercayaanmu kepada Allah yang paling nyata sekarang?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Salmon menikahi Rahab — seorang pemimpin Israel menikahi perempuan dari bangsa yang baru dihancurkan. Apa yang memungkinkan kasih karunia melampaui batas-batas yang dibuat manusia?</span></div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Rahab percaya kepada Allah Israel sebelum Israel sendiri masuk ke Kanaan. Apakah ada orang di luar lingkaran imanmu yang kamu anggap tidak mungkin dipilih Allah — tapi ternyata imannya lebih menyala dari orang-orang di dalam?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan</div>
+        <div class="tool-links-grid">
+          <a href="galeri-nama-pelita.html" class="tool-link"><span class="icon">🕯</span> Galeri Nama Pelita — Salmon & Rahab</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p3c17" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c17')"></textarea>
+        <div class="notes-save-status" id="save-status-p3c17"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p3c17">
+          <input type="checkbox" class="done-checkbox" id="done-p3c17" onchange="markDone('p3c17')">
+          Sudah membaca Bab 17
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p3c16')">← Bab 16</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p3c18')">Bab 18: Boaz →</button>
+      </div>
+    </div>
+
+    <!-- BAB 18 — BOAZ & RUTH -->
+    <div class="chapter-panel" id="panel-p3c18">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-11 · Perempuan Gentil ke-3: Ruth</div>
+      <h2 class="chapter-title">Bab 18 — Boaz: Penebus bagi Ruth</h2>
+      <p class="chapter-subtitle">"Di mana engkau pergi, aku akan pergi." Seorang janda Moab memilih untuk tidak melepaskan Allah Israel — bahkan ketika tidak ada yang mengharuskannya.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Ruth adalah perempuan Gentil ke-3 dan terakhir dalam silsilah Yesus. Ia datang ke Israel bukan karena wajib — suaminya sudah meninggal, ia bebas kembali ke Moab. Tapi ia memilih untuk tetap bersama Naomi. Park melihat ini sebagai <strong>iman yang paling murni dalam buku ini</strong>: tidak ada yang memaksa, tidak ada keuntungan yang terlihat, hanya kesetiaan yang melampaui alasan. Dan Boaz sebagai penebus (<em>kinsman-redeemer</em>) menjadi bayangan Kristus yang paling jelas dalam Perjanjian Lama.
+        </div>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Ruth tidak perlu pergi bersama Naomi. Pilihan itu sungguh-sungguh bebas. Apa yang membuat seseorang memilih untuk setia ketika tidak ada yang mengharuskan?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Boaz adalah <em>go'el</em> — penebus. Ia menikahi Ruth bukan karena kewajiban, tapi karena mau. Bagaimana gambaran Boaz mengubah pemahamanmu tentang Kristus sebagai Penebus?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Ruth memungut jelai di ladang Boaz — kerja yang rendah, penuh kerendahan hati. Apakah ada pelayanan atau kerja yang kamu anggap terlalu kecil untuk Allah?</span></div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">"Di mana engkau pergi, aku akan pergi." Ruth mengucapkan itu kepada Naomi — manusia. Apakah kamu bisa mengucapkan kalimat itu kepada Allah — dengan jujur, bukan sebagai deklarasi rohani, tapi sebagai komitmen konkret?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan</div>
+        <div class="tool-links-grid">
+          <a href="galeri-nama-pelita.html" class="tool-link"><span class="icon">🕯</span> Galeri Nama Pelita — Boaz & Ruth</a>
+          <a href="peta-hakim.html" class="tool-link"><span class="icon">⚖</span> Peta Era Hakim — konteks Boaz & Ruth</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p3c18" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c18')"></textarea>
+        <div class="notes-save-status" id="save-status-p3c18"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p3c18">
+          <input type="checkbox" class="done-checkbox" id="done-p3c18" onchange="markDone('p3c18')">
+          Sudah membaca Bab 18
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p3c17')">← Bab 17</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p3c19')">Bab 19: Obed →</button>
+      </div>
+    </div>
+
+    <!-- Bab 19–21 Singkat -->
+    <div class="chapter-panel" id="panel-p3c19">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-12</div>
+      <h2 class="chapter-title">Bab 19 — Obed: Menjadi Penopang bagi Naomi</h2>
+      <p class="chapter-subtitle">Park hanya mencatat dua hal: ia adalah anak bagi Naomi, dan ia mendukung Naomi. Itu sudah cukup.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Obed adalah anak Boaz dan Ruth — dan perjalanannya ke silsilah Yesus hanya diceritakan dalam dua kalimat singkat oleh Park. Tapi Park justru menggunakan ketidakdramatisannya sebagai argumen: <strong>kesetiaan dalam hal-hal kecil pun adalah bagian dari rantai kovenan.</strong> Tidak ada hidup yang tidak berarti jika ia ada di tangan yang benar.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Obed tidak memiliki cerita dramatis. Ia hanya hadir — dan itu sudah cukup untuk ada di silsilah Yesus. Apakah kamu pernah merasa bahwa hidupmu "tidak cukup dramatis" untuk dipakai Allah?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">"Mendukung Naomi" — ini adalah peran yang sangat sederhana. Siapa yang perlu kamu "dukung" sekarang, dengan cara yang paling sederhana?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Naomi datang ke Betlehem dengan kehilangan semuanya. Obed adalah penghiburannya. Apakah Ada di hidupmu yang menjadi "Obed" — penghiburan dari kehilangan yang belum sembuh?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Obed ada di silsilah Yesus bukan karena ia melakukan sesuatu yang luar biasa — tapi karena ia ada, setia, dan mendukung orang yang membutuhkan. Apakah kamu percaya bahwa kehadiranmu yang sederhana sudah bermakna?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c19" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c19')"></textarea><div class="notes-save-status" id="save-status-p3c19"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c19"><input type="checkbox" class="done-checkbox" id="done-p3c19" onchange="markDone('p3c19')"> Sudah membaca Bab 19</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p3c18')">← Bab 18</button><button class="chapter-nav-btn next" onclick="showChapter('p3c20')">Bab 20 →</button></div>
+    </div>
+
+    <div class="chapter-panel" id="panel-p3c20">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-13</div>
+      <h2 class="chapter-title">Bab 20 — Isai: Bapa dari Daud</h2>
+      <p class="chapter-subtitle">Seorang bapa yang tidak memasukkan anak bungsunya ke barisan ketika Samuel datang mencari raja.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Isai adalah bapa yang hampir melewatkan Daud. Ketika Samuel datang untuk mengurapi raja, Isai menghadirkan tujuh anaknya — tapi bukan Daud. Anak bungsu itu sedang menggembalakan domba, dianggap tidak perlu dipanggil. <strong>Allah tidak melihat seperti manusia melihat.</strong> Dan ayahnya sendiri tidak melihat Daud sebagai calon raja. Tapi Allah melihat — dan memilih.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Isai tidak memanggil Daud karena ia tidak melihat potensi di sana. Apakah ada seseorang dalam hidupmu yang tidak dilihat oleh orang-orang di sekelilingnya — tapi kamu lihat?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Daud ada di ladang, menggembalakan domba, saat dunia bergerak tanpa dia. Bagaimana kamu menyikapi momen-momen ketika kamu tidak ada di ruangan yang tepat?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Isai masuk silsilah Yesus bukan karena ia bapa yang sempurna — ia hampir melewatkan anaknya sendiri. Apa yang ini katakan tentang peran orang tua dalam rencana Allah?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Daud sedang di ladang saat Samuel datang — tidak ada di tempat yang "seharusnya." Allah menemuinya di sana. Di mana "ladangmu" sekarang — dan apakah kamu percaya Allah juga bisa menemuimu di sana?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c20" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c20')"></textarea><div class="notes-save-status" id="save-status-p3c20"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c20"><input type="checkbox" class="done-checkbox" id="done-p3c20" onchange="markDone('p3c20')"> Sudah membaca Bab 20</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p3c19')">← Bab 19</button><button class="chapter-nav-btn next" onclick="showChapter('p3c21')">Bab 21: Daud →</button></div>
+    </div>
+
+    <div class="chapter-panel" id="panel-p3c21">
+      <div class="part-header-strip">Part 3 — 14 Generasi · Generasi ke-14 (Akhir Part 3)</div>
+      <h2 class="chapter-title">Bab 21 — Daud: Raja yang Dipilih Allah</h2>
+      <p class="chapter-subtitle">Bab ini memperkenalkan Daud. Part 5 akan menyelesaikan ceritanya. Di antara keduanya: 340 tahun kegelapan.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Bab 21 adalah titik kulminasi Part 3 — 14 generasi berakhir di Daud. Tapi Park sengaja tidak menceritakan kisah Daud secara penuh di sini. Daud akan dikembalikan di Part 5 — setelah pembaca melewati 340 tahun zaman hakim. <strong>Daud tidak bisa dipahami tanpa kegelapan yang mendahuluinya dan membentuknya.</strong> Bab 21 adalah "tanda baca" — bukan kalimat penutup.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Park memperkenalkan Daud sebagai generasi ke-14 dari silsilah — tapi menyimpan kisah lengkapnya untuk Part 5. Mengapa urutan itu penting?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Sebelum masuk ke zaman hakim yang penuh kegelapan: apa yang kamu harapkan dari Daud setelah melewati 14 generasi yang membawa lampu sampai kepadanya?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">14 generasi telah kamu baca. Nama mana yang paling berkesan dan mengapa?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">14 generasi. Dari Abraham sampai Daud. Ribuan tahun. Dan lampu tidak padam. Sekarang kamu akan masuk ke 340 tahun yang lebih gelap dari Sodom. Apa yang kamu pegang sebagai fondasi sebelum masuk ke sana?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p3c21" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p3c21')"></textarea><div class="notes-save-status" id="save-status-p3c21"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p3c21"><input type="checkbox" class="done-checkbox" id="done-p3c21" onchange="markDone('p3c21')"> Sudah membaca Bab 21</label></div>
+
+      <!-- SLOW GATE PART 3 -->
+      <hr class="section-divider">
+      <div class="slow-gate">
+        <div class="slow-gate-tag">🕯 Gerbang Part 3</div>
+        <h3>Sebelum masuk ke 340 Tahun Kegelapan</h3>
+        <p class="slow-gate-question">Kamu baru melewati 14 generasi pembawa lampu — dari Abraham sampai Daud. Dari nama-nama yang hampir tidak dikenal sampai yang penuh skandal. Mana satu nama yang paling mengganggumu — dan apa yang membuatnya mengganggu? (Ini bukan pertanyaan teologis. Ini pertanyaan tentang apa yang Allah sedang sentuh dalam dirimu melalui nama itu.)</p>
+        <textarea id="gate-p3-text" placeholder="Tulis di sini…" oninput="checkGate('p3')"></textarea>
+        <br>
+        <button class="gate-unlock-btn" id="gate-btn-p3" onclick="unlockGate('p3')" disabled>
+          Masuk ke Part 4 — Zaman Hakim →
+        </button>
+        <p class="gate-note">Tombol ini akan aktif setelah kamu menulis sesuatu di sini.</p>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p3c20')">← Bab 20</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p4c22')">Bab 22: Zaman Hakim →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PART 4 — ZAMAN HAKIM
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p4c22">
+      <div class="part-header-strip">Part 4 — Zaman Hakim: 340 Tahun Kegelapan</div>
+      <h2 class="chapter-title">Bab 22 — Memahami Para Hakim</h2>
+      <p class="chapter-subtitle">Siapa para hakim? Mengapa Allah memakai yang paling tidak layak untuk menjadi pembebas?</p>
+
+      <div class="part-overview">
+        <div class="part-overview-label">Tesis Part 4</div>
+        <p class="part-overview-thesis">340 tahun hampir seluruhnya dihapus dari silsilah. Ini bukan informasi tambahan — ini adalah konteks yang membuat kovenan terlihat menggelegar. Jika lampu tetap menyala di sini, itu hanya bisa dijelaskan oleh kecemburuan Allah sendiri yang tidak bisa padam.</p>
+      </div>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Park membuka Part 4 dengan mendefinisikan siapa hakim itu — bukan hakim hukum, tapi <em>shofetim</em>: pembebas. Dan kemudian ia mengungkap paradoks yang mengejutkan: <strong>Allah sengaja memilih hakim-hakim yang paling tidak layak</strong> — bukan karena tidak ada yang lebih baik, tapi untuk menunjukkan bahwa Penyelamat Israel bukan manusia, tapi Allah sendiri.
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"God chose people with imperfections and weaknesses as judges to save Israel in order to show them that the true savior and ruler of Israel is not man, but God Himself."</blockquote>
+        <cite>— Abraham Park, hal. 165</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Park berkata Allah sengaja memilih hakim yang tidak layak. Apa yang berubah dari cara kamu melihat kepemimpinan Kristen jika Allah lebih tertarik menunjukkan diri-Nya daripada menampilkan pemimpin yang sempurna?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Zaman Hakim disebut Park sebagai "lebih gelap dari Sodom." Apa yang membuat seseorang tetap beriman di tengah komunitas yang sudah tidak lagi peduli pada Allah?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Dari hakim-hakim yang akan kamu baca — mana yang paling kamu kenal sebelum ini? Dan apa yang kamu ketahui tentang dia?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Allah sengaja memakai yang tidak sempurna — supaya yang terlihat bukan kehebatan manusia, tapi kehadiran Allah. Apakah ada area dalam hidupmu di mana kamu masih berusaha menjadi "hakim yang sempurna" — dan mungkin itu yang justru menghalangi Allah terlihat melaluimu?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan untuk Part 4</div>
+        <div class="tool-links-grid">
+          <a href="peta-hakim.html" class="tool-link"><span class="icon">⚖</span> Peta Era Hakim</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p4c22" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p4c22')"></textarea>
+        <div class="notes-save-status" id="save-status-p4c22"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p4c22">
+          <input type="checkbox" class="done-checkbox" id="done-p4c22" onchange="markDone('p4c22')">
+          Sudah membaca Bab 22
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p3c21')">← Bab 21</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p4c23')">Bab 23 →</button>
+      </div>
+    </div>
+
+    <div class="chapter-panel" id="panel-p4c23">
+      <div class="part-header-strip">Part 4 — Zaman Hakim: 340 Tahun Kegelapan</div>
+      <h2 class="chapter-title">Bab 23 — Kronologi Para Hakim</h2>
+      <p class="chapter-subtitle">Sejarah yang tumpang tindih, penuh ambiguitas — dan Park tidak menyembunyikannya.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Bab ini membahas kronologi yang kompleks dan "appear to overlap" — frase yang Park gunakan tiga kali. Ini adalah kerendahan hati hermeneutis yang jarang: penulis mengakui ada ambiguitas dalam catatan sejarah, dan ia tidak memaksakan kepastian palsu. <strong>Park mengajarkan pembaca cara memegang kepastian teologis sambil bersikap jujur tentang ketidakpastian historis.</strong></div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Park mengakui ada bagian kronoloig yang tidak bisa dipastikan. Bagaimana sikapmu terhadap ketidakpastian dalam teks Alkitab — apakah itu mengguncang imanmu atau memberi ruang untuk pertumbuhan?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Mengapa kronologi itu penting? Apa yang terungkap jika kita tahu kapan tepatnya peristiwa-peristiwa itu terjadi?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">340 tahun yang "tumpang tindih" — dalam hidupmu, adakah periode yang terasa seperti "tidak jelas batasnya" — di mana kamu tidak yakin kapan satu babak berakhir dan babak baru dimulai?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Park mengakui ketidakpastian. Seberapa nyaman kamu dengan ketidakpastian dalam imanmu — dan apa yang masih kamu paksakan untuk menjadi pasti, padahal belum?</p></div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p4c23" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p4c23')"></textarea><div class="notes-save-status" id="save-status-p4c23"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p4c23"><input type="checkbox" class="done-checkbox" id="done-p4c23" onchange="markDone('p4c23')"> Sudah membaca Bab 23</label></div>
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p4c22')">← Bab 22</button><button class="chapter-nav-btn next" onclick="showChapter('p4c24')">Bab 24 →</button></div>
+    </div>
+
+    <div class="chapter-panel" id="panel-p4c24">
+      <div class="part-header-strip">Part 4 — Zaman Hakim: 340 Tahun Kegelapan</div>
+      <h2 class="chapter-title">Bab 24 — Karya Para Hakim</h2>
+      <p class="chapter-subtitle">12 hakim. Satu siklus berulang: pengkhianatan → penindasan → pertobatan → pembebasan → pengkhianatan lagi.</p>
+      <div class="arg-map"><div class="arg-map-label">Peta Argumen</div><div class="arg-map-content">Park menceritakan 12 hakim dari Othniel sampai Samson. Tapi yang ia tunjukkan bukan kisah kemajuan — ini adalah cerita <strong>manusia yang tidak belajar</strong>. Siklus berulang tanpa henti. Dan di tengah siklus itu, lampu kovenan tetap menyala — bukan karena Israel setia, tapi karena Allah tidak bisa berhenti peduli. Kecemburuan-Nya (<em>zeal</em>) adalah yang mempertahankan lampu itu.</div></div>
+      <div class="questions-block"><div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item"><span class="question-num">1</span><span class="question-text">Siklus hakim berulang terus — bukan karena Israel tidak tahu, tapi karena mereka terus memilih lupa. Apa yang membuat manusia terus kembali ke pola yang sudah terbukti merusak?</span></div>
+        <div class="question-item"><span class="question-num">2</span><span class="question-text">Di antara 12 hakim, ada yang sangat lemah (Gideon yang takut), yang sangat kuat tapi korup (Samson), yang bijak (Deborah). Hakim mana yang paling mencerminkan kekuatan dan kelemahanmu?</span></div>
+        <div class="question-item"><span class="question-num">3</span><span class="question-text">Allah membebaskan Israel berulang kali, meskipun Israel berulang kali mengkhianati-Nya. Apa batas kesabaran Allah? Dan apakah ada batas itu?</span></div>
+      </div>
+      <div class="stop-question"><div class="stop-question-label">Pertanyaan Penghenti</div><p class="stop-question-text">Adakah siklus dalam hidupmu yang berulang — suatu pola pengkhianatan dan pertobatan yang sudah kamu lalui lebih dari sekali? Allah membebaskan Israel setelah siklus ke-sekian. Bagaimana kamu menyikapi fakta bahwa Allah mungkin masih di sana, menunggu, setelah siklus ke-sekianmu?</p></div>
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan</div>
+        <div class="tool-links-grid"><a href="peta-hakim.html" class="tool-link"><span class="icon">⚖</span> Peta Era Hakim — lihat siklus secara visual</a><a href="cermin-pribadi.html" class="tool-link"><span class="icon">🪞</span> Cermin Pribadi — Cermin 2</a></div>
+      </div>
+      <div class="notes-block"><div class="notes-label">Catatanmu</div><textarea class="notes-textarea" id="notes-p4c24" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p4c24')"></textarea><div class="notes-save-status" id="save-status-p4c24"></div></div>
+      <div class="done-row"><label class="done-checkbox-label" id="done-label-p4c24"><input type="checkbox" class="done-checkbox" id="done-p4c24" onchange="markDone('p4c24')"> Sudah membaca Bab 24</label></div>
+
+      <!-- SLOW GATE PART 4 -->
+      <hr class="section-divider">
+      <div class="slow-gate">
+        <div class="slow-gate-tag">🕯 Gerbang Part 4</div>
+        <h3>Sebelum masuk ke Saul dan Daud</h3>
+        <p class="slow-gate-question">Kamu baru melewati 340 tahun yang Park sebut "lebih gelap dari Sodom." Dan lampu tidak padam. Di tengah semua kegagalan para hakim yang berulang — apa yang paling mengejutkanmu tentang Allah yang kamu temui di Part 4 ini?</p>
+        <textarea id="gate-p4-text" placeholder="Tulis di sini…" oninput="checkGate('p4')"></textarea>
+        <br>
+        <button class="gate-unlock-btn" id="gate-btn-p4" onclick="unlockGate('p4')" disabled>Masuk ke Part 5 — Saul & Daud →</button>
+        <p class="gate-note">Tombol ini akan aktif setelah kamu menulis sesuatu di sini.</p>
+      </div>
+
+      <div class="chapter-nav"><button class="chapter-nav-btn" onclick="showChapter('p4c23')">← Bab 23</button><button class="chapter-nav-btn next" onclick="showChapter('p5c25')">Bab 25: Saul →</button></div>
+    </div>
+
+    <!-- ============================================================
+         PART 5
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-p5c25">
+      <div class="part-header-strip">Part 5 — Saul dan Daud: Pembentukan Sebelum Kemuliaan</div>
+      <h2 class="chapter-title">Bab 25 — Sejarah Raja Saul</h2>
+      <p class="chapter-subtitle">Saul bukan hanya orang yang gagal. Ia adalah cermin dari dosa kolektif Israel yang menginginkan raja seperti bangsa-bangsa lain.</p>
+
+      <div class="part-overview">
+        <div class="part-overview-label">Tesis Part 5</div>
+        <p class="part-overview-thesis">Park menghabiskan lebih dari separuh bab Daud pada 10 tahun pengungsian — bukan kejayaannya. Daud bukan raja karena ia kuat, tapi karena ia belajar bahwa ia lemah dan Allah yang kuat. Saul adalah batu pijakan yang menunjukkan mengapa kekuatan manusia tidak bisa menjadi fondasi kerajaan Allah.</p>
+      </div>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Park mengungkap bahwa masalah utama bukan Saul — tapi <strong>Israel yang menolak Allah sebagai Raja</strong> mereka. Allah berkata kepada Samuel: "mereka telah menolak Aku." Saul adalah konsekuensi dari permintaan yang salah. Dan tiga dosa yang menjatuhkan Saul semuanya berkaitan dengan kovenan: menghina Firman, mencari dukun, dan melanggar janji yang dibuat atas nama Allah.
+        </div>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Israel meminta raja karena ingin "seperti bangsa-bangsa lain." Apakah ada area dalam imanmu di mana kamu juga menginginkan sesuatu karena semua orang lain tampak memilikinya?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Tiga dosa Saul: menghina Firman, mencari dukun, melanggar kovenan. Mana yang paling mudah terjadi tanpa disadari?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Park menyebut kejatuhan Saul sebagai "wretched" — menyedihkan, memilukan. Apa yang membuat kejatuhan seseorang menjadi menyedihkan, bukan hanya mengecewakan?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">Saul mulai dengan baik — ia rendah hati, ia dipilih Allah, ia punya potensi. Tapi ia berakhir dengan "wretched." Apa yang kamu jaga sekarang agar perjalananmu tidak berakhir dengan kata yang sama?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan</div>
+        <div class="tool-links-grid">
+          <a href="cermin-pribadi.html" class="tool-link"><span class="icon">🪞</span> Cermin Pribadi — Cermin 3</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p5c25" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p5c25')"></textarea>
+        <div class="notes-save-status" id="save-status-p5c25"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p5c25">
+          <input type="checkbox" class="done-checkbox" id="done-p5c25" onchange="markDone('p5c25')">
+          Sudah membaca Bab 25
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p4c24')">← Bab 24</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('p5c26')">Bab 26: Daud →</button>
+      </div>
+    </div>
+
+    <!-- BAB 26 — DAUD (paling panjang dan paling penting di Part 5) -->
+    <div class="chapter-panel" id="panel-p5c26">
+      <div class="part-header-strip">Part 5 — Saul dan Daud: Pembentukan Sebelum Kemuliaan</div>
+      <h2 class="chapter-title">Bab 26 — Sejarah Raja Daud</h2>
+      <p class="chapter-subtitle">16 tempat pelarian. 10 tahun dalam kegelapan. Setiap tempat adalah wahyu tentang nama Allah yang hanya bisa ditemukan dalam penderitaan.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Peta Argumen</div>
+        <div class="arg-map-content">
+          Park mendokumentasikan 16 tempat pelarian Daud secara terperinci — setiap tempat dengan nama, makna Ibrani, dan Mazmur yang lahir di sana. Ini bukan biografi. Ini adalah <strong>kuliah tentang nama-nama Allah yang hanya bisa dipelajari dalam penderitaan</strong>: Adullam = persembunyian → Allah adalah persembunyianku. Mizpeh = menara pengawal → nama Allah adalah menara yang kuat. Daud diurapi tiga kali, dan setiap urapan membutuhkan penderitaan yang lebih dalam.
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"God was molding David into a leader of faith who could fulfill His administration in the history of redemption."</blockquote>
+        <cite>— Abraham Park, hal. 288</cite>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"A person after God's own heart does not refer to a perfect person. A person after God's own heart is a person who may have many faults, but repents thoroughly and resolves to live according to God's Word."</blockquote>
+        <cite>— Abraham Park, Bab 26</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Park menghabiskan lebih dari separuh bab Daud pada masa pelariannya — bukan masa kejayaannya. Apa yang ini katakan tentang apa yang paling penting untuk dibentuk dalam diri seorang pemimpin?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Setiap tempat pelarian Daud mengajarkan satu nama Allah yang baru. Kamu tidak bisa menemukan Allah sebagai "persembunyian" jika tidak pernah perlu bersembunyi. Nama Allah apa yang sudah kamu temukan dalam penderitaanmu?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Daud berdosa berat — tapi evaluasi Allah tentang Daud adalah "ia melakukan apa yang benar." Kunci perbedaannya adalah pertobatan yang sungguh-sungguh. Apa bedanya pertobatan yang sungguh-sungguh dengan sekedar menyesal?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti</div>
+        <p class="stop-question-text">"Orang yang berkenan di hati Allah bukan orang yang sempurna, tapi orang yang bertobat dengan sungguh-sungguh dan bertekad untuk hidup sesuai Firman Allah." Apakah definisi itu membebaskan atau justru semakin memberatimu — dan mengapa?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Tools yang relevan</div>
+        <div class="tool-links-grid">
+          <a href="cermin-pribadi.html" class="tool-link"><span class="icon">🪞</span> Cermin Pribadi — Cermin 3</a>
+          <a href="jurnal-pelita.html" class="tool-link"><span class="icon">📔</span> Jurnal Pelita — Fase 3</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu</div>
+        <textarea class="notes-textarea" id="notes-p5c26" placeholder="Tulis apa yang muncul saat kamu berhenti di sini…" oninput="saveNote('p5c26')"></textarea>
+        <div class="notes-save-status" id="save-status-p5c26"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-p5c26">
+          <input type="checkbox" class="done-checkbox" id="done-p5c26" onchange="markDone('p5c26')">
+          Sudah membaca Bab 26
+        </label>
+      </div>
+
+      <!-- SLOW GATE PART 5 -->
+      <hr class="section-divider">
+      <div class="slow-gate">
+        <div class="slow-gate-tag">🕯 Gerbang Part 5</div>
+        <h3>Sebelum membaca Kesimpulan</h3>
+        <p class="slow-gate-question">Kamu baru melewati seluruh perjalanan — dari Allah yang lebih besar dari alam semesta, sampai ke Daud yang berdosa dan bertobat di 16 tempat pengungsian. Park menghabiskan ratusan halaman untuk membuktikan bahwa lampu tidak padam. Sebelum kamu membaca Kesimpulan: sudahkah kamu percaya itu — bukan hanya mengerti secara intelektual, tapi benar-benar percaya? Dan jika belum — apa yang masih menahan?</p>
+        <textarea id="gate-p5-text" placeholder="Tulis di sini. Ini adalah pertanyaan paling penting sebelum Kesimpulan." oninput="checkGate('p5')"></textarea>
+        <br>
+        <button class="gate-unlock-btn" id="gate-btn-p5" onclick="unlockGate('p5')" disabled>Masuk ke Kesimpulan →</button>
+        <p class="gate-note">Tombol ini akan aktif setelah kamu menulis sesuatu di sini.</p>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p5c25')">← Bab 25</button>
+        <button class="chapter-nav-btn next" onclick="showChapter('conclusion')">Kesimpulan →</button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONCLUSION
+         ============================================================ -->
+    <div class="chapter-panel" id="panel-conclusion">
+      <div class="part-header-strip">Kesimpulan — Lampu Masih Menyala</div>
+      <h2 class="chapter-title">The Unquenchable Lamp of the Covenant</h2>
+      <p class="chapter-subtitle">Ini bukan akhir. Lampu masih menyala. Dan pembaca ada di dalamnya.</p>
+
+      <div class="arg-map">
+        <div class="arg-map-label">Tiga Lapisan Kesimpulan</div>
+        <div class="arg-map-content">
+          Park membangun kesimpulan dalam tiga lapisan yang saling menopang: <strong>(1) Kedaulatan Allah</strong> — Ia memilih yang tidak layak, Ia bekerja melalui kegagalan, tidak ada yang bisa menghentikan administrasi-Nya. <strong>(2) Kovenan dengan sumpah yang tidak bisa dibatalkan</strong> — bukan karena manusia menjaganya, tapi karena sifat dasarnya tidak memiliki mekanisme pembatalan. <strong>(3) Kecemburuan Allah (<em>zeal</em>)</strong> — Yesaya 9:7: <em>"The zeal of the LORD of hosts will accomplish this."</em> Api itu adalah motivasi ilahi yang tidak bisa padam.
+        </div>
+      </div>
+
+      <div class="park-quote">
+        <blockquote>"The spirit of the man whose sins have been forgiven through this precious blood is the lamp of God (Prov 20:27)."</blockquote>
+        <cite>— Abraham Park, hal. 21</cite>
+      </div>
+
+      <div class="questions-block">
+        <div class="questions-label">Sebelum Membaca Kesimpulan</div>
+        <div class="question-item">
+          <span class="question-num">1</span>
+          <span class="question-text">Setelah melewati seluruh perjalanan — dari kosmologi ke biografi, dari Abraham ke Daud, melalui 340 tahun hakim — apa yang paling berubah dari cara kamu memandang Allah?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">2</span>
+          <span class="question-text">Park berkata bahwa "zeal" Allah adalah lampu itu sendiri — bukan sekadar sifat-Nya. Apa yang berubah jika kamu memandang kecemburuan Allah bukan sebagai ancaman, tapi sebagai api yang menghidupimu?</span>
+        </div>
+        <div class="question-item">
+          <span class="question-num">3</span>
+          <span class="question-text">Silsilah belum ditutup. Kesimpulan Park berakhir dengan eskatologi — lampu menyala sampai "umat Allah dibangkitkan dan ditransfigurasi saat terompet terakhir berbunyi." Kamu ada di dalamnya sekarang. Apa yang akan kamu lakukan dengan itu?</span>
+        </div>
+      </div>
+
+      <div class="stop-question">
+        <div class="stop-question-label">Pertanyaan Penghenti — Terakhir</div>
+        <p class="stop-question-text">Park menulis: "become living lamps of God." Ini tujuan seluruh buku. Bukan agar kamu mengerti silsilah. Bukan agar kamu hafal nama-nama generasi. Tapi agar kamu menjadi lampu yang hidup. Apa satu langkah konkret yang kamu ambil minggu ini sebagai respons terhadap seluruh perjalanan ini?</p>
+      </div>
+
+      <div class="tool-links-block">
+        <div class="tool-links-label">Lanjutkan perjalanan dari sini</div>
+        <div class="tool-links-grid">
+          <a href="cermin-pribadi.html" class="tool-link"><span class="icon">🪞</span> Cermin Pribadi — Cermin 4</a>
+          <a href="jurnal-pelita.html" class="tool-link"><span class="icon">📔</span> Jurnal Pelita — 8 Minggu Menjadi Lampu</a>
+          <a href="logbook-unquenchable-lamp.html" class="tool-link"><span class="icon">📖</span> Catatan Analisis</a>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Catatanmu — Akhir Perjalanan</div>
+        <textarea class="notes-textarea" id="notes-conclusion" placeholder="Tulis apa yang kamu bawa pulang dari seluruh perjalanan ini…" oninput="saveNote('conclusion')" style="min-height:180px;"></textarea>
+        <div class="notes-save-status" id="save-status-conclusion"></div>
+      </div>
+
+      <div class="done-row">
+        <label class="done-checkbox-label" id="done-label-conclusion">
+          <input type="checkbox" class="done-checkbox" id="done-conclusion" onchange="markDone('conclusion')">
+          ✓ Saya telah menyelesaikan The Unquenchable Lamp of the Covenant
+        </label>
+      </div>
+
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" onclick="showChapter('p5c26')">← Bab 26</button>
+        <span></span>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  Ekosistem Self Journey · Buku 3 · <em>The Unquenchable Lamp of the Covenant</em> — Abraham Park
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ============================================================
+   STORAGE HELPERS
+   ============================================================ */
+const STORAGE_KEY = 'sp-buku3-pendamping-v1';
+
+function saveToStorage(key, data) {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+    return true;
+  } catch (e) {
+    showStorageWarning();
+    return false;
+  }
+}
+
+function loadFromStorage(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key) || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function showStorageWarning() {
+  const banner = document.getElementById('storage-warning');
+  if (banner) banner.style.display = 'block';
+}
+
+/* ============================================================
+   CHAPTER NAVIGATION
+   ============================================================ */
+const CHAPTER_ORDER = [
+  'intro','p1c1','p1c2','p1c3',
+  'p2c4','p2c5','p2c6','p2c7',
+  'p3c8','p3c9','p3c10','p3c11','p3c12','p3c13','p3c14','p3c15','p3c16','p3c17','p3c18','p3c19','p3c20','p3c21',
+  'p4c22','p4c23','p4c24',
+  'p5c25','p5c26',
+  'conclusion'
+];
+
+let currentChapter = null;
+
+function showChapter(id) {
+  // Hide welcome
+  document.getElementById('panel-welcome').style.display = 'none';
+
+  // Hide all panels
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+
+  // Show target
+  const panel = document.getElementById('panel-' + id);
+  if (panel) {
+    panel.classList.add('active');
+    currentChapter = id;
+    // Scroll to top of content
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Update sidebar active
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  const link = document.getElementById('link-' + id);
+  if (link) link.classList.add('active');
+
+  // Restore notes from storage
+  restoreNotes(id);
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  updateMobileToggleLabel();
+}
+
+/* ============================================================
+   NOTES — AUTOSAVE
+   ============================================================ */
+let saveTimers = {};
+
+function saveNote(chapId) {
+  const textarea = document.getElementById('notes-' + chapId);
+  if (!textarea) return;
+
+  const statusEl = document.getElementById('save-status-' + chapId);
+
+  clearTimeout(saveTimers[chapId]);
+  if (statusEl) statusEl.textContent = 'Menyimpan…';
+
+  saveTimers[chapId] = setTimeout(() => {
+    const data = loadFromStorage(STORAGE_KEY);
+    if (!data.notes) data.notes = {};
+    data.notes[chapId] = textarea.value;
+    const saved = saveToStorage(STORAGE_KEY, data);
+    if (statusEl) statusEl.textContent = saved ? 'Tersimpan ✓' : 'Gagal menyimpan';
+    setTimeout(() => { if (statusEl) statusEl.textContent = ''; }, 2000);
+  }, 800);
+}
+
+function restoreNotes(chapId) {
+  const data = loadFromStorage(STORAGE_KEY);
+  const textarea = document.getElementById('notes-' + chapId);
+  if (textarea && data.notes && data.notes[chapId]) {
+    textarea.value = data.notes[chapId];
+  }
+}
+
+/* ============================================================
+   DONE TRACKING
+   ============================================================ */
+function markDone(chapId) {
+  const checkbox = document.getElementById('done-' + chapId);
+  const label = document.getElementById('done-label-' + chapId);
+  const sidebarLink = document.getElementById('link-' + chapId);
+
+  const data = loadFromStorage(STORAGE_KEY);
+  if (!data.chapters) data.chapters = {};
+  data.chapters[chapId] = checkbox.checked;
+  saveToStorage(STORAGE_KEY, data);
+
+  // Update UI
+  if (label) label.classList.toggle('checked', checkbox.checked);
+  if (sidebarLink) sidebarLink.classList.toggle('done', checkbox.checked);
+
+  updateProgress();
+}
+
+function restoreDoneState() {
+  const data = loadFromStorage(STORAGE_KEY);
+  if (!data.chapters) return;
+
+  CHAPTER_ORDER.forEach(chapId => {
+    if (data.chapters[chapId]) {
+      const checkbox = document.getElementById('done-' + chapId);
+      const label = document.getElementById('done-label-' + chapId);
+      const sidebarLink = document.getElementById('link-' + chapId);
+      if (checkbox) checkbox.checked = true;
+      if (label) label.classList.add('checked');
+      if (sidebarLink) sidebarLink.classList.add('done');
+    }
+  });
+}
+
+function updateProgress() {
+  const data = loadFromStorage(STORAGE_KEY);
+  const done = data.chapters ? Object.values(data.chapters).filter(Boolean).length : 0;
+  const total = CHAPTER_ORDER.length;
+  const pct = Math.round((done / total) * 100);
+
+  const bar = document.getElementById('progress-bar');
+  const count = document.getElementById('progress-count');
+  if (bar) bar.style.width = pct + '%';
+  if (count) count.textContent = done + ' dari ' + total + ' bab selesai';
+}
+
+/* ============================================================
+   SLOW GATES
+   ============================================================ */
+function checkGate(gateId) {
+  const textarea = document.getElementById('gate-' + gateId + '-text');
+  const btn = document.getElementById('gate-btn-' + gateId);
+  if (!textarea || !btn) return;
+  btn.disabled = textarea.value.trim().length < 5;
+}
+
+function unlockGate(gateId) {
+  const textarea = document.getElementById('gate-' + gateId + '-text');
+  if (!textarea || textarea.value.trim().length < 5) return;
+
+  // Save gate response
+  const data = loadFromStorage(STORAGE_KEY);
+  if (!data.gates) data.gates = {};
+  data.gates[gateId] = textarea.value;
+  saveToStorage(STORAGE_KEY, data);
+
+  // Map gate to next chapter
+  const nextMap = { p1: 'p2c4', p2: 'p3c8', p3: 'p4c22', p4: 'p5c25', p5: 'conclusion' };
+  if (nextMap[gateId]) showChapter(nextMap[gateId]);
+}
+
+function restoreGates() {
+  const data = loadFromStorage(STORAGE_KEY);
+  if (!data.gates) return;
+  Object.entries(data.gates).forEach(([gateId, val]) => {
+    const textarea = document.getElementById('gate-' + gateId + '-text');
+    if (textarea) {
+      textarea.value = val;
+      checkGate(gateId);
+    }
+  });
+}
+
+/* ============================================================
+   MOBILE SIDEBAR
+   ============================================================ */
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('open');
+  updateMobileToggleLabel();
+
+  const toggle = document.querySelector('.mobile-nav-toggle');
+  if (toggle) {
+    toggle.setAttribute('aria-expanded', sidebar.classList.contains('open'));
+  }
+}
+
+function updateMobileToggleLabel() {
+  const label = document.getElementById('mobile-toggle-label');
+  const sidebar = document.getElementById('sidebar');
+  if (label) {
+    label.textContent = sidebar.classList.contains('open') ? '✕ Tutup' : '📖 Pilih Bab';
+  }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  restoreDoneState();
+  updateProgress();
+  restoreGates();
+});
+</script>
+
+</body>
+</html>

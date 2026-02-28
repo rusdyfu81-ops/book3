@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cermin Pribadi — The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Buku 3: The Unquenchable Lamp of the Covenant
+   Mengikuti DESIGN-SYSTEM_Buku3.md — LOCKED
+   ============================================================ */
+:root {
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --green:       #2bb673;
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-ui); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--teal-dark);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 20px; height: 48px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-brand { color: white; font-weight: 800; font-size: 13px; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+.nav-link {
+  color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 600;
+  white-space: nowrap; padding: 4px 8px; border-radius: var(--radius-sm); flex-shrink: 0; transition: background 0.2s;
+}
+.nav-link:hover, .nav-link:focus-visible { background: rgba(255,255,255,0.15); color: white; outline: none; }
+.nav-badge {
+  margin-left: auto; flex-shrink: 0;
+  background: rgba(255,255,255,0.2); color: white;
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;
+}
+
+#storage-warning { display: none; background: #fff3cd; color: #7a5c00; padding: 8px 20px; font-size: 13px; text-align: center; }
+
+/* HERO — Tier L (Hub page — deep experience) */
+.hero {
+  background: linear-gradient(150deg, #0a4f4e 0%, var(--teal-dark) 50%, var(--teal) 100%);
+  color: white;
+  padding: 60px 24px 52px;
+  text-align: center;
+}
+.hero-eyebrow { color: rgba(255,255,255,0.75); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; display: block; }
+.hero h1 { font-size: clamp(24px, 5vw, 42px); font-family: var(--font-ui); font-weight: 800; line-height: 1.2; color: white; margin-bottom: 12px; }
+.hero .subtitle { color: rgba(255,255,255,0.85); font-size: 16px; max-width: 560px; margin: 12px auto 0; }
+
+/* INTRO SECTION */
+.intro-wrap { max-width: 680px; margin: 0 auto; padding: 40px 20px 0; }
+.intro-text {
+  font-family: var(--font-content); font-size: 16px; line-height: 1.9;
+  color: var(--text); margin-bottom: 20px;
+}
+.intro-note {
+  background: var(--bg2); border-radius: var(--radius); padding: 16px 20px;
+  font-family: var(--font-content); font-style: italic; font-size: 14px;
+  color: var(--text-light); line-height: 1.7; margin-bottom: 32px;
+  border-left: 4px solid var(--gold);
+}
+
+/* PROGRESS STRIP */
+.progress-strip {
+  max-width: 680px; margin: 0 auto 32px; padding: 0 20px;
+  display: flex; gap: 8px; align-items: center;
+}
+.progress-step {
+  flex: 1; height: 6px; border-radius: 3px;
+  background: var(--border); transition: background 0.3s;
+  cursor: pointer; position: relative;
+}
+.progress-step.done { background: var(--teal); }
+.progress-step.active { background: var(--gold); }
+.progress-label {
+  font-size: 11px; color: var(--text-muted); font-weight: 700;
+  text-align: center; margin-top: 32px; text-transform: uppercase; letter-spacing: 0.06em;
+  max-width: 680px; margin-left: auto; margin-right: auto; padding: 0 20px;
+}
+
+/* MAIN */
+.main-wrap { max-width: 680px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* CERMIN CARD */
+.cermin-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  margin-bottom: 40px; display: none;
+}
+.cermin-card.active { display: block; animation: slideIn 0.3s ease; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.cermin-top {
+  padding: 28px 28px 0;
+}
+.cermin-num {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--teal-dark); margin-bottom: 6px;
+}
+.cermin-title {
+  font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 4px; line-height: 1.2;
+}
+.cermin-subtitle {
+  font-size: 14px; color: var(--text-muted); font-family: var(--font-content);
+  font-style: italic; margin-bottom: 20px;
+}
+
+/* Park context block */
+.park-context {
+  background: var(--bg3); border-radius: var(--radius);
+  padding: 20px; margin-bottom: 24px;
+}
+.park-context-label {
+  font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--teal-dark); margin-bottom: 10px;
+}
+.park-context blockquote {
+  font-family: var(--font-content); font-style: italic;
+  font-size: 15px; line-height: 1.8; color: var(--text); margin-bottom: 8px;
+}
+.park-context cite { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+
+/* Questions */
+.cermin-questions { padding: 0 28px; }
+.question-block { margin-bottom: 24px; }
+.question-main {
+  font-family: var(--font-content); font-size: 17px; line-height: 1.7;
+  color: var(--text); font-weight: 600; margin-bottom: 12px;
+}
+.question-subs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.question-sub {
+  font-family: var(--font-content); font-size: 14px; line-height: 1.6;
+  color: var(--text-light); padding-left: 16px;
+  border-left: 2px solid var(--border);
+}
+.textarea-wrap { position: relative; }
+textarea {
+  width: 100%; min-height: 120px; padding: 14px 16px;
+  font-family: var(--font-content); font-size: 14px; line-height: 1.7;
+  color: var(--text); background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); resize: vertical; transition: border-color 0.2s;
+}
+textarea:focus { outline: none; border-color: var(--teal); }
+textarea::placeholder { color: var(--text-muted); font-style: italic; }
+.save-indicator {
+  font-size: 11px; color: var(--green); font-weight: 700;
+  margin-top: 4px; height: 16px; opacity: 0; transition: opacity 0.3s;
+}
+.save-indicator.show { opacity: 1; }
+
+/* Divider inside cermin */
+.cermin-divider { height: 1px; background: var(--border); margin: 8px 0 24px; }
+
+/* Slow gate */
+.slow-gate {
+  background: linear-gradient(135deg, #0a4f4e 0%, var(--teal-dark) 100%);
+  padding: 24px 28px; margin-top: 8px;
+}
+.slow-gate-text {
+  font-family: var(--font-content); font-style: italic;
+  font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+}
+
+/* Nav buttons */
+.cermin-nav { display: flex; gap: 10px; align-items: center; padding: 24px 28px; border-top: 1px solid var(--border); }
+.btn-primary {
+  background: var(--teal-dark); color: white; border: none;
+  padding: 12px 24px; border-radius: var(--radius-sm);
+  font-family: var(--font-ui); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: background 0.15s; min-height: 44px;
+  flex: 1;
+}
+.btn-primary:hover { background: #0a5c59; }
+.btn-primary:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+.btn-secondary {
+  background: none; color: var(--text-light); border: 1.5px solid var(--border);
+  padding: 12px 18px; border-radius: var(--radius-sm);
+  font-family: var(--font-ui); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s; min-height: 44px;
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal-dark); }
+
+/* COMPLETION CARD */
+.completion-card {
+  display: none; background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 40px;
+  text-align: center;
+}
+.completion-card.show { display: block; animation: slideIn 0.3s ease; }
+.completion-top {
+  background: linear-gradient(150deg, #0a4f4e 0%, var(--teal-dark) 100%);
+  padding: 40px 28px 32px; color: white;
+}
+.completion-icon { font-size: 48px; margin-bottom: 16px; display: block; }
+.completion-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+.completion-sub { font-size: 16px; color: rgba(255,255,255,0.85); font-family: var(--font-content); font-style: italic; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+.completion-body { padding: 28px 28px 0; }
+.completion-park {
+  background: var(--bg2); border-radius: var(--radius); padding: 20px;
+  margin-bottom: 20px; border-left: 4px solid var(--gold);
+}
+.completion-park blockquote { font-family: var(--font-content); font-style: italic; font-size: 15px; line-height: 1.8; color: var(--text); margin-bottom: 6px; }
+.completion-park cite { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+.completion-actions { padding: 20px 28px 28px; display: flex; flex-direction: column; gap: 10px; }
+.btn-gold {
+  background: var(--gold); color: white; border: none;
+  padding: 14px 24px; border-radius: var(--radius-sm);
+  font-family: var(--font-ui); font-size: 15px; font-weight: 800;
+  cursor: pointer; transition: background 0.15s; min-height: 44px;
+  text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-gold:hover { background: #a07009; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .cermin-top, .cermin-questions { padding-left: 20px; padding-right: 20px; }
+  .slow-gate, .cermin-nav { padding-left: 20px; padding-right: 20px; }
+  .completion-top, .completion-body, .completion-actions { padding-left: 20px; padding-right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Sejarah Penebusan</a>
+  <a href="index.html" class="nav-link">← Beranda</a>
+  <a href="pendamping-baca.html" class="nav-link">Pendamping Baca</a>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<div id="storage-warning">
+  ⚠️ Progress tidak bisa disimpan di mode penyamaran. Gunakan browser biasa untuk menyimpan perjalananmu.
+</div>
+
+<div class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Buku 3 · Pasca-Baca</span>
+  <h1>Cermin Pribadi</h1>
+  <p class="subtitle">Empat pertanyaan yang tidak bisa dijawab secara intelektual. Hanya bisa dijawab dengan jujur.</p>
+</div>
+
+<div class="intro-wrap">
+  <p class="intro-text">
+    Ini bukan tes. Tidak ada jawaban yang benar atau salah. Tidak ada yang akan menilai apa yang kamu tulis di sini.
+  </p>
+  <p class="intro-text">
+    Cermin ini dirancang untuk satu tujuan: membuat kamu berhenti cukup lama untuk mendengar pertanyaan yang sudah Allah ajukan sepanjang kamu membaca buku Park. Seringkali, kita mengerti isi buku tapi belum sungguh-sungguh duduk dengan pertanyaan yang ditujukan kepada kita secara pribadi.
+  </p>
+  <div class="intro-note">
+    "There would be no greater joy than to see the readers of this humble book become true people of the cross... and become living lamps of God." — Abraham Park, Introduction
+  </div>
+</div>
+
+<div class="progress-strip" id="progressStrip">
+  <div class="progress-step" id="ps1" onclick="jumpTo(1)" title="Cermin 1"></div>
+  <div class="progress-step" id="ps2" onclick="jumpTo(2)" title="Cermin 2"></div>
+  <div class="progress-step" id="ps3" onclick="jumpTo(3)" title="Cermin 3"></div>
+  <div class="progress-step" id="ps4" onclick="jumpTo(4)" title="Cermin 4"></div>
+</div>
+<div class="progress-label" id="progressLabel">Cermin 1 dari 4</div>
+
+<div class="main-wrap">
+
+  <!-- ============================================================ CERMIN 1 -->
+  <div class="cermin-card active" id="cermin-1">
+    <div class="cermin-top">
+      <div class="cermin-num">Cermin 1 dari 4</div>
+      <div class="cermin-title">Allah yang Lebih Besar dari Segalanya</div>
+      <div class="cermin-subtitle">Dari Part 1 — sebelum kamu membaca satu nama pun dalam silsilah</div>
+
+      <div class="park-context">
+        <div class="park-context-label">📖 Dari teks Abraham Park — Part 1, hal. 34–35</div>
+        <blockquote>"The works that the Lord carries out to save one soul are so great and His thoughts are so deep that even the boundlessly vast universe cannot be compared to one soul."</blockquote>
+        <cite>— Abraham Park, hal. 34–35</cite>
+      </div>
+    </div>
+
+    <div class="cermin-questions">
+      <div class="question-block">
+        <div class="question-main">Allah yang menciptakan 10²⁵ bintang dan memanggil setiap satu dengan namanya — Allah yang sama itu memilih untuk turun ke silsilah sempit ini, dan akhirnya ke hidupmu secara pribadi. Bagaimana kamu merespons fakta itu sekarang, setelah membaca buku ini?</div>
+        <div class="question-subs">
+          <div class="question-sub">Apakah ada momen dalam buku di mana kamu benar-benar merasakan besarnya Allah — bukan hanya mengerti secara intelektual?</div>
+          <div class="question-sub">Atau apakah kamu membaca buku ini sebagian besar sebagai informasi teologi? Tidak ada jawaban yang lebih baik — tapi penting untuk jujur tentang ini.</div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="c1q1" placeholder="Tuliskan responsmu di sini — tidak ada yang menilai..." oninput="autoSave('c1q1')"></textarea>
+          <div class="save-indicator" id="save-c1q1">✓ Tersimpan</div>
+        </div>
+      </div>
+
+      <div class="cermin-divider"></div>
+
+      <div class="question-block">
+        <div class="question-main">Park menulis bahwa satu jiwa lebih berharga dari seluruh alam semesta — dan Allah mau melewati 1.163 tahun kegelapan hanya untuk menjaga satu garis tetap hidup. Apakah kamu benar-benar percaya bahwa hidupmu memiliki bobot seperti itu di mata Allah?</div>
+        <div class="question-subs">
+          <div class="question-sub">Bukan secara teologis abstrak — tapi secara personal dan konkret, hari ini?</div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="c1q2" placeholder="Ambil waktu sejenak sebelum menjawab..." oninput="autoSave('c1q2')"></textarea>
+          <div class="save-indicator" id="save-c1q2">✓ Tersimpan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cermin-nav">
+      <button class="btn-secondary" onclick="jumpTo(0)" style="display:none" id="btn-prev-1">← Sebelumnya</button>
+      <button class="btn-primary" onclick="completeCermin(1)">Lanjut ke Cermin 2 →</button>
+    </div>
+  </div>
+
+  <!-- ============================================================ CERMIN 2 -->
+  <div class="cermin-card" id="cermin-2">
+    <div class="cermin-top">
+      <div class="cermin-num">Cermin 2 dari 4</div>
+      <div class="cermin-title">Kovenan yang Tidak Bisa Padam</div>
+      <div class="cermin-subtitle">Dari Part 2 + Part 4 — kegelapan yang dilewati tanpa lampu mati</div>
+
+      <div class="park-context">
+        <div class="park-context-label">📖 Dari teks Abraham Park — Part 2 + Conclusion</div>
+        <blockquote>"The lamp of the covenant that God establishes never dies out... because God entered the covenant with an <em>oath</em>."</blockquote>
+        <cite>— Abraham Park, Conclusion</cite>
+      </div>
+    </div>
+
+    <div class="cermin-questions">
+      <div class="question-block">
+        <div class="question-main">Park menunjukkan bahwa 340 tahun era hakim — yang ia sebut "lebih gelap dari Sodom dan Gomora" — tidak berhasil memadamkan lampu kovenan. Bukan karena manusianya setia, tapi karena fondasinya tidak bisa dibatalkan. Adakah periode "340 tahun" dalam hidupmu sendiri — masa-masa panjang yang terasa seperti Allah sudah pergi?</div>
+        <div class="question-subs">
+          <div class="question-sub">Apa yang kamu lakukan selama periode itu? Apakah kamu terus membawa lampu, atau meletakkannya?</div>
+          <div class="question-sub">Apakah kamu percaya sekarang bahwa lampu itu tidak pernah padam, meskipun rasanya seperti itu?</div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="c2q1" placeholder="Ini bisa menjadi hal yang sulit untuk ditulis. Ambil waktumu..." oninput="autoSave('c2q1')"></textarea>
+          <div class="save-indicator" id="save-c2q1">✓ Tersimpan</div>
+        </div>
+      </div>
+
+      <div class="cermin-divider"></div>
+
+      <div class="question-block">
+        <div class="question-main">Park mencatat bahwa generasi yang dihapus dari silsilah — yang tidak tercatat namanya — bukan berarti tidak ada atau tidak penting. Mereka hidup, dan kemudian garis itu dilanjutkan oleh orang lain. Apakah ada bagian dari hidupmu yang kamu anggap "tidak tercatat" — pelayanan yang tidak terlihat, pengorbanan yang tidak diakui, doa yang tidak ada yang tahu?</div>
+        <div class="question-subs">
+          <div class="question-sub">Apakah kamu percaya bahwa Allah menyimpan setiap tetes air mata dalam botol-Nya (Mzm. 56:8), termasuk yang tidak ada yang lihat?</div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="c2q2" placeholder="Tuliskan dengan jujur..." oninput="autoSave('c2q2')"></textarea>
+          <div class="save-indicator" id="save-c2q2">✓ Tersimpan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cermin-nav">
+      <button class="btn-secondary" onclick="jumpTo(1)">← Cermin 1</button>
+      <button class="btn-primary" onclick="completeCermin(2)">Lanjut ke Cermin 3 →</button>
+    </div>
+  </div>
+
+  <!-- ============================================================ CERMIN 3 -->
+  <div class="cermin-card" id="cermin-3">
+    <div class="cermin-top">
+      <div class="cermin-num">Cermin 3 dari 4</div>
+      <div class="cermin-title">Pembawa yang Tidak Sempurna</div>
+      <div class="cermin-subtitle">Dari Part 3 + Part 5 — bukan karena layak, tapi karena bertobat dengan sungguh-sungguh</div>
+
+      <div class="park-context">
+        <div class="park-context-label">📖 Dari teks Abraham Park — Part 5, hal. 484</div>
+        <blockquote>"A person after God's own heart does not refer to a perfect person. A person after God's own heart is a person who may have many faults, but <em>repents thoroughly and resolves to live according to God's Word</em>."</blockquote>
+        <cite>— Abraham Park, hal. 484 (tentang Daud)</cite>
+      </div>
+    </div>
+
+    <div class="cermin-questions">
+      <div class="question-block">
+        <div class="question-main">Ini adalah cermin yang paling sulit — dan yang paling mudah disalahpahami. Park tidak sedang berkata bahwa kegagalan itu baik, atau bahwa Allah membutuhkan dosa kita. Yang ia tunjukkan adalah ini: Allah yang berdaulat tidak tertahan oleh kegagalan manusia. Ia bekerja <em>melalui</em> orang yang bertobat — bukan melalui orang yang tidak pernah jatuh.</div>
+
+        <div style="background:#fef2f2;border-left:3px solid #c0392b;border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 16px;margin:16px 0;font-family:var(--font-content);font-size:14px;color:var(--text-light);line-height:1.7;">
+          ⚠️ <strong style="color:var(--text);">Peringatan framing:</strong> Pertanyaan ini bukan undangan untuk membenarkan kegagalan. Bukan "kegagalanku adalah rencana Allah." Tapi: "Apakah aku sudah berhenti di kegagalan itu, atau aku sudah bertobat dan terus berjalan?"
+        </div>
+
+        <div class="question-main">Daud berzina, berbohong, dan menyebabkan kematian Uria. Yudah menjual adiknya dan hampir membunuh menantunya. Samson melacur dan mengkhianati sumpahnya. Mereka semua ada dalam silsilah Yesus. Apa yang mengizinkan mereka tetap di sana — dan apa yang menyebabkan orang lain dihapus?</div>
+        <div class="question-subs">
+          <div class="question-sub">Park menjawab: pertobatan yang sungguh-sungguh — bukan kesempurnaan. Bagaimana ini mengubah cara kamu memandang kegagalan terbesarmu?</div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="c3q1" placeholder="Tidak perlu menyebutkan detail yang tidak perlu. Fokus pada apa yang sudah kamu pelajari..." oninput="autoSave('c3q1')"></textarea>
+          <div class="save-indicator" id="save-c3q1">✓ Tersimpan</div>
+        </div>
+      </div>
+
+      <div class="cermin-divider"></div>
+
+      <div class="question-block">
+        <div class="question-main">Park menunjukkan 16 tempat pelarian Daud — setiap tempat adalah wahyu tentang nama Allah yang hanya bisa ditemukan dalam penderitaan. Allah sebagai "tempat persembunyian" hanya bisa dikenal oleh orang yang pernah perlu bersembunyi. Allah sebagai "menara yang kuat" hanya bisa dikenal oleh orang yang pernah tidak punya tempat berdiri. Wahyu apa tentang Allah yang kamu temukan justru di titik paling gelap hidupmu?</div>
+        <div class="textarea-wrap">
+          <textarea id="c3q2" placeholder="Ambil waktu untuk memikirkan ini dengan serius..." oninput="autoSave('c3q2')"></textarea>
+          <div class="save-indicator" id="save-c3q2">✓ Tersimpan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cermin-nav">
+      <button class="btn-secondary" onclick="jumpTo(2)">← Cermin 2</button>
+      <button class="btn-primary" onclick="completeCermin(3)">Lanjut ke Cermin 4 →</button>
+    </div>
+  </div>
+
+  <!-- ============================================================ CERMIN 4 -->
+  <div class="cermin-card" id="cermin-4">
+    <div class="cermin-top">
+      <div class="cermin-num">Cermin 4 dari 4</div>
+      <div class="cermin-title">Lampu di Generasimu</div>
+      <div class="cermin-subtitle">Dari Conclusion — silsilah yang belum selesai</div>
+
+      <div class="park-context">
+        <div class="park-context-label">📖 Dari teks Abraham Park — Conclusion & Introduction</div>
+        <blockquote>"God's fervent zeal will unquenchably burn as the lamp of the covenant will continue to burn until the people of God are resurrected and transfigured at the sound of the last trumpet when Jesus Christ returns."</blockquote>
+        <cite>— Abraham Park, Conclusion</cite>
+      </div>
+    </div>
+
+    <div class="cermin-questions">
+      <div class="question-block">
+        <div class="question-main">Silsilah itu belum selesai. Buku Park menutup di Daud — tapi lampu itu masih menyala, dan kamu ada di dalamnya sekarang. Bukan sebagai tokoh yang dinobatkan. Tapi sebagai seseorang yang memegang lampu di titik waktumu sendiri. Pertanyaan ini tidak mudah dijawab: lampu apa yang sedang kamu bawa di generasimu?</div>
+        <div class="question-subs">
+          <div class="question-sub">Kepada siapa kamu sedang membawa lampu itu — keluarga, komunitas, murid-murid, orang-orang yang belum percaya?</div>
+          <div class="question-sub">Apakah ada "Tamar" di hidupmu — momen di mana kamu perlu bertindak dengan zeal untuk memastikan garis itu tidak terputus?</div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="c4q1" placeholder="Ini bukan pertanyaan tentang rencana masa depan. Ini pertanyaan tentang apa yang sudah ada di tanganmu sekarang..." oninput="autoSave('c4q1')"></textarea>
+          <div class="save-indicator" id="save-c4q1">✓ Tersimpan</div>
+        </div>
+      </div>
+
+      <div class="cermin-divider"></div>
+
+      <div class="question-block">
+        <div class="question-main">Park menulis buku ini karena ia tidak mau "kasih karunia yang ia terima terbuang begitu saja." Ia mengutip Yoh. 6:12: "Kumpulkanlah sisa-sisa supaya tidak ada yang terbuang." Fragmen kasih karunia apa yang kamu terima selama membaca buku ini — yang ingin kamu pastikan tidak terbuang?</div>
+        <div class="question-subs">
+          <div class="question-sub">Apa satu hal konkret yang akan berubah dalam hidupmu karena buku ini?</div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="c4q2" placeholder="Tulis dengan spesifik jika bisa — satu hal nyata, bukan komitmen yang terlalu besar..." oninput="autoSave('c4q2')"></textarea>
+          <div class="save-indicator" id="save-c4q2">✓ Tersimpan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slow-gate">
+      <div class="slow-gate-text">
+        Sebelum kamu menekan tombol di bawah — berhenti sebentar. Baca ulang apa yang kamu tulis di Cermin 4. Apakah ini hanya kata-kata yang terasa benar untuk dituliskan, atau ini sungguh-sungguh dari hatimu? Tidak ada yang menilai. Tapi kamu tahu sendiri bedanya.
+      </div>
+    </div>
+
+    <div class="cermin-nav">
+      <button class="btn-secondary" onclick="jumpTo(3)">← Cermin 3</button>
+      <button class="btn-primary" onclick="completeCermin(4)">Selesaikan Cermin Pribadi ✓</button>
+    </div>
+  </div>
+
+  <!-- ============================================================ COMPLETION -->
+  <div class="completion-card" id="completionCard">
+    <div class="completion-top">
+      <span class="completion-icon">🕯</span>
+      <div class="completion-title">Keempat Cermin Sudah Kamu Lewati</div>
+      <div class="completion-sub">Ini bukan akhir. Ini adalah awal dari perjalanan yang lebih panjang — dari memahami lampu ke menjadi lampu.</div>
+    </div>
+    <div class="completion-body">
+      <div class="completion-park">
+        <blockquote>"The spirit of the man whose sins have been forgiven through this precious blood is the lamp of God." (Prov 20:27)</blockquote>
+        <cite>— Abraham Park, Introduction, hal. 21</cite>
+      </div>
+      <p style="font-family:var(--font-content);font-size:15px;line-height:1.9;color:var(--text-light);margin-bottom:20px;">
+        Apa yang kamu tulis di sini adalah milikmu. Tidak ada yang membacanya selain dirimu — dan Allah yang sudah tahu isinya sebelum kamu menuliskannya. Yang penting bukan kata-katanya, tapi kesediaan untuk berdiri di depan cermin dan bertanya.
+      </p>
+      <p style="font-family:var(--font-content);font-size:15px;line-height:1.9;color:var(--text-light);">
+        Langkah berikutnya adalah <strong style="color:var(--text);">Jurnal Pelita</strong> — perjalanan 8 minggu yang mengubah pertanyaan di cermin ini menjadi kebiasaan. Dari memahami lampu, ke menyusuri jalur lampu, ke menjadi lampu.
+      </p>
+    </div>
+    <div class="completion-actions">
+      <a href="jurnal-pelita.html" class="btn-gold">🕯 Mulai Jurnal Pelita — 8 Minggu</a>
+      <button class="btn-secondary" onclick="reviewAll()" style="width:100%">Baca Ulang Jawabanku</button>
+    </div>
+  </div>
+
+</div><!-- /main-wrap -->
+
+<script>
+// ============================================================
+// STATE & STORAGE
+// ============================================================
+const STORAGE_KEY = 'sp-buku3-cermin-v1';
+
+function loadState() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch(e) { return {}; }
+}
+
+function saveState(state) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    return true;
+  } catch(e) {
+    showStorageWarning();
+    return false;
+  }
+}
+
+function showStorageWarning() {
+  document.getElementById('storage-warning').style.display = 'block';
+}
+
+// Current cermin (1-based)
+let currentCermin = 1;
+let state = loadState();
+
+// ============================================================
+// INIT — restore saved answers & state
+// ============================================================
+function init() {
+  // Restore text areas
+  const fields = ['c1q1','c1q2','c2q1','c2q2','c3q1','c3q2','c4q1','c4q2'];
+  fields.forEach(id => {
+    const saved = (state.answers || {})[id];
+    if (saved) document.getElementById(id).value = saved;
+  });
+
+  // Restore position — go to last completed + 1, or first incomplete
+  const completed = state.completed || {};
+  let targetCermin = 1;
+  for (let i = 1; i <= 4; i++) {
+    if (completed[i]) targetCermin = Math.min(i + 1, 4);
+  }
+  // If all 4 done, show completion
+  if (completed[1] && completed[2] && completed[3] && completed[4]) {
+    showCompletion();
+    return;
+  }
+
+  jumpTo(targetCermin, true);
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function jumpTo(n, silent) {
+  if (n < 1 || n > 4) return;
+  currentCermin = n;
+
+  // Hide all cermin cards
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('cermin-' + i).classList.remove('active');
+  }
+  document.getElementById('completionCard').classList.remove('show');
+
+  // Show target
+  const card = document.getElementById('cermin-' + n);
+  card.classList.add('active');
+
+  if (!silent) {
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+
+  updateProgress();
+}
+
+function completeCermin(n) {
+  // Mark as completed
+  if (!state.completed) state.completed = {};
+  state.completed[n] = true;
+  saveState(state);
+  updateProgress();
+
+  if (n < 4) {
+    jumpTo(n + 1);
+  } else {
+    showCompletion();
+  }
+}
+
+function showCompletion() {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('cermin-' + i).classList.remove('active');
+  }
+  const comp = document.getElementById('completionCard');
+  comp.classList.add('show');
+  setTimeout(() => comp.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  updateProgress();
+}
+
+function reviewAll() {
+  jumpTo(1);
+}
+
+// ============================================================
+// AUTO-SAVE
+// ============================================================
+const saveTimers = {};
+function autoSave(fieldId) {
+  clearTimeout(saveTimers[fieldId]);
+  saveTimers[fieldId] = setTimeout(() => {
+    if (!state.answers) state.answers = {};
+    state.answers[fieldId] = document.getElementById(fieldId).value;
+    const saved = saveState(state);
+    if (saved) flashSave(fieldId);
+  }, 800);
+}
+
+function flashSave(fieldId) {
+  const el = document.getElementById('save-' + fieldId);
+  if (!el) return;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+// ============================================================
+// PROGRESS STRIP
+// ============================================================
+function updateProgress() {
+  const completed = state.completed || {};
+  const labels = ['Cermin 1', 'Cermin 2', 'Cermin 3', 'Cermin 4'];
+  const allDone = completed[1] && completed[2] && completed[3] && completed[4];
+
+  for (let i = 1; i <= 4; i++) {
+    const step = document.getElementById('ps' + i);
+    step.classList.remove('done', 'active');
+    if (completed[i]) step.classList.add('done');
+    else if (i === currentCermin && !allDone) step.classList.add('active');
+  }
+
+  const label = document.getElementById('progressLabel');
+  if (allDone) {
+    label.textContent = '✓ Semua cermin selesai';
+  } else {
+    label.textContent = labels[currentCermin - 1] + ' dari 4';
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabel 14 Generasi — The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Buku 3
+   ============================================================ */
+:root {
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --gold-light:  rgba(184,134,11,0.10);
+  --gold-border: rgba(184,134,11,0.28);
+  --green:       #2bb673;
+  --maroon:      #7a1a1a;
+  --maroon-light:rgba(122,26,26,0.10);
+
+  --era-patriark-bg:  #e8f4ec;
+  --era-patriark-txt: #1a5c3a;
+  --era-mesir-bg:     #f4ede0;
+  --era-mesir-txt:    #5a3500;
+  --era-hakim-bg:     #f4e0e0;
+  --era-hakim-txt:    #7a1a1a;
+  --era-monarki-bg:   #e0eaf4;
+  --era-monarki-txt:  #1a3a6a;
+
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-ui); font-size: 15px; line-height: 1.6; color: var(--text); background: var(--bg); }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+/* ============================================================ NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--teal-dark);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 20px; height: 48px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-brand { color: white; font-weight: 800; font-size: 13px; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+.nav-link {
+  color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 600;
+  white-space: nowrap; padding: 4px 8px; border-radius: var(--radius-sm); flex-shrink: 0;
+  transition: background 0.2s; display: flex; align-items: center; min-height: 44px;
+}
+.nav-link:hover { background: rgba(255,255,255,0.15); color: white; }
+.nav-badge { margin-left: auto; flex-shrink: 0; background: rgba(255,255,255,0.2); color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+
+/* ============================================================ HERO */
+.hero { background: var(--bg3); border-bottom: 2px solid var(--border); padding: 40px 24px 32px; text-align: center; }
+.hero-eyebrow { color: var(--teal); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; display: block; }
+.hero h1 { font-size: clamp(20px, 4vw, 34px); font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+.hero .subtitle { color: var(--text-light); font-size: 15px; max-width: 580px; margin: 0 auto 24px; font-family: var(--font-content); font-style: italic; }
+
+/* HERO STATS */
+.hero-stats { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.hero-stat-num { font-size: 20px; font-weight: 800; color: var(--teal-dark); }
+.hero-stat-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.04em; }
+
+/* ============================================================ CONTROLS BAR */
+.controls-bar {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 10px 24px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  position: sticky; top: 48px; z-index: 90;
+}
+
+.controls-label { font-size: 11px; font-weight: 800; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+
+.filter-chip {
+  padding: 5px 12px; border-radius: 16px; border: 1px solid var(--border);
+  background: var(--white); font-size: 12px; font-weight: 700; color: var(--text-light);
+  cursor: pointer; transition: all 0.15s; white-space: nowrap; min-height: 36px;
+  display: flex; align-items: center; gap: 5px;
+}
+.filter-chip:hover { border-color: var(--teal); color: var(--teal-dark); }
+.filter-chip.active { background: var(--teal-dark); border-color: var(--teal-dark); color: white; }
+
+.filter-chip .chip-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+}
+
+.controls-sep { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; }
+
+/* Sort button */
+.sort-btn {
+  padding: 5px 12px; border-radius: 16px; border: 1px solid var(--border);
+  background: var(--white); font-size: 12px; font-weight: 700; color: var(--text-light);
+  cursor: pointer; transition: all 0.15s; white-space: nowrap; min-height: 36px;
+  display: flex; align-items: center; gap: 4px;
+}
+.sort-btn:hover { border-color: var(--teal); color: var(--teal-dark); }
+.sort-btn.active { background: var(--bg2); border-color: var(--border); color: var(--text); }
+
+/* Gentil toggle */
+.gentil-toggle {
+  padding: 5px 12px; border-radius: 16px; border: 1px solid var(--gold-border);
+  background: var(--gold-light); font-size: 12px; font-weight: 700; color: var(--gold);
+  cursor: pointer; transition: all 0.15s; white-space: nowrap; min-height: 36px;
+  display: flex; align-items: center; gap: 4px;
+  margin-left: auto;
+}
+.gentil-toggle.active { background: var(--gold); color: white; border-color: var(--gold); }
+
+/* ============================================================ TABLE WRAP */
+.table-outer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 80px;
+}
+
+/* ============================================================ ERA GROUPS */
+.era-group { margin-bottom: 32px; }
+
+.era-group-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+.era-group-header.era-patriark { background: var(--era-patriark-bg); }
+.era-group-header.era-mesir    { background: var(--era-mesir-bg); }
+.era-group-header.era-hakim    { background: var(--era-hakim-bg); }
+.era-group-header.era-monarki  { background: var(--era-monarki-bg); }
+
+.era-group-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.era-patriark .era-group-dot { background: var(--era-patriark-txt); }
+.era-mesir    .era-group-dot { background: var(--era-mesir-txt); }
+.era-hakim    .era-group-dot { background: var(--era-hakim-txt); }
+.era-monarki  .era-group-dot { background: var(--era-monarki-txt); }
+
+.era-group-name {
+  font-size: 12px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+}
+.era-patriark .era-group-name { color: var(--era-patriark-txt); }
+.era-mesir    .era-group-name { color: var(--era-mesir-txt); }
+.era-hakim    .era-group-name { color: var(--era-hakim-txt); }
+.era-monarki  .era-group-name { color: var(--era-monarki-txt); }
+
+.era-group-years {
+  font-size: 11px; color: var(--text-muted); font-weight: 600; margin-left: auto;
+}
+
+/* ============================================================ TABLE */
+.gen-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Column widths */
+.gen-table colgroup col.col-num    { width: 44px; }
+.gen-table colgroup col.col-nama   { width: 130px; }
+.gen-table colgroup col.col-arti   { width: 160px; }
+.gen-table colgroup col.col-era    { width: 120px; }
+.gen-table colgroup col.col-peran  { width: 180px; }
+.gen-table colgroup col.col-kov    { width: 110px; }
+.gen-table colgroup col.col-kristus{ width: 190px; }
+.gen-table colgroup col.col-gentil { width: 60px; }
+
+/* HEADER */
+.gen-table thead tr {
+  background: var(--bg2);
+}
+.gen-table thead th {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.gen-table thead th:hover { background: var(--bg3); color: var(--text); }
+.gen-table thead th.sorted { color: var(--teal-dark); background: var(--teal-light); }
+.gen-table thead th .sort-arrow { margin-left: 4px; opacity: 0.4; font-size: 10px; }
+.gen-table thead th.sorted .sort-arrow { opacity: 1; }
+/* Center the 🕯 column */
+.gen-table thead th.col-gentil { text-align: center; }
+
+/* ROWS */
+.gen-table tbody tr {
+  cursor: pointer;
+  transition: background 0.12s;
+  border-bottom: 1px solid var(--border);
+}
+.gen-table tbody tr:last-child { border-bottom: none; }
+.gen-table tbody tr:hover { background: var(--teal-light); }
+.gen-table tbody tr.row-open { background: #f0fbfb; }
+.gen-table tbody tr.row-detail { background: #f7fefe; cursor: default; }
+.gen-table tbody tr.row-detail:hover { background: #f7fefe; }
+
+/* CELLS */
+.gen-table tbody td {
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+/* Col: nomor */
+td.td-num {
+  font-size: 11px; font-weight: 800; color: var(--text-muted);
+  text-align: center; vertical-align: middle;
+  padding: 12px 8px;
+}
+
+/* Era accent stripe — kiri */
+tr.era-patriark td:first-child { border-left: 3px solid var(--era-patriark-txt); }
+tr.era-mesir    td:first-child { border-left: 3px solid var(--era-mesir-txt); }
+tr.era-hakim    td:first-child { border-left: 3px solid var(--era-hakim-txt); }
+tr.era-monarki  td:first-child { border-left: 3px solid var(--era-monarki-txt); }
+
+/* Col: nama */
+td.td-nama { font-weight: 800; font-size: 14px; vertical-align: middle; }
+.td-nama-sub { font-size: 11px; font-weight: 600; color: var(--text-muted); font-style: italic; margin-top: 1px; }
+
+/* Col: arti */
+td.td-arti { font-family: var(--font-content); font-style: italic; font-size: 12.5px; color: var(--text-light); vertical-align: middle; }
+
+/* Col: era badge */
+td.td-era { vertical-align: middle; }
+.era-badge {
+  display: inline-block; padding: 3px 9px; border-radius: 12px;
+  font-size: 11px; font-weight: 800; white-space: nowrap;
+}
+.era-badge.patriark { background: var(--era-patriark-bg); color: var(--era-patriark-txt); }
+.era-badge.mesir    { background: var(--era-mesir-bg);    color: var(--era-mesir-txt); }
+.era-badge.hakim    { background: var(--era-hakim-bg);    color: var(--era-hakim-txt); }
+.era-badge.monarki  { background: var(--era-monarki-bg);  color: var(--era-monarki-txt); }
+.era-year { display: block; font-size: 11px; color: var(--text-muted); font-weight: 600; margin-top: 3px; }
+
+/* Col: peran */
+td.td-peran { font-size: 13px; color: var(--text); vertical-align: middle; }
+
+/* Col: kovenan */
+td.td-kov { vertical-align: middle; }
+.kov-badge {
+  display: inline-block; padding: 3px 8px; border-radius: 10px;
+  font-size: 11px; font-weight: 700; white-space: nowrap;
+  background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold-border);
+}
+.kov-none {
+  font-size: 12px; color: var(--text-muted); font-style: italic;
+}
+
+/* Col: bayangan kristus */
+td.td-kristus { font-size: 12.5px; color: var(--text-light); font-family: var(--font-content); vertical-align: middle; font-style: italic; }
+
+/* Col: gentil */
+td.td-gentil { text-align: center; vertical-align: middle; }
+.gentil-flame { font-size: 16px; line-height: 1; }
+.gentil-name { font-size: 10px; font-weight: 700; color: var(--gold); display: block; margin-top: 2px; }
+
+/* ============================================================ DETAIL ROW */
+.detail-cell {
+  padding: 0 !important;
+  border-top: none !important;
+}
+
+.detail-inner {
+  padding: 20px 24px;
+  background: linear-gradient(180deg, #f0fbfb, var(--white));
+  border-top: 1px dashed var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.detail-section-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 6px;
+}
+
+.detail-section p {
+  font-family: var(--font-content); font-size: 13.5px; line-height: 1.7; color: var(--text);
+}
+
+.detail-park-quote {
+  background: var(--bg3); border-left: 3px solid var(--gold);
+  padding: 10px 12px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.detail-park-quote blockquote {
+  font-family: var(--font-content); font-style: italic; font-size: 13px; line-height: 1.7; color: var(--text); margin-bottom: 4px;
+}
+.detail-park-quote cite { font-size: 11px; color: var(--text-muted); font-style: normal; font-weight: 700; }
+
+.detail-mirror {
+  background: linear-gradient(135deg, #0e3a37, var(--teal-dark));
+  border-radius: var(--radius-sm); padding: 14px 16px;
+  grid-column: 1 / -1; /* full width */
+}
+.detail-mirror-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 6px;
+}
+.detail-mirror p {
+  font-family: var(--font-content); font-style: italic; font-size: 14px; line-height: 1.7; color: white;
+}
+
+.detail-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.detail-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 10px; background: var(--teal-light); color: var(--teal-dark);
+  text-decoration: none; border-radius: var(--radius-sm);
+  font-size: 12px; font-weight: 700; transition: opacity 0.15s;
+}
+.detail-link:hover { opacity: 0.8; }
+
+/* ============================================================ DARK ERA BANNER */
+.dark-banner {
+  background: linear-gradient(135deg, var(--maroon) 0%, #3a0a0a 100%);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin: 4px 0 16px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  border: 1px solid rgba(122,26,26,0.4);
+}
+.dark-banner-left { flex: 1; min-width: 200px; }
+.dark-banner-title { font-size: 15px; font-weight: 800; color: white; margin-bottom: 4px; }
+.dark-banner-sub { font-family: var(--font-content); font-style: italic; font-size: 13px; color: rgba(255,255,255,0.7); }
+.dark-banner-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.dark-stat { text-align: center; }
+.dark-stat-num { font-size: 20px; font-weight: 800; color: #f09090; }
+.dark-stat-label { font-size: 10px; color: rgba(255,255,255,0.45); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+
+/* ============================================================ FOOTER */
+.footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 13px; color: var(--text-muted); }
+
+/* ============================================================ FLAT MODE (no era groups) */
+.flat-table-wrap { max-width: 1200px; margin: 0 auto; padding: 28px 20px 80px; }
+
+/* ============================================================ LEGEND BAR */
+.legend-bar {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+  padding: 10px 20px; background: var(--white); border-bottom: 1px solid var(--border);
+}
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: var(--text-light); }
+.legend-swatch { width: 10px; height: 10px; border-radius: 2px; }
+
+/* ============================================================ RESPONSIVE */
+@media (max-width: 900px) {
+  /* Hide less important columns on mobile */
+  .gen-table .col-arti,  .gen-table td.td-arti  { display: none; }
+  .gen-table .col-kristus, .gen-table td.td-kristus { display: none; }
+  .detail-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .gen-table .col-kov, .gen-table td.td-kov { display: none; }
+  .detail-inner { grid-template-columns: 1fr; }
+  .hero-stats { gap: 16px; }
+  .controls-sep { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Sejarah Penebusan</a>
+  <a href="index.html" class="nav-link">← Beranda</a>
+  <a href="pendamping-baca.html" class="nav-link">Pendamping Baca</a>
+  <a href="galeri-nama-pelita.html" class="nav-link">Galeri Nama Pelita</a>
+  <a href="peta-kovenan.html" class="nav-link">Peta Kovenan</a>
+  <a href="peta-hakim.html" class="nav-link">Peta Era Hakim</a>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Buku 3</span>
+  <h1>14 Generasi Abraham → Daud</h1>
+  <p class="subtitle">Data verifikasi lengkap — nama, era, peran kovenan, dan bayangan Kristus setiap pembawa api.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">14</div><div class="hero-stat-label">Generasi</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">±1.163</div><div class="hero-stat-label">Tahun Perjalanan</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Perempuan Gentil</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Kovenan Aktif</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">±340</div><div class="hero-stat-label">Tahun Kegelapan Hakim</div></div>
+  </div>
+</section>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <span class="legend-item"><span class="legend-swatch" style="background:var(--era-patriark-txt)"></span>Zaman Patriark</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:var(--era-mesir-txt)"></span>Perbudakan–Gurun</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:var(--era-hakim-txt)"></span>Zaman Hakim</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:var(--era-monarki-txt)"></span>Awal Monarki</span>
+  <span class="legend-item" style="color:var(--gold)">🕯 Perempuan Gentil</span>
+  <span style="margin-left:auto;font-size:11px;color:var(--text-muted);font-style:italic">Klik baris untuk detail</span>
+</div>
+
+<!-- CONTROLS BAR -->
+<div class="controls-bar">
+  <span class="controls-label">Era:</span>
+  <button class="filter-chip active" onclick="filterEra('all')" id="chip-all">Semua</button>
+  <button class="filter-chip" onclick="filterEra('patriark')" id="chip-patriark">
+    <span class="chip-dot" style="background:var(--era-patriark-txt)"></span>Patriark (1–4)
+  </button>
+  <button class="filter-chip" onclick="filterEra('mesir')" id="chip-mesir">
+    <span class="chip-dot" style="background:var(--era-mesir-txt)"></span>Perbudakan (5–9)
+  </button>
+  <button class="filter-chip" onclick="filterEra('hakim')" id="chip-hakim">
+    <span class="chip-dot" style="background:var(--era-hakim-txt)"></span>Hakim (10–12)
+  </button>
+  <button class="filter-chip" onclick="filterEra('monarki')" id="chip-monarki">
+    <span class="chip-dot" style="background:var(--era-monarki-txt)"></span>Monarki (13–14)
+  </button>
+  <div class="controls-sep"></div>
+  <span class="controls-label">Urut:</span>
+  <button class="sort-btn active" onclick="sortBy('gen')" id="sort-gen">Kronologis ↓</button>
+  <button class="sort-btn" onclick="sortBy('nama')" id="sort-nama">A–Z Nama</button>
+  <button class="gentil-toggle" onclick="toggleGentil()" id="toggle-gentil">🕯 Hanya Gentil</button>
+</div>
+
+<!-- TABLE OUTER -->
+<div class="table-outer" id="table-outer">
+  <!-- dirender JS -->
+</div>
+
+<footer class="footer">
+  Ekosistem Self Journey · Buku 3 · <em>The Unquenchable Lamp of the Covenant</em> — Abraham Park
+</footer>
+
+<!-- ============================================================
+     DATA
+     ============================================================ -->
+<script>
+const GENERASI = [
+  {
+    gen: 1,
+    nama: "Abraham",
+    nama_alt: null,
+    arti: '"Bapa banyak bangsa" — dari Abram "bapa yang ditinggikan"',
+    era: "patriark",
+    era_label: "Patriark",
+    tahun: "±2166–1991 SM",
+    peran: "Bapa Kovenan · Sahabat Allah",
+    kovenan: "Kovenan 3",
+    kovenan_detail: "Kej. 12; 15; 17 — tiga lapisan",
+    gentil: null,
+    kristus: "Bapa yang tidak menyayangkan anak tunggalnya = Allah-Bapa dan Anak Domba Allah.",
+    momen: "Gunung Moriah — mempersembahkan Ishak, percaya 'Allah yang akan menyediakan.' Kovenan Kej. 15: Allah sendiri yang berjalan di antara hewan belahan — menanggung sendiri konsekuensi kovenan.",
+    detail: "Dipanggil dari Ur Kasdim — pusat penyembahan berhala. Kata Yunani 'egenneesen' di Matius 1 bukan sekadar fakta biologis — ia adalah pewarisan hak kovenan. Setiap 'memperanakkan' adalah penyerahan tongkat kovenan.",
+    park_quote: "\"It would not be an exaggeration to say that they had been born, had lived, and died for the purpose of fulfilling the divine work of redemption through Jesus Christ.\"",
+    park_cite: "Abraham Park, hal. 62",
+    cermin: "Allah memanggil Abraham dari tengah penyembah berhala — bukan menunggu ia berada di tempat yang 'tepat.' Dari mana Ia sedang memanggil kamu sekarang?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Abraham" }, { href: "peta-kovenan.html", label: "Kovenan Abraham" }]
+  },
+  {
+    gen: 2,
+    nama: "Ishak",
+    nama_alt: null,
+    arti: '"Ia tertawa" — lahir dari janji yang mustahil',
+    era: "patriark",
+    era_label: "Patriark",
+    tahun: "±2066–1886 SM",
+    peran: "Anak Janji · Ketaatan Mutlak",
+    kovenan: "Kovenan 3",
+    kovenan_detail: "Pewaris kovenan Abraham",
+    gentil: null,
+    kristus: "Anak yang taat sampai kematian, diselamatkan oleh pengganti ilahi (domba jantan di semak).",
+    momen: "Di Moriah, Ishak tahu ia adalah korban — sudah remaja, bisa berlari. Tidak berlari. Ketaatan tanpa perlawanan, tanpa negosiasi.",
+    detail: "Satu-satunya tokoh Perjanjian Lama yang tidak pernah meninggalkan tanah Kanaan — tidak turun ke Mesir, tidak ke Haran. Ia tetap di tempat yang Allah tunjuk. Hidupnya sebagian besar sebagai 'jembatan' yang setia.",
+    park_quote: "\"Isaac is a type of Jesus Christ who obeyed even unto death. The ram caught in the thicket is a type of Christ who died as our substitute.\"",
+    park_cite: "Abraham Park, Bab 9",
+    cermin: "Ishak hidup sebagian besar sebagai jembatan — tanpa cerita dramatis. Tapi ia ada di silsilah Yesus. Bisakah 'hanya jembatan' sudah cukup?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Ishak" }]
+  },
+  {
+    gen: 3,
+    nama: "Yakub",
+    nama_alt: "→ Israel",
+    arti: '"Penipu, memegang tumit" → "bergulat dengan Allah — dan menang"',
+    era: "patriark",
+    era_label: "Patriark",
+    tahun: "±2006–1859 SM",
+    peran: "Fondasi 12 Suku · Penipu yang Dipilih",
+    kovenan: "Kovenan 3",
+    kovenan_detail: "Pewaris kovenan — nama Israel",
+    gentil: null,
+    kristus: "Kristus yang memberikan identitas baru kepada yang bergulat, bukan setelah sempurna.",
+    momen: "Pergumulan Peniel — 'Aku tidak akan melepaskan Engkau.' Sendi paha copot. Nama baru: Israel. Cacat tubuh sebagai mahkota iman.",
+    detail: "Menipu Esau, menipu ayah yang buta, ditipu balik oleh pamannya. Tapi nama 'Israel' yang ia terima di Peniel menjadi nama seluruh bangsa yang mewarisi kovenan itu. Identitas satu manusia yang bergulat menjadi identitas kolektif jutaan keturunannya.",
+    park_quote: "\"Jacob's wrestling match symbolizes his lifelong struggle to hold onto God despite his own weakness. God did not abandon him; He wrestled with him — and that wrestling produced the name Israel.\"",
+    park_cite: "Abraham Park, Bab 10",
+    cermin: "Allah mengganti nama Yakub menjadi Israel di tengah pergumulan — bukan setelah ia berhasil menjadi baik. Identitas baru apa yang Allah sedang tawarkan di tengah pergumulanmu sekarang?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Yakub" }]
+  },
+  {
+    gen: 4,
+    nama: "Yehuda",
+    nama_alt: null,
+    arti: '"Pujian kepada Tuhan" — ironis mengingat catatan hidupnya',
+    era: "patriark",
+    era_label: "Patriark",
+    tahun: "±1929–1815 SM",
+    peran: "Lampu di Tengah Skandal · Diselamatkan oleh Tamar",
+    kovenan: "Kovenan 3",
+    kovenan_detail: "Garis Yehuda → Mesias",
+    gentil: "Tamar",
+    kristus: "Kecemburuan (zeal) Tamar = instrumen zeal Allah. Api yang tidak bisa padam meski pemegang lampu sudah menyerah.",
+    momen: "Yehuda menjual Yusuf. Menikahi Kanaan. Kehilangan dua anak. Bersetubuh dengan Tamar yang menyamar. Lalu mengakui: 'Ia lebih benar dari aku.' Tamar memiliki godly zeal yang menjaga garis kovenan.",
+    detail: "Park tidak menyembunyikan brutalitas moral Yehuda. Tapi ia menunjukkan bahwa bukan Yehuda yang memastikan kelangsungan garis — Tamar yang melakukannya. Kata 'zeal' untuk Tamar adalah kata yang sama dengan kata kunci di Kesimpulan buku. Zeal Tamar dan zeal Allah adalah motivasi yang identik.",
+    park_quote: "\"Tamar possessed godly zeal to continue the covenantal lineage, so that the lamp of the covenant would not be extinguished.\"",
+    park_cite: "Abraham Park, Bab 11",
+    cermin: "Yehuda adalah pemegang sah garis kovenan. Tamar adalah orang luar. Tapi yang menjaga api menyala adalah Tamar. Siapa 'Tamar' dalam komunitasmu?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Yehuda & Tamar" }, { href: "peta-kovenan.html", label: "Jalur Perempuan Gentil" }]
+  },
+  {
+    gen: 5,
+    nama: "Perez",
+    nama_alt: null,
+    arti: '"Menerobos keluar" — karena ia menerobos keluar lebih dahulu',
+    era: "mesir",
+    era_label: "Perbudakan–Gurun",
+    tahun: "±1800 SM",
+    peran: "Hak Lahir Sebelum Lahir · Pilihan Ilahi Melampaui Tradisi",
+    kovenan: "Kovenan 3",
+    kovenan_detail: "Garis kovenan melewati Perez, bukan Zerah",
+    gentil: null,
+    kristus: "'Batu yang dibuang tukang bangunan menjadi batu penjuru.' Pilihan Allah melangkahi ekspektasi manusia.",
+    momen: "Bidan mengikat benang merah di tangan Zerah yang keluar pertama. Perez menerobos keluar mendahului saudaranya yang sudah 'ditandai'. Pola penggantian ilahi yang berulang.",
+    detail: "Anak kembar Tamar dan Yehuda — lahir dari situasi penuh skandal. Tapi Mesias datang melalui garis Perez, bukan Zerah. Park menyimpulkan: Allah secara aktif memilih, tidak terikat logika kelahiran manusia. Pola ini berulang: Ishak bukan Ismael, Yakub bukan Esau, Perez bukan Zerah.",
+    park_quote: "\"God placed the second son Ram in the genealogy of Jesus Christ in the place of Jerahmeel, the first son. This shows God's sovereignty — He is not bound by human convention.\"",
+    park_cite: "Abraham Park, Bab 14",
+    cermin: "Perez lahir dari skandal tapi ada di silsilah Yesus. Adakah sesuatu dalam asal-usulmu yang kamu anggap memalukan, yang Allah bisa pakai sebagai bagian dari cerita yang lebih besar?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Perez" }]
+  },
+  {
+    gen: 6,
+    nama: "Hezron",
+    nama_alt: null,
+    arti: '"Halaman yang dikelilingi tembok" atau "anak panah"',
+    era: "mesir",
+    era_label: "Perbudakan–Gurun",
+    tahun: "±1760 SM",
+    peran: "Anonimitas yang Bermakna · Setia Tanpa Catatan",
+    kovenan: "Kovenan 3",
+    kovenan_detail: "Turun ke Mesir bersama Yakub (Kej. 46:12)",
+    gentil: null,
+    kristus: "Kristus yang lahir di Betlehem — kota yang disiapkan oleh garis yang melewati Hezron.",
+    momen: "Dikuburkan di Caleb-Efrata — nama yang terhubung ke Efrata/Betlehem. Bahkan lokasi kematiannya bukan kebetulan geografis dalam administrasi Allah.",
+    detail: "Salah satu nama paling tidak dikenal dalam silsilah. Park menyoroti tempat kematiannya sebagai sinyal administrasi Allah: tidak ada yang kebetulan dalam garis kovenan, bahkan tempat seseorang dikuburkan. Hezron turun ke Mesir sebagai bagian dari 70 jiwa bersama Yakub — generasi yang membawa kovenan masuk ke dalam perbudakan.",
+    park_quote: "\"Even the location of Hezron's burial is recorded in God's administration. Nothing in the covenant line is accidental — not even where a person dies.\"",
+    park_cite: "Abraham Park, Bab 13",
+    cermin: "Jika namamu muncul di silsilah seseorang seribu tahun dari sekarang, tanpa konteks apa pun — satu hal apa yang kamu ingin tercatat?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Hezron" }]
+  },
+  {
+    gen: 7,
+    nama: "Ram",
+    nama_alt: null,
+    arti: '"Yang ditinggikan" atau "yang agung"',
+    era: "mesir",
+    era_label: "Perbudakan–Gurun",
+    tahun: "±1720 SM",
+    peran: "Anak Kedua yang Dipilih · Pola Penggantian Ilahi",
+    kovenan: "Kovenan 3",
+    kovenan_detail: "Menggantikan Yerahmeel si sulung",
+    gentil: null,
+    kristus: "Kristus sang Penjuru yang 'dibuang' — dipilih Allah tapi di luar ekspektasi manusia.",
+    momen: "'Allah menempatkan Ram si anak kedua dalam silsilah Yesus, menggantikan Yerahmeel si anak sulung.' — Park. Pilihan aktif, bukan kecelakaan sejarah.",
+    detail: "Tidak ada momen dramatis yang dicatat tentang Ram. Ia ada karena Allah memilihnya — itu saja. Park menggunakan ini sebagai bukti terakhir dari pola yang diulang di setiap titik kritis: Allah memilih yang tidak obvious. Ishak bukan Ismael. Yakub bukan Esau. Perez bukan Zerah. Ram bukan Yerahmeel.",
+    park_quote: "\"God placed the second son Ram in the genealogy of Jesus Christ in the place of Jerahmeel, the first son. This shows God's sovereignty over lineage.\"",
+    park_cite: "Abraham Park, Bab 14",
+    cermin: "Allah memilih Ram karena Ia bebas memilih — bukan karena Ram lebih baik. Apakah keamananmu dalam iman masih bergantung pada prestasimu, atau pada kebebasan pilihan Allah?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Ram" }]
+  },
+  {
+    gen: 8,
+    nama: "Amminadab",
+    nama_alt: null,
+    arti: '"Bangsaku murah hati" atau "saudara dari kemuliaan"',
+    era: "mesir",
+    era_label: "Perbudakan–Gurun",
+    tahun: "±1650–1446 SM",
+    peran: "Pemimpin di Tengah Perbudakan · Setia Sebelum Pembebasan",
+    kovenan: "Kovenan 4",
+    kovenan_detail: "Era Keluaran · Kepala suku Yehuda",
+    gentil: null,
+    kristus: "Kristus yang berjalan di depan — 'Akulah jalan.' Memimpin bukan dari belakang.",
+    momen: "Mertua Harun, kepala suku Yehuda. Memimpin bukan di saat kemerdekaan — tapi saat Israel masih dalam perbudakan. Barisan suku Yehuda yang dipimpinnya berjalan pertama saat Keluaran.",
+    detail: "Hidup di era paling gelap sebelum Keluaran — 400 tahun perbudakan. Hampir tidak ada catatan iman individual yang bertahan. Tapi lampu kovenan tetap menyala, dan Amminadab adalah salah satu pembawanya. Park menyoroti: bahkan pemimpin pra-pembebasan adalah bagian dari administrasi Allah.",
+    park_quote: "\"Amminadab was faithful during the darkest period of Israel's history — the 400 years of slavery in Egypt. The lamp of the covenant was carried through him even when no one was recording it.\"",
+    park_cite: "Abraham Park, Bab 15",
+    cermin: "Amminadab setia di tempat yang tidak ada yang melihat, selama 400 tahun perbudakan. Bagian mana dari imanmu yang hanya dilakukan ketika tidak ada yang melihat?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Amminadab" }, { href: "peta-kovenan.html", label: "Kovenan Sinai" }]
+  },
+  {
+    gen: 9,
+    nama: "Nahason",
+    nama_alt: null,
+    arti: '"Ular" atau "yang meramal dari ular"',
+    era: "mesir",
+    era_label: "Perbudakan–Gurun",
+    tahun: "±1446–1406 SM",
+    peran: "Yang Pertama · Pemimpin di Garis Paling Depan",
+    kovenan: "Kovenan 4",
+    kovenan_detail: "Sinai · Pertama mempersembahkan (Bil. 7:12)",
+    gentil: null,
+    kristus: "Kristus yang berjalan di garis paling depan — membuka jalan bagi yang mengikuti.",
+    momen: "Satu-satunya tokoh Part 3 yang Park sebut eksplisit sebagai 'yang pertama': pertama mempersembahkan persembahan saat Kemah Suci selesai, pertama memimpin barisan suku Yehuda di padang gurun.",
+    detail: "Barisan suku Yehuda berjalan paling depan di setiap perjalanan Israel di padang gurun — posisi paling berbahaya, yang pertama menghadapi musuh. Park menutup babnya dengan aplikasi kepada pembaca: jadilah seperti Nahason, pemimpin yang bisa melihat apa yang orang lain tidak bisa lihat dalam administrasi penebusan Allah.",
+    park_quote: "\"Nahshon was the first to offer his gift when the tabernacle was dedicated. God records who goes first.\"",
+    park_cite: "Abraham Park, Bab 16",
+    cermin: "Nahason memimpin di padang gurun — bukan setelah sampai di tanah perjanjian. Bisakah kamu memimpin dengan setia di tempat yang belum sampai tujuannya?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Nahason" }]
+  },
+  {
+    gen: 10,
+    nama: "Salmon",
+    nama_alt: null,
+    arti: '"Jubah" atau "penutup"',
+    era: "hakim",
+    era_label: "Zaman Hakim",
+    tahun: "±1406–1350 SM",
+    peran: "Menutup Masa Lalu dengan Jubah Kasih · Menikahi Rahab",
+    kovenan: "Kovenan 4",
+    kovenan_detail: "Masuk Kanaan · menikahi Rahab",
+    gentil: "Rahab",
+    kristus: "Salmon yang menutup Rahab dengan jubahnya = Kristus yang menutup dosa kita dengan darah-Nya.",
+    momen: "Prajurit Israel yang menikahi Rahab — pelacur Yerikho yang diselamatkan karena benang merah. Nama 'Salmon' berarti jubah: ia menutupi masa lalu Rahab, menjadikannya ibu dari Boaz.",
+    detail: "Park menyoroti keberanian teologis tindakan ini: menikahi perempuan dari bangsa yang baru saja dikalahkan, dengan reputasi sebagai pelacur. Tapi benang merah Rahab dihubungkan Park dengan darah paskah: keduanya adalah tanda iman aktif yang mengundang keselamatan ilahi. Dari garis Salmon-Rahab lahir Boaz — yang akan menjadi penebus bagi perempuan Gentil ketiga.",
+    park_quote: "\"The name Salmon means 'garment' or 'covering.' By marrying Rahab, Salmon became a living portrait of Christ who covers the sins of all who come to Him.\"",
+    park_cite: "Abraham Park, Bab 17",
+    cermin: "Rahab percaya kepada Allah Israel dari luar, hanya dari berita. Adakah orang di luar lingkaran imanmu yang imannya lebih menyala dari orang-orang di dalam?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Salmon & Rahab" }, { href: "peta-kovenan.html", label: "Jalur Perempuan Gentil" }, { href: "peta-hakim.html", label: "Peta Era Hakim" }]
+  },
+  {
+    gen: 11,
+    nama: "Boaz",
+    nama_alt: null,
+    arti: '"Di dalam dia ada kekuatan"',
+    era: "hakim",
+    era_label: "Zaman Hakim",
+    tahun: "±1322–1260 SM",
+    peran: "Penebus yang Merendah · Bayangan Kristus Paling Eksplisit",
+    kovenan: "Kovenan 4",
+    kovenan_detail: "Go'el — penebus kerabat bagi Ruth",
+    gentil: "Ruth",
+    kristus: "Park menyebut Boaz secara eksplisit sebagai 'Jesus-like figure.' Kaya-merendah-menebus-menikahi yang asing.",
+    momen: "Kaya tapi turun ke ladang makan bersama pekerja. Tidur di lantai pengirikan. Menjadi go'el bagi Ruth Moab — bukan karena wajib (ada penebus lebih dekat), tapi karena mau. Ruth: 'Di mana engkau pergi, aku akan pergi.'",
+    detail: "Satu-satunya tokoh yang Park sebut eksplisit sebagai bayangan Kristus. Tapi setelah melihat pola keseluruhan, jelas setiap tokoh adalah bayangan Kristus dalam aspek tertentu — Boaz hanya yang paling terang. Kovenan melampaui hukum: Ruth adalah orang Moab (dilarang masuk jemaat sampai generasi ke-10), tapi Boaz menerimanya.",
+    park_quote: "\"Boaz appears as a Jesus-like figure throughout the Book of Ruth. He was wealthy but came down to eat with his workers. He redeemed Ruth, an outcast, and took her as his wife.\"",
+    park_cite: "Abraham Park, Bab 18",
+    cermin: "'Di mana engkau pergi, aku akan pergi.' Ruth mengucapkan itu kepada Naomi. Bisakah kamu mengucapkan kalimat itu kepada Allah — dengan jujur, bukan sebagai deklarasi rohani?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Boaz & Ruth" }, { href: "peta-hakim.html", label: "Peta Era Hakim" }]
+  },
+  {
+    gen: 12,
+    nama: "Obed",
+    nama_alt: null,
+    arti: '"Pelayan" atau "yang menyembah"',
+    era: "hakim",
+    era_label: "Zaman Hakim",
+    tahun: "±1260–1200 SM",
+    peran: "Yang Paling Sederhana · Setia dalam Hal Terkecil",
+    kovenan: "Kovenan 4",
+    kovenan_detail: "Membawa kovenan melewati akhir era hakim",
+    gentil: null,
+    kristus: "Kristus yang datang bukan untuk dilayani tapi untuk melayani. Kebesaran dalam kesederhanaan.",
+    momen: "Park mencatat hanya dua hal: Obed adalah 'anak bagi Naomi' dan ia mendukung Naomi. Tidak ada kemenangan. Kata Ibrani untuk merawat Naomi adalah akar dari kata Amen.",
+    detail: "Penemuan Park yang paling mengejutkan: kata Ibrani untuk 'merawat' Naomi di akhir kitab Ruth adalah akar dari kata Amen — kata respons iman universal yang dipakai umat Allah dalam doa sampai hari ini. Kesetiaan Obed yang paling sederhana terhubung ke doa semua orang beriman di setiap zaman.",
+    park_quote: "\"Obed's faithful support of Naomi is recorded with the Hebrew word that shares a root with 'amen' — the universal word of faith's affirmation.\"",
+    park_cite: "Abraham Park, Bab 19",
+    cermin: "Obed ada di silsilah Yesus bukan karena ia melakukan sesuatu luar biasa — tapi karena ia ada dan setia. Apakah kamu percaya kehadiranmu yang sederhana sudah bermakna?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Obed" }]
+  },
+  {
+    gen: 13,
+    nama: "Isai",
+    nama_alt: null,
+    arti: '"Ia hidup" (He lives)',
+    era: "monarki",
+    era_label: "Awal Monarki",
+    tahun: "±1130–1060 SM",
+    peran: "Bapa yang Tidak Mengenali Anaknya · Saksi Providensi",
+    kovenan: "Kovenan 5",
+    kovenan_detail: "Era peralihan — akhir hakim, awal kerajaan",
+    gentil: null,
+    kristus: "'Dari tunggul Isai akan tumbuh tunas Mesias' (Yes. 11:1). Allah yang hidup selalu menyimpan tunas baru.",
+    momen: "Samuel datang mencari raja baru. Isai menghadirkan tujuh anak — tidak ingat Daud. 'Adakah anakmu yang lain?' Daud sedang di ladang menggembalakan domba. Yang terlupakan itulah yang dipilih.",
+    detail: "Park menghubungkan nama Isai ('He lives') langsung dengan Yesaya 11:1: bahkan saat garis tampak seperti tunggul yang sudah mati, Allah yang hidup selalu menyimpan tunas baru. Isai kemudian menjadi saksi pertama dan paling dekat dari seluruh perjalanan Daud: pengurapan, masuk istana, Goliat, pelarian, sampai naik takhta.",
+    park_quote: "\"Jesse means 'He lives.' We may find ourselves in situations of despair where everything has been cut off. When we possess faith as small as a mustard seed and trust in the living God, we will always be able to rise again.\"",
+    park_cite: "Abraham Park, Bab 20",
+    cermin: "Daud sedang di ladang menggembalakan domba saat dunia bergerak tanpa dia. Allah menemuinya di sana. Di mana 'ladangmu' sekarang — dan apakah kamu percaya Allah bisa menemuimu di sana?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Isai" }]
+  },
+  {
+    gen: 14,
+    nama: "Daud",
+    nama_alt: null,
+    arti: '"Yang dikasihi"',
+    era: "monarki",
+    era_label: "Awal Monarki",
+    tahun: "±1040–970 SM",
+    peran: "Saluran Kovenan Mesiasis · Dibentuk melalui 16 Tempat Pelarian",
+    kovenan: "Kovenan 5",
+    kovenan_detail: "Kovenan Daud — takhta kekal (2 Sam. 7)",
+    gentil: null,
+    kristus: "Mazmur 22 = nubuat langsung salib Yesus. Daud sebagai 'passageway of the Messianic Covenant' — saluran, bukan pemilik.",
+    momen: "16 tempat pelarian, 3 urapan, kejatuhan besar. Tapi evaluasi Allah: 'orang yang berkenan di hati-Ku.' Bukan orang yang sempurna — tapi yang bertobat dengan sungguh-sungguh.",
+    detail: "Park menghabiskan lebih dari separuh bab Daud pada masa pengungsian, bukan kejayaannya. Setiap dari 16 tempat pelarian mengungkapkan satu nama Allah yang hanya ditemukan dalam penderitaan. Mazmur 22 yang Daud tulis dari penderitaan pribadinya ternyata adalah nubuat penderitaan Kristus yang paling rinci di seluruh Perjanjian Lama.",
+    park_quote: "\"A person after God's own heart does not refer to a perfect person. A person after God's own heart is a person who repents thoroughly and resolves to live according to God's Word.\"",
+    park_cite: "Abraham Park, Bab 26",
+    cermin: "'Orang yang berkenan di hati Allah bukan yang sempurna — tapi yang bertobat dengan sungguh dan bertekad hidup sesuai Firman Allah.' Apakah definisi itu membebaskan atau semakin memberati — dan mengapa?",
+    links: [{ href: "galeri-nama-pelita.html", label: "Kartu Daud" }, { href: "peta-kovenan.html", label: "Kovenan Daud" }, { href: "cermin-pribadi.html", label: "Cermin Pribadi" }]
+  }
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentFilter = 'all';
+let currentSort = 'gen';
+let gentilOnly = false;
+let openRow = null;
+
+/* ============================================================
+   FILTER + SORT + RENDER
+   ============================================================ */
+function filterEra(era) {
+  currentFilter = era;
+  gentilOnly = false;
+  document.getElementById('toggle-gentil').classList.remove('active');
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  document.getElementById('chip-' + era).classList.add('active');
+  render();
+}
+
+function sortBy(key) {
+  currentSort = key;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sort-' + key).classList.add('active');
+  render();
+}
+
+function toggleGentil() {
+  gentilOnly = !gentilOnly;
+  const btn = document.getElementById('toggle-gentil');
+  btn.classList.toggle('active', gentilOnly);
+  if (gentilOnly) {
+    currentFilter = 'all';
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    document.getElementById('chip-all').classList.add('active');
+  }
+  render();
+}
+
+function getFiltered() {
+  let data = [...GENERASI];
+  if (gentilOnly) return data.filter(d => d.gentil);
+  if (currentFilter !== 'all') data = data.filter(d => d.era === currentFilter);
+  return data;
+}
+
+function getSorted(data) {
+  if (currentSort === 'nama') return [...data].sort((a, b) => a.nama.localeCompare(b.nama));
+  return [...data].sort((a, b) => a.gen - b.gen);
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function render() {
+  const outer = document.getElementById('table-outer');
+  const filtered = getSorted(getFiltered());
+  openRow = null;
+
+  if (filtered.length === 0) {
+    outer.innerHTML = `<p style="padding:40px;text-align:center;color:var(--text-muted);font-style:italic">Tidak ada generasi yang cocok dengan filter ini.</p>`;
+    return;
+  }
+
+  // Group by era
+  const eras = [
+    { key: 'patriark', label: 'Zaman Patriark', years: '±2166–1815 SM', cls: 'patriark' },
+    { key: 'mesir',    label: 'Perbudakan Mesir & Padang Gurun', years: '±1800–1406 SM', cls: 'mesir' },
+    { key: 'hakim',    label: 'Zaman Hakim — 340 Tahun Kegelapan', years: '±1406–1130 SM', cls: 'hakim' },
+    { key: 'monarki',  label: 'Awal Monarki', years: '±1130–970 SM', cls: 'monarki' }
+  ];
+
+  // Build groups
+  const byEra = {};
+  filtered.forEach(d => {
+    if (!byEra[d.era]) byEra[d.era] = [];
+    byEra[d.era].push(d);
+  });
+
+  let html = '';
+
+  // If sorted by nama or only gentil, show flat table
+  if (currentSort === 'nama' || gentilOnly) {
+    html += buildFlatTable(filtered);
+  } else {
+    eras.forEach(era => {
+      const rows = byEra[era.key];
+      if (!rows || rows.length === 0) return;
+
+      html += `<div class="era-group">`;
+      html += `<div class="era-group-header era-${era.cls}">
+        <div class="era-group-dot"></div>
+        <span class="era-group-name">${era.label}</span>
+        <span class="era-group-years">${era.years} · ${rows.length} generasi</span>
+      </div>`;
+
+      // Dark banner inside hakim
+      if (era.key === 'hakim') {
+        html += `<div class="dark-banner">
+          <div class="dark-banner-left">
+            <div class="dark-banner-title">⚠ Era Paling Gelap dalam Silsilah</div>
+            <div class="dark-banner-sub">Park: "Lebih gelap dari Sodom dan Gomora." Hampir seluruh generasi dihapus dari silsilah. Tapi di sini tiga titik cahaya bertahan.</div>
+          </div>
+          <div class="dark-banner-stats">
+            <div class="dark-stat"><div class="dark-stat-num">±340</div><div class="dark-stat-label">Tahun</div></div>
+            <div class="dark-stat"><div class="dark-stat-num">12</div><div class="dark-stat-label">Hakim</div></div>
+            <div class="dark-stat"><div class="dark-stat-num">3</div><div class="dark-stat-label">Titik Cahaya</div></div>
+          </div>
+        </div>`;
+      }
+
+      html += buildTable(rows);
+      html += `</div>`;
+    });
+  }
+
+  outer.innerHTML = html;
+  // Re-attach click listeners
+  document.querySelectorAll('.gen-row').forEach(tr => {
+    tr.addEventListener('click', () => toggleDetail(tr.dataset.id));
+  });
+}
+
+function buildTable(rows) {
+  let h = `<div style="overflow-x:auto">`;
+  h += `<table class="gen-table">
+    <colgroup>
+      <col class="col-num"><col class="col-nama"><col class="col-arti">
+      <col class="col-era"><col class="col-peran"><col class="col-kov">
+      <col class="col-kristus"><col class="col-gentil">
+    </colgroup>
+    <thead><tr>
+      <th class="col-num" onclick="sortBy('gen')">#<span class="sort-arrow">${currentSort==='gen'?'↓':''}</span></th>
+      <th class="col-nama" onclick="sortBy('nama')">Nama<span class="sort-arrow">${currentSort==='nama'?'↑':''}</span></th>
+      <th class="col-arti">Arti Ibrani</th>
+      <th class="col-era">Era</th>
+      <th class="col-peran">Peran Kovenan</th>
+      <th class="col-kov">Kovenan</th>
+      <th class="col-kristus">Bayangan Kristus</th>
+      <th class="col-gentil sorted" style="text-align:center">🕯</th>
+    </tr></thead>
+    <tbody id="tbody-main">`;
+
+  rows.forEach(d => {
+    h += buildRow(d);
+  });
+
+  h += `</tbody></table></div>`;
+  return h;
+}
+
+function buildFlatTable(rows) {
+  let h = `<div style="overflow-x:auto">`;
+  h += `<table class="gen-table">
+    <colgroup>
+      <col class="col-num"><col class="col-nama"><col class="col-arti">
+      <col class="col-era"><col class="col-peran"><col class="col-kov">
+      <col class="col-kristus"><col class="col-gentil">
+    </colgroup>
+    <thead><tr>
+      <th class="col-num" onclick="sortBy('gen')">#<span class="sort-arrow">${currentSort==='gen'?'↓':''}</span></th>
+      <th class="col-nama sorted" onclick="sortBy('nama')">Nama<span class="sort-arrow">${currentSort==='nama'?'↑':''}</span></th>
+      <th class="col-arti">Arti Ibrani</th>
+      <th class="col-era">Era</th>
+      <th class="col-peran">Peran Kovenan</th>
+      <th class="col-kov">Kovenan</th>
+      <th class="col-kristus">Bayangan Kristus</th>
+      <th class="col-gentil" style="text-align:center">🕯</th>
+    </tr></thead>
+    <tbody>`;
+
+  rows.forEach(d => { h += buildRow(d); });
+  h += `</tbody></table></div>`;
+  return h;
+}
+
+function buildRow(d) {
+  const eraBadge = `<span class="era-badge ${d.era}">${d.era_label}</span><span class="era-year">${d.tahun}</span>`;
+  const kovBadge = d.kovenan ? `<span class="kov-badge">${d.kovenan}</span>` : `<span class="kov-none">—</span>`;
+  const gentilCell = d.gentil
+    ? `<div class="gentil-flame">🕯</div><span class="gentil-name">${d.gentil}</span>`
+    : `<span style="color:var(--border)">—</span>`;
+
+  return `
+    <tr class="gen-row era-${d.era}" data-id="${d.gen}" id="row-${d.gen}">
+      <td class="td-num">${d.gen}</td>
+      <td class="td-nama">${d.nama}${d.nama_alt ? `<div class="td-nama-sub">${d.nama_alt}</div>` : ''}</td>
+      <td class="td-arti">${d.arti}</td>
+      <td class="td-era">${eraBadge}</td>
+      <td class="td-peran">${d.peran}</td>
+      <td class="td-kov">${kovBadge}</td>
+      <td class="td-kristus">${d.kristus}</td>
+      <td class="td-gentil">${gentilCell}</td>
+    </tr>
+    <tr class="row-detail" id="detail-${d.gen}" style="display:none">
+      <td class="detail-cell" colspan="8">
+        ${buildDetailInner(d)}
+      </td>
+    </tr>`;
+}
+
+function buildDetailInner(d) {
+  const linksHtml = d.links.map(l => `<a href="${l.href}" class="detail-link">${l.label} →</a>`).join('');
+  return `<div class="detail-inner">
+    <div class="detail-section">
+      <div class="detail-section-label">Momen Kritis</div>
+      <p>${d.momen}</p>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-label">Konteks Lebih Dalam</div>
+      <p>${d.detail}</p>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-label">Dari Teks Park</div>
+      <div class="detail-park-quote">
+        <blockquote>${d.park_quote}</blockquote>
+        <cite>— ${d.park_cite}</cite>
+      </div>
+      <div class="detail-links" style="margin-top:12px">${linksHtml}</div>
+    </div>
+    <div class="detail-mirror">
+      <div class="detail-mirror-label">⏸ Cermin</div>
+      <p>${d.cermin}</p>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   TOGGLE ROW DETAIL
+   ============================================================ */
+function toggleDetail(id) {
+  const row = document.getElementById(`row-${id}`);
+  const detail = document.getElementById(`detail-${id}`);
+  if (!row || !detail) return;
+
+  const isOpen = detail.style.display !== 'none';
+
+  // Close previously open
+  if (openRow && openRow !== id) {
+    const prevDetail = document.getElementById(`detail-${openRow}`);
+    const prevRow = document.getElementById(`row-${openRow}`);
+    if (prevDetail) prevDetail.style.display = 'none';
+    if (prevRow) prevRow.classList.remove('row-open');
+  }
+
+  if (isOpen) {
+    detail.style.display = 'none';
+    row.classList.remove('row-open');
+    openRow = null;
+  } else {
+    detail.style.display = 'table-row';
+    row.classList.add('row-open');
+    openRow = id;
+    // Scroll into view gently
+    setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+render();
+</script>
+</body>
+</html>

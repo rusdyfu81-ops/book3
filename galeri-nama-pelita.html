@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Nama Pelita — The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Buku 3
+   ============================================================ */
+:root {
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --gold-light:  rgba(184,134,11,0.12);
+  --gold-border: rgba(184,134,11,0.3);
+  --green:       #2bb673;
+
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  height: 48px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+
+.nav-brand {
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  transition: background 0.2s;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.nav-link:hover, .nav-link:focus-visible {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  outline: none;
+}
+
+.nav-badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   HERO — Tier M
+   ============================================================ */
+.hero {
+  background: var(--bg3);
+  border-bottom: 2px solid var(--border);
+  color: var(--text);
+  padding: 48px 24px 40px;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  color: var(--teal);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.hero h1 {
+  font-size: clamp(22px, 4.5vw, 36px);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.hero .subtitle {
+  color: var(--text-light);
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto 24px;
+  font-family: var(--font-content);
+  font-style: italic;
+}
+
+/* Stat strip di hero */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--teal-dark);
+}
+
+.hero-stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   FILTER BAR
+   ============================================================ */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 48px;
+  z-index: 90;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-btn:hover {
+  border-color: var(--teal);
+  color: var(--teal-dark);
+}
+
+.filter-btn.active {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+  color: white;
+}
+
+.filter-btn .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ============================================================
+   GALLERY GRID
+   ============================================================ */
+.gallery-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 36px 24px 80px;
+}
+
+.gallery-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.gallery-section-header:first-child {
+  margin-top: 0;
+}
+
+.gallery-section-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.gallery-section-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ============================================================
+   KARTU GENERASI
+   ============================================================ */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.gen-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  animation: cardIn 0.3s ease both;
+}
+
+.gen-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.gen-card:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* Warna header per "era" */
+.gen-card-header {
+  padding: 20px 20px 16px;
+  position: relative;
+  min-height: 90px;
+}
+
+.gen-card-header.era-patriark {
+  background: linear-gradient(135deg, #1a3a2a 0%, #1a5c3a 100%);
+}
+
+.gen-card-header.era-mesir {
+  background: linear-gradient(135deg, #2a1a00 0%, #5a3500 100%);
+}
+
+.gen-card-header.era-hakim {
+  background: linear-gradient(135deg, #3a1a1a 0%, #7a2a2a 100%);
+}
+
+.gen-card-header.era-monarki {
+  background: linear-gradient(135deg, #1a2a3a 0%, #1a4a6a 100%);
+}
+
+/* Badge generasi ke- */
+.gen-num-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* Badge perempuan Gentil */
+.gentile-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--gold);
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 12px;
+  letter-spacing: 0.05em;
+}
+
+.gen-card-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.gen-card-meaning {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+}
+
+/* Body kartu */
+.gen-card-body {
+  padding: 16px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gen-card-role {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gen-card-desc {
+  font-family: var(--font-content);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* Momen kritis */
+.gen-card-moment {
+  background: var(--bg2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+.gen-card-moment-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* Karakter Kristus */
+.gen-card-christ {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.christ-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--gold-light);
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.christ-text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-light);
+}
+
+.christ-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+
+/* Footer kartu — pertanyaan cermin */
+.gen-card-footer {
+  border-top: 1px solid var(--border);
+  padding: 14px 20px;
+  background: var(--bg);
+}
+
+.mirror-q-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 6px;
+}
+
+.mirror-q-text {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* ============================================================
+   MODAL — detail kartu
+   ============================================================ */
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes cardPulse {
+  from { box-shadow: var(--shadow-sm); }
+  to   { box-shadow: 0 4px 20px rgba(29,173,168,0.18); }
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+  animation: overlayIn 0.2s ease;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  max-width: 640px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: modalIn 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.modal-header {
+  padding: 28px 28px 20px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: var(--bg2);
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  min-height: 32px;
+}
+
+.modal-close:hover {
+  background: var(--border);
+}
+
+.modal-gen-badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.modal-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.modal-meaning {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-light);
+}
+
+.modal-body {
+  padding: 0 28px 28px;
+}
+
+.modal-section {
+  margin-bottom: 20px;
+}
+
+.modal-section-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.modal-section p {
+  font-family: var(--font-content);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.modal-park-quote {
+  background: var(--bg3);
+  border-left: 3px solid var(--gold);
+  padding: 14px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 12px 0;
+}
+
+.modal-park-quote blockquote {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.modal-park-quote cite {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.modal-christ-box {
+  background: var(--gold-light);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+
+.modal-christ-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.modal-christ-text {
+  font-family: var(--font-content);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.modal-mirror {
+  background: linear-gradient(135deg, #1a3a3a, var(--teal-dark));
+  color: white;
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  margin-top: 4px;
+}
+
+.modal-mirror-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 8px;
+}
+
+.modal-mirror-q {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.7;
+  color: white;
+}
+
+.modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 10px 16px;
+  background: var(--teal-dark);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  transition: opacity 0.2s;
+  min-height: 44px;
+}
+
+.modal-link:hover { opacity: 0.85; }
+
+/* ============================================================
+   GENTIL SPOTLIGHT
+   ============================================================ */
+.gentil-spotlight {
+  background: linear-gradient(150deg, #2a1a00 0%, #5a3500 50%, #7a4a00 100%);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin: 40px 0 0;
+  border: 1px solid var(--gold-border);
+}
+
+.gentil-spotlight-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(184,134,11,0.8);
+  margin-bottom: 12px;
+}
+
+.gentil-spotlight-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.gentil-spotlight-text {
+  font-family: var(--font-content);
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 20px;
+}
+
+.gentil-names {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.gentil-name-chip {
+  background: rgba(184,134,11,0.2);
+  border: 1px solid var(--gold-border);
+  color: #f0c040;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gentil-name-chip:hover {
+  background: rgba(184,134,11,0.35);
+}
+
+.gentil-name-chip span {
+  font-weight: 400;
+  font-style: italic;
+  font-family: var(--font-content);
+  font-size: 12px;
+  color: rgba(240,192,64,0.7);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .gallery-wrap {
+    padding: 24px 16px 60px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gentil-spotlight {
+    padding: 20px 20px;
+  }
+
+  .modal {
+    border-radius: var(--radius);
+  }
+
+  .modal-header, .modal-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Sejarah Penebusan</a>
+  <a href="index.html" class="nav-link">← Beranda</a>
+  <a href="pendamping-baca.html" class="nav-link">Pendamping Baca</a>
+  <a href="peta-kovenan.html" class="nav-link">Peta Kovenan</a>
+  <a href="tabel-generasi.html" class="nav-link">Tabel Generasi</a>
+  <a href="cermin-pribadi.html" class="nav-link">Cermin Pribadi</a>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Buku 3</span>
+  <h1>Galeri Nama Pelita</h1>
+  <p class="subtitle">Mereka lahir, hidup, dan mati untuk menggenapi satu tujuan ilahi yang lebih besar dari diri mereka. Setiap nama adalah lampu di titik waktunya yang tidak bisa digantikan.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">14</div>
+      <div class="hero-stat-label">Generasi</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Perempuan Gentil</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">1.163</div>
+      <div class="hero-stat-label">Tahun Perjalanan</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Tampilkan:</span>
+  <button class="filter-btn active" onclick="setFilter('all')" id="filter-all">Semua (14)</button>
+  <button class="filter-btn" onclick="setFilter('patriark')" id="filter-patriark"><span class="dot"></span>Zaman Patriark</button>
+  <button class="filter-btn" onclick="setFilter('mesir')" id="filter-mesir"><span class="dot"></span>Perbudakan–Gurun</button>
+  <button class="filter-btn" onclick="setFilter('hakim')" id="filter-hakim"><span class="dot"></span>Zaman Hakim</button>
+  <button class="filter-btn" onclick="setFilter('monarki')" id="filter-monarki"><span class="dot"></span>Awal Monarki</button>
+  <button class="filter-btn" onclick="setFilter('gentil')" id="filter-gentil">🕯 Perempuan Gentil</button>
+</div>
+
+<!-- GALERI UTAMA -->
+<div class="gallery-wrap">
+
+  <!-- ============================================================
+       KELOMPOK: ZAMAN PATRIARK (Gen. 1–4)
+       ============================================================ -->
+  <div class="gallery-section-header" id="section-patriark">
+    <span class="gallery-section-label">Zaman Patriark — ±2166–1860 SM</span>
+  </div>
+
+  <div class="gallery-grid" id="grid-patriark">
+
+    <!-- 1. ABRAHAM -->
+    <div class="gen-card era-card" data-era="patriark" data-id="abraham" onclick="openModal('abraham')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('abraham')">
+      <div class="gen-card-header era-patriark">
+        <span class="gen-num-badge">Generasi ke-1</span>
+        <div class="gen-card-name">Abraham</div>
+        <div class="gen-card-meaning">"Bapa banyak bangsa"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Sahabat Allah · Bapa Kovenan</div>
+        <p class="gen-card-desc">Dipanggil dari Ur Kasdim — pusat penyembahan berhala. Menerima tiga kovenan yang semakin dalam. Mewariskan hak kovenan bukan kepada yang sulung, tapi kepada yang dipilih Allah.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Mempersembahkan Ishak di Gunung Moriah — dan percaya bahwa Allah sendiri yang akan menyediakan.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Bapa yang mempersembahkan anak tunggal. Allah-Bapa yang tidak menyayangkan Anak-Nya sendiri.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Allah memanggil Abraham dari tengah penyembah berhala — bukan dari komunitas yang saleh. Dari mana Ia sedang memanggil kamu?</p>
+      </div>
+    </div>
+
+    <!-- 2. ISHAK -->
+    <div class="gen-card era-card" data-era="patriark" data-id="ishak" onclick="openModal('ishak')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('ishak')">
+      <div class="gen-card-header era-patriark">
+        <span class="gen-num-badge">Generasi ke-2</span>
+        <div class="gen-card-name">Ishak</div>
+        <div class="gen-card-meaning">"Ia tertawa" — lahir dari janji yang mustahil</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Ketaatan Mutlak · Anak Janji</div>
+        <p class="gen-card-desc">Anak yang lahir dari ketidakmungkinan — Sara yang mandul dan Abraham yang sudah tua. Hidup sebagian besar di bawah bayangan ayahnya. Perannya adalah menjadi jembatan yang setia.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Di Gunung Moriah, Ishak tahu ia adalah korban — dan tetap menyerahkan dirinya. Ketaatan tanpa perlawanan.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Anak yang taat sampai mati — dan diselamatkan oleh pengganti ilahi. Gambaran paling langsung dari pengorbanan Kristus di Perjanjian Lama.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Ishak tidak punya cerita dramatis kecuali Moriah. Ia adalah jembatan. Apakah ada bagian hidupmu yang terasa "hanya jembatan" — dan bisakah itu sudah cukup?</p>
+      </div>
+    </div>
+
+    <!-- 3. YAKUB -->
+    <div class="gen-card era-card" data-era="patriark" data-id="yakub" onclick="openModal('yakub')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('yakub')">
+      <div class="gen-card-header era-patriark">
+        <span class="gen-num-badge">Generasi ke-3</span>
+        <div class="gen-card-name">Yakub</div>
+        <div class="gen-card-meaning">"Penipu" → "Israel: bergulat dengan Allah"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Fondasi Dua Belas Suku · Penipu yang Bertobat</div>
+        <p class="gen-card-desc">Menipu Esau. Melarikan diri dari rumah. Bergulat dengan Allah sampai pagi — dan tidak mau melepaskan-Nya. Nama barunya menjadi nama seluruh bangsa yang melaluinya kovenan mengalir.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Pergulatan di Peniel — "Aku tidak akan melepaskan Engkau sampai Engkau memberkati aku." Cacat tubuh sebagai mahkota iman.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Kristus yang memberikan identitas baru kepada yang bergulat dengan-Nya — bukan setelah mereka sempurna, tapi di tengah pergumulan.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Allah memberikan nama baru kepada Yakub di tengah pergumulan — bukan setelah ia "sembuh." Identitas baru apa yang Allah sedang tawarkan kepadamu di tengah pergumulanmu sekarang?</p>
+      </div>
+    </div>
+
+    <!-- 4. YEHUDA + TAMAR -->
+    <div class="gen-card era-card" data-era="patriark" data-id="yehuda" onclick="openModal('yehuda')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('yehuda')">
+      <div class="gen-card-header era-patriark">
+        <span class="gen-num-badge">Generasi ke-4</span>
+        <span class="gentile-badge">🕯 Tamar</span>
+        <div class="gen-card-name">Yehuda</div>
+        <div class="gen-card-meaning">"Pujian kepada Tuhan"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Lampu di Tengah Skandal · Ditolong oleh Tamar</div>
+        <p class="gen-card-desc">Menjual Yusuf. Menikahi perempuan Kanaan. Kehilangan dua anak. Hampir membakar menantunya sendiri. Dan justru Tamar — Gentil, janda, tanpa hak — yang menjaga garis kovenan tetap hidup ketika Yehuda sudah menyerah.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis — Tamar</div>
+          Tamar menyamar dan menghadang Yehuda di jalan ke Timna. Bukan nafsu — tapi <em>zeal</em> yang membara untuk memastikan garis kovenan tidak terputus.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus melalui Tamar</div>
+            <div class="christ-text">Kecemburuan (<em>zeal</em>) Tamar adalah instrumen kecemburuan Allah sendiri. Api yang tidak bisa padam — bahkan ketika pemegang lampu sudah menyerah.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Yehuda adalah pemegang sah garis kovenan. Tamar adalah orang luar. Tapi yang menjaga api menyala adalah Tamar. Siapa "Tamar" dalam komunitasmu — orang yang tidak dianggap, tapi imannya paling menyala?</p>
+      </div>
+    </div>
+
+  </div><!-- /grid-patriark -->
+
+  <!-- ============================================================
+       KELOMPOK: ZAMAN PERBUDAKAN–PADANG GURUN (Gen. 5–9)
+       ============================================================ -->
+  <div class="gallery-section-header" id="section-mesir">
+    <span class="gallery-section-label">Perbudakan Mesir & Padang Gurun — ±1860–1406 SM</span>
+  </div>
+
+  <div class="gallery-grid" id="grid-mesir">
+
+    <!-- 5. PEREZ -->
+    <div class="gen-card era-card" data-era="mesir" data-id="perez" onclick="openModal('perez')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('perez')">
+      <div class="gen-card-header era-mesir">
+        <span class="gen-num-badge">Generasi ke-5</span>
+        <div class="gen-card-name">Perez</div>
+        <div class="gen-card-meaning">"Menerobos keluar"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Hak Lahir Sebelum Lahir · Pilihan Ilahi Melampaui Tradisi</div>
+        <p class="gen-card-desc">Anak kembar Tamar dan Yehuda. Ketika bidan mengikat benang merah di tangan Zerah yang keluar lebih dulu, Perez menerobos keluar lebih dahulu. Garis kovenan mengikuti Perez — bukan Zerah.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Menerobos dari rahim sebelum saudaranya yang lebih dulu ditandai. Pilihan Allah melangkahi tanda manusia.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Kristus yang melampaui semua ekspektasi manusia tentang siapa yang "berhak." Lahir dari skandal, masuk ke dalam mulia.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Perez lahir dari skandal tapi ada di silsilah Yesus. Adakah sesuatu dalam asal-usulmu yang kamu anggap memalukan — yang Allah bisa pakai sebagai bagian dari cerita yang lebih besar?</p>
+      </div>
+    </div>
+
+    <!-- 6. HEZRON -->
+    <div class="gen-card era-card" data-era="mesir" data-id="hezron" onclick="openModal('hezron')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('hezron')">
+      <div class="gen-card-header era-mesir">
+        <span class="gen-num-badge">Generasi ke-6</span>
+        <div class="gen-card-name">Hezron</div>
+        <div class="gen-card-meaning">"Halaman yang dikelilingi tembok" atau "peluru"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Setia dalam Kegelapan Mesir · Anonimitas yang Bermakna</div>
+        <p class="gen-card-desc">Salah satu nama yang paling tidak dikenal dalam silsilah. Park menyoroti tempat kematiannya: Caleb-Efrata — dekat Betlehem tempat Kristus akan lahir. Bahkan kematiannya adalah bagian dari administrasi Allah.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Dikuburkan di Caleb-Efrata — nama tempat yang terhubung ke garis Betlehem. Lokasi kematiannya bukan kebetulan geografis.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Kristus yang datang dari Betlehem — kota yang sudah disiapkan oleh garis yang melewati Hezron. Tidak ada yang kebetulan dalam administrasi Allah.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Hezron hampir tidak ada yang tahu kisahnya. Tapi ia ada di silsilah Yesus. Apakah kamu percaya bahwa hidupmu yang terasa "tidak terkenal" tetap bermakna dalam rencana Allah?</p>
+      </div>
+    </div>
+
+    <!-- 7. RAM -->
+    <div class="gen-card era-card" data-era="mesir" data-id="ram" onclick="openModal('ram')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('ram')">
+      <div class="gen-card-header era-mesir">
+        <span class="gen-num-badge">Generasi ke-7</span>
+        <div class="gen-card-name">Ram</div>
+        <div class="gen-card-meaning">"Yang ditinggikan" atau "yang agung"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Anak Kedua yang Dipilih · Pola Penggantian Ilahi</div>
+        <p class="gen-card-desc">Anak kedua Hezron — bukan sulung. Tapi Allah secara aktif menempatkan Ram, bukan Yerahmeel (anak sulung), dalam garis Yesus. Pola ini berulang di setiap titik kritis: Allah memilih yang tidak obvious.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Park mencatat bahwa Allah menempatkan Ram (anak kedua) — bukan Yerahmeel (anak sulung) — dalam garis silsilah Yesus. Pilihan aktif, bukan kecelakaan. <span style="font-size:0.85em;opacity:0.7;">(parafrase)</span>
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Kristus — "batu yang dibuang tukang bangunan" menjadi "batu penjuru." Pilihan Allah selalu melangkahi ekspektasi manusia.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Isaac bukan Ismael. Yakub bukan Esau. Perez bukan Zerah. Ram bukan Yerahmeel. Allah terus memilih "yang kedua." Apakah ada area dalam hidupmu di mana kamu masih menunggu "dipilih" — dan belum menyadari bahwa kamu sudah ada di dalam garis-Nya?</p>
+      </div>
+    </div>
+
+    <!-- 8. AMMINADAB -->
+    <div class="gen-card era-card" data-era="mesir" data-id="amminadab" onclick="openModal('amminadab')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('amminadab')">
+      <div class="gen-card-header era-mesir">
+        <span class="gen-num-badge">Generasi ke-8</span>
+        <div class="gen-card-name">Amminadab</div>
+        <div class="gen-card-meaning">"Bangsaku murah hati" atau "saudara dari kemuliaan"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Pemimpin di Tengah Perbudakan · Setia Sebelum Pembebasan</div>
+        <p class="gen-card-desc">Hidup di Mesir saat Israel masih budak. Tapi ia adalah pemimpin suku Yehuda — memimpin bukan di saat kemerdekaan, tapi saat berada di dalam perbudakan. Barisan Yehuda yang dipimpinnya berjalan pertama saat Keluaran.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Menantu Harun, kepala suku Yehuda yang memimpin barisan Israel keluar dari Mesir. Empat ratus tahun perbudakan — dan lampu tidak padam.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Kristus yang memimpin umat-Nya keluar dari perbudakan dosa — bukan menyuruh dari jauh, tapi berjalan di depan.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Amminadab setia di tempat yang tidak ada yang melihat, selama 400 tahun kegelapan. Bagian mana dari imanmu yang hanya dilakukan ketika tidak ada yang melihat?</p>
+      </div>
+    </div>
+
+    <!-- 9. NAHASON -->
+    <div class="gen-card era-card" data-era="mesir" data-id="nahason" onclick="openModal('nahason')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('nahason')">
+      <div class="gen-card-header era-mesir">
+        <span class="gen-num-badge">Generasi ke-9</span>
+        <div class="gen-card-name">Nahason</div>
+        <div class="gen-card-meaning">"Ular" atau "yang meramal dari ular" — nama yang tidak romantis</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Pemimpin di Garis Depan · Yang Pertama Mempersembahkan</div>
+        <p class="gen-card-desc">Satu-satunya tokoh dalam Part 3 yang disebut Park secara eksplisit sebagai "yang pertama" — pertama mempersembahkan persembahan saat Kemah Suci selesai, pertama memimpin barisan suku Yehuda di padang gurun.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Barisan Yehuda yang dipimpinnya berjalan paling depan di setiap perjalanan Israel — posisi paling berbahaya, paling bertanggung jawab.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Kristus yang berjalan di depan — "Akulah jalan." Pemimpin yang tidak menunggu aman, tapi membuka jalan bagi yang mengikuti.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Nahason memimpin di padang gurun — bukan setelah sampai di tanah perjanjian. Apakah kamu bisa memimpin dengan setia di tempat yang belum sampai tujuannya?</p>
+      </div>
+    </div>
+
+  </div><!-- /grid-mesir -->
+
+  <!-- ============================================================
+       KELOMPOK: ZAMAN HAKIM (Gen. 10–12)
+       ============================================================ -->
+  <div class="gallery-section-header" id="section-hakim">
+    <span class="gallery-section-label">Zaman Hakim — ±1406–1050 SM · Tiga Titik Cahaya di 340 Tahun Kegelapan</span>
+  </div>
+
+  <div class="gallery-grid" id="grid-hakim">
+
+    <!-- 10. SALMON + RAHAB -->
+    <div class="gen-card era-card" data-era="hakim" data-id="salmon" onclick="openModal('salmon')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('salmon')">
+      <div class="gen-card-header era-hakim">
+        <span class="gen-num-badge">Generasi ke-10</span>
+        <span class="gentile-badge">🕯 Rahab</span>
+        <div class="gen-card-name">Salmon</div>
+        <div class="gen-card-meaning">"Jubah" atau "penutup"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Menikahi Rahab · Menutup Masa Lalu dengan Jubah Kasih Karunia</div>
+        <p class="gen-card-desc">Prajurit Israel yang menikahi Rahab — pelacur dari Yerikho yang diselamatkan karena benang merahnya. Nama Salmon berarti "jubah" — ia menutupi masa lalu Rahab dengan jubahnya, seperti Kristus menutupi dosa kita dengan darah-Nya.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis — Rahab</div>
+          Benang merah di jendela — tanda iman aktif yang menggemakan darah paskah. Ketika seluruh Yerikho jatuh, satu keluarga yang bertanda benang merah tetap hidup.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Salmon = Kristus yang menutup masa lalu dengan jubah kasih karunia. Rahab = semua orang yang tidak layak tapi percaya dan diselamatkan.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Rahab percaya kepada Allah Israel sebelum Israel masuk Kanaan. Adakah orang di luar lingkaran imanmu yang imannya justru lebih menyala dari yang di dalam?</p>
+      </div>
+    </div>
+
+    <!-- 11. BOAZ + RUTH -->
+    <div class="gen-card era-card" data-era="hakim" data-id="boaz" onclick="openModal('boaz')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('boaz')">
+      <div class="gen-card-header era-hakim">
+        <span class="gen-num-badge">Generasi ke-11</span>
+        <span class="gentile-badge">🕯 Ruth</span>
+        <div class="gen-card-name">Boaz</div>
+        <div class="gen-card-meaning">"Di dalam dia ada kekuatan"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Penebus yang Merendah · Bayangan Kristus Paling Jelas</div>
+        <p class="gen-card-desc">Park menyebut Boaz secara eksplisit sebagai "sosok yang menyerupai Yesus." Kaya tapi rendah hati. Turun ke ladang, makan bersama pekerjanya, tidur di lantai pengirikan. Menjadi <em>go'el</em> (penebus) bagi Ruth yang asing.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis — Ruth</div>
+          "Di mana engkau pergi, aku akan pergi." Ruth tidak perlu tetap bersama Naomi — tapi ia memilih. Iman yang paling murni: tanpa paksaan, tanpa keuntungan yang terlihat.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus — Paling Eksplisit</div>
+            <div class="christ-text">Boaz adalah satu-satunya tokoh yang Park sebut secara langsung sebagai "Jesus-like figure." Kaya-rendah hati-menebus-menikahi yang asing.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">"Di mana engkau pergi, aku akan pergi." Ruth mengucapkan itu kepada manusia. Apakah kamu bisa mengucapkan kalimat itu kepada Allah — dengan jujur, bukan sebagai deklarasi rohani?</p>
+      </div>
+    </div>
+
+    <!-- 12. OBED -->
+    <div class="gen-card era-card" data-era="hakim" data-id="obed" onclick="openModal('obed')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('obed')">
+      <div class="gen-card-header era-hakim">
+        <span class="gen-num-badge">Generasi ke-12</span>
+        <div class="gen-card-name">Obed</div>
+        <div class="gen-card-meaning">"Pelayan" atau "yang menyembah"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Yang Paling Kecil · Setia dalam Hal Paling Sederhana</div>
+        <p class="gen-card-desc">Park hanya mencatat dua hal: Obed adalah "anak bagi Naomi" dan ia mendukung Naomi. Tidak ada kemenangan. Tidak ada momen dramatis. Hanya kesetiaan kepada orang tua yang kehilangan segalanya.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Penemuan Park</div>
+          Kata Ibrani untuk "merawat" Naomi adalah akar dari kata <strong>Amen</strong> — kata respons iman yang dipakai umat Allah sampai hari ini. Kesetiaan Obed yang sederhana terhubung ke doa universal.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Kristus yang datang bukan untuk dilayani tapi untuk melayani. Kebesaran dalam kesederhanaan — bukan dalam kemegahan.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Obed ada di silsilah Yesus bukan karena ia luar biasa — tapi karena ia ada dan setia. Apakah kamu percaya bahwa kehadiranmu yang sederhana sudah bermakna?</p>
+      </div>
+    </div>
+
+  </div><!-- /grid-hakim -->
+
+  <!-- ============================================================
+       KELOMPOK: AWAL MONARKI (Gen. 13–14)
+       ============================================================ -->
+  <div class="gallery-section-header" id="section-monarki">
+    <span class="gallery-section-label">Awal Monarki — ±1050–1010 SM</span>
+  </div>
+
+  <div class="gallery-grid" id="grid-monarki">
+
+    <!-- 13. ISAI -->
+    <div class="gen-card era-card" data-era="monarki" data-id="isai" onclick="openModal('isai')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('isai')">
+      <div class="gen-card-header era-monarki">
+        <span class="gen-num-badge">Generasi ke-13</span>
+        <div class="gen-card-name">Isai</div>
+        <div class="gen-card-meaning">"Ia hidup" (He lives)</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Bapa yang Tidak Mengenali Anaknya · Saksi Providensi</div>
+        <p class="gen-card-desc">Tidak memasukkan Daud ke barisan saat Samuel datang. Anak bungsunya sedang menggembalakan domba — dianggap tidak perlu dipanggil. Isai belajar bahwa Allah yang hidup bekerja bahkan dari tunggul yang tampak sudah mati.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Samuel berkata: "Adakah anakmu yang lain?" — Isai baru mengingat Daud. Bahkan bapanya tidak melihatnya sebagai calon raja. Tapi Allah sudah memilih.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus</div>
+            <div class="christ-text">Dari "tunggul Isai" akan tumbuh tunas (Yes. 11:1). Kristus datang dari garis yang tampak sudah habis — tapi Allah yang hidup selalu menyimpan tunas baru.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">Daud sedang di ladang saat dunia bergerak tanpa dia. Allah menemuinya di sana. Di mana "ladangmu" sekarang — dan apakah kamu percaya Allah bisa menemuimu di sana?</p>
+      </div>
+    </div>
+
+    <!-- 14. DAUD -->
+    <div class="gen-card era-card" data-era="monarki" data-id="daud" onclick="openModal('daud')" tabindex="0" onkeydown="if(event.key==='Enter')openModal('daud')">
+      <div class="gen-card-header era-monarki">
+        <span class="gen-num-badge">Generasi ke-14</span>
+        <div class="gen-card-name">Daud</div>
+        <div class="gen-card-meaning">"Yang dikasihi"</div>
+      </div>
+      <div class="gen-card-body">
+        <div class="gen-card-role">Saluran Kovenan Mesiasis · Dibentuk Melalui Penderitaan</div>
+        <p class="gen-card-desc">Kulminasi Part 3 sekaligus jembatan ke Part 5. 16 tempat pelarian, 3 urapan, kejatuhan besar — tapi evaluasi Allah tetap: "orang yang berkenan di hati-Ku." Daud adalah "passageway of the Messianic Covenant" — bukan pemilik, tapi saluran.</p>
+        <div class="gen-card-moment">
+          <div class="gen-card-moment-label">Momen Kritis</div>
+          Mazmur 22 yang Daud tulis saat pelarian menjadi nubuat langsung penderitaan Yesus di salib — Daud hidup di dalam nubuat itu tanpa menyadarinya sepenuhnya.
+        </div>
+        <div class="gen-card-christ">
+          <div class="christ-icon">🕯</div>
+          <div>
+            <div class="christ-label">Bayangan Kristus — Terdalam</div>
+            <div class="christ-text">Berteriak "Allahku, mengapa Engkau meninggalkan aku?" → Yesus di salib. Tulang terasa terlepas → penyiksaan salib. Pakaian dibagi → tentara Roma. Hidup Daud adalah nubuat yang berjalan.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gen-card-footer">
+        <div class="mirror-q-label">Cermin</div>
+        <p class="mirror-q-text">"Orang yang berkenan di hati Allah bukan yang sempurna — tapi yang bertobat dengan sungguh dan bertekad hidup sesuai Firman Allah." Apakah definisi itu membebaskan atau semakin memberati — dan mengapa?</p>
+      </div>
+    </div>
+
+  </div><!-- /grid-monarki -->
+
+  <!-- ============================================================
+       TIGA PEREMPUAN GENTIL — SPOTLIGHT
+       ============================================================ -->
+  <div class="gentil-spotlight" id="spotlight-gentil">
+    <div class="gentil-spotlight-label">🕯 Mata Rantai Kritis</div>
+    <h2 class="gentil-spotlight-title">Tiga Perempuan Gentil dalam Silsilah Yesus</h2>
+    <p class="gentil-spotlight-text">Ketiganya adalah Gentil. Ketiganya memiliki reputasi yang kotor di mata masyarakat zamannya. Ketiganya bertindak pada momen ketika garis kovenan hampir terputus — bukan oleh serangan dari luar, tapi oleh kegagalan dari dalam. Dan ketiganya dipuji dengan satu kata yang sama oleh Abraham Park: <em>faith.</em></p>
+    <p class="gentil-spotlight-text" style="margin-bottom:0">"These three women became the crucial links that helped the lamp of the covenant to continue burning... No obstacle on this earth could stand in the way of their living faith." — Abraham Park, Conclusion hal. 326–327</p>
+    <div class="gentil-names" style="margin-top:16px">
+      <button class="gentil-name-chip" onclick="openModal('yehuda')">Tamar <span>Bersama Yehuda (Gen. 4)</span></button>
+      <button class="gentil-name-chip" onclick="openModal('salmon')">Rahab <span>Bersama Salmon (Gen. 10)</span></button>
+      <button class="gentil-name-chip" onclick="openModal('boaz')">Ruth <span>Bersama Boaz (Gen. 11)</span></button>
+    </div>
+  </div>
+
+</div><!-- /gallery-wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  Ekosistem Self Journey · Buku 3 · <em>The Unquenchable Lamp of the Covenant</em> — Abraham Park
+</footer>
+
+<!-- ============================================================
+     MODAL — detail setiap tokoh
+     ============================================================ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()" aria-label="Tutup">✕</button>
+      <div class="modal-gen-badge" id="modal-gen-badge"></div>
+      <h2 class="modal-name" id="modal-title"></h2>
+      <p class="modal-meaning" id="modal-meaning"></p>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <!-- diisi JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     DATA & JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ============================================================
+   DATA TOKOH LENGKAP
+   ============================================================ */
+const TOKOH = {
+  abraham: {
+    gen: "Generasi ke-1",
+    nama: "Abraham",
+    arti: '"Bapa banyak bangsa" — dari Abram "bapa yang ditinggikan"',
+    era: "Zaman Patriark · ±2166–2000 SM",
+    peran: "Bapa Kovenan · Sahabat Allah",
+    sejarah: `Abraham dipanggil dari Ur Kasdim — pusat peradaban dan penyembahan berhala Mesopotamia. Bukan dari komunitas yang saleh. Bukan dari orang yang mencari Allah. Allah yang datang mencari dia.
+
+Ia menerima tiga kovenan yang semakin dalam: di Kej. 12 (panggilan dan janji tanah), Kej. 15 (kovenan dengan upacara pembelahan hewan — Allah yang berjalan di antara potongan hewan, menanggung sendiri konsekuensi kovenan), dan Kej. 17 (sunat sebagai tanda kovenan pada tubuh).
+
+Park menyoroti bahwa kata Yunani "egenneesen" yang dipakai Matius untuk setiap "memperanakkan" dalam silsilah bukan hanya fakta biologis — melainkan pewarisan hak kovenan. Setiap "memperanakkan" adalah tindakan penyerahan tongkat kovenan.`,
+    momen: "Di Gunung Moriah, Allah meminta Abraham mempersembahkan Ishak — satu-satunya anak janji. Abraham taat. Tapi yang paling kritis: ia percaya Allah akan menyediakan. 'Di atas gunung, Tuhan menyediakan.' Iman yang percaya pada providensi, bukan hanya pada perintah.",
+    kristus: "Abraham yang tidak menyayangkan anak tunggalnya adalah bayangan Allah-Bapa yang tidak menyayangkan Anak-Nya sendiri. Namun dalam bayangan itu, seekor domba jantan disediakan sebagai pengganti — bayangan Kristus sebagai Anak Domba Allah yang sesungguhnya.",
+    park_quote: `"It would not be an exaggeration to say that they had been born, had lived, and died for the purpose of fulfilling the divine work of redemption through Jesus Christ."`,
+    park_cite: "Abraham Park, hal. 62",
+    cermin: "Allah memanggil Abraham dari tengah penyembah berhala — bukan menunggu ia berada di tempat yang 'tepat.' Dari mana Ia sedang memanggil kamu sekarang — dan apa yang membuat kamu sulit untuk pergi?"
+  },
+
+  ishak: {
+    gen: "Generasi ke-2",
+    nama: "Ishak",
+    arti: '"Ia tertawa" — respons Sara saat mendengar janji kelahiran yang mustahil',
+    era: "Zaman Patriark · ±2066–1886 SM",
+    peran: "Anak Janji · Ketaatan Mutlak",
+    sejarah: `Ishak lahir dari ketidakmungkinan — Sara yang mandul dan Abraham yang sudah seratus tahun. Namanya adalah ingatan akan tawa yang berubah dari tawa ketidakpercayaan menjadi tawa sukacita.
+
+Hidupnya sebagian besar berlangsung di bawah bayangan Abraham, dan kemudian ia menjadi jembatan bagi Yakub. Park mencatat bahwa Ishak adalah satu-satunya tokoh dalam Perjanjian Lama yang tidak pernah meninggalkan tanah Kanaan — ia tidak pernah turun ke Mesir, tidak pernah pergi ke Haran. Ia tetap di tempat yang Allah tunjuk.
+
+Ketaatan Ishak adalah ketaatan yang tidak dramatis — ia hanya tinggal, menggali sumur, dan mewariskan berkat kepada anak yang dipilih Allah.`,
+    momen: "Di Gunung Moriah, Ishak tahu ia adalah korban. Ia bisa saja berlari — ia sudah remaja, Abraham sudah tua. Tapi ia tidak berlari. Ia menyerahkan dirinya. Ketaatan tanpa perlawanan, tanpa negosiasi. Dan seekor domba jantan disediakan Allah di semak-semak.",
+    kristus: "Ishak adalah bayangan Kristus yang paling langsung: anak yang taat sampai kematian, yang diselamatkan oleh pengganti ilahi (domba jantan di semak). Gunung Moriah kemudian menjadi lokasi Bait Suci — tempat yang sama di mana pengorbanan berlanjut selama seribu tahun sebelum Kristus datang.",
+    park_quote: `"Isaac is a type of Jesus Christ who obeyed even unto death. The ram caught in the thicket is a type of Christ who died as our substitute."`,
+    park_cite: "Abraham Park, Bab 9",
+    cermin: "Ishak hidup sebagian besar sebagai 'jembatan' — tanpa cerita dramatis. Tapi ia ada di silsilah Yesus. Apakah ada bagian hidupmu yang terasa 'hanya jembatan' atau 'hanya pendukung' — dan bisakah kamu melihat bahwa itu sudah cukup dalam rencana Allah?"
+  },
+
+  yakub: {
+    gen: "Generasi ke-3",
+    nama: "Yakub → Israel",
+    arti: '"Penipu, yang memegang tumit" → "bergulat dengan Allah dan manusia — dan menang"',
+    era: "Zaman Patriark · ±2006–1859 SM",
+    peran: "Fondasi Dua Belas Suku · Penipu yang Dipilih",
+    sejarah: `Yakub adalah tokoh yang paling kontradiktif dalam Part 3. Ia menipu Esau dengan sepiring sup. Ia menipu ayahnya yang buta untuk mendapatkan berkat. Ia melarikan diri ke Haran. Ia kemudian ditipu balik oleh pamannya sendiri.
+
+Tapi ia juga tokoh yang paling keras berjuang untuk mempertahankan hubungan dengan Allah. Pergumulan di Peniel bukan hanya satu malam — itu adalah rangkuman seluruh hidupnya: seseorang yang tidak mau melepaskan Allah, meski caranya salah, meski harus membayar dengan tulang pinggang yang patah.
+
+Park menyoroti bahwa nama "Israel" yang diberikan Allah di Peniel menjadi nama seluruh bangsa yang melaluinya kovenan mengalir. Identitas dari satu manusia yang bergulat menjadi identitas kolektif dari jutaan keturunannya.`,
+    momen: `"Aku tidak akan melepaskan Engkau, sampai Engkau memberkati aku." — Yakub di Peniel.
+
+Ia bergulat semalam suntuk dengan seseorang yang ia tidak tahu identitasnya. Subuh tiba, sendi paha Yakub copot. Ia masih tidak melepaskan. Dan di sana ia menerima nama baru: Israel.
+
+Cacat tubuh dari pergumulan itu dibawa Yakub sepanjang sisa hidupnya — sebagai mahkota iman, bukan sebagai tanda kekalahan.`,
+    kristus: "Kristus yang memberikan identitas baru kepada yang bergulat dengan-Nya — bukan setelah mereka sempurna atau bersih, tapi di tengah malam yang paling gelap dari pergumulan mereka.",
+    park_quote: `"Jacob's wrestling match symbolizes his lifelong struggle to hold onto God despite his own weakness and deceitfulness. God did not abandon him; He wrestled with him — and that wrestling produced the name Israel."`,
+    park_cite: "Abraham Park, Bab 10",
+    cermin: "Allah mengganti nama Yakub menjadi Israel di tengah pergumulan — bukan setelah ia berhasil menjadi baik. Apakah ada identitas baru yang Allah sedang tawarkan kepadamu di tengah pergumulanmu sekarang, bukan setelah kamu 'sembuh'?"
+  },
+
+  yehuda: {
+    gen: "Generasi ke-4",
+    nama: "Yehuda",
+    arti: '"Pujian kepada Tuhan" — ironis mengingat hidupnya',
+    era: "Zaman Patriark · ±1929–1815 SM",
+    peran: "Lampu di Tengah Skandal · Diselamatkan oleh Tamar",
+    sejarah: `Yehuda adalah tokoh yang paling jujur dipaparkan Park. Ia menjual Yusuf saudara kandungnya kepada pedagang Midian dengan harga dua puluh keping perak. Ia menikahi perempuan Kanaan karena tertarik setelah melihatnya lewat jalan. Ia kehilangan dua anaknya karena kejahatan mereka. Ia menolak memberikan anaknya yang ketiga (Syela) kepada Tamar, menantunya.
+
+Kemudian ia sendiri bersetubuh dengan Tamar yang menyamar sebagai pelacur.
+
+Park tidak menyembunyikan ini. Ia menceritakannya dengan lengkap — dan kemudian menunjukkan bahwa bukan Yehuda yang memastikan kelangsungan garis kovenan. Tamar yang melakukannya.`,
+    momen: `Tamar menyamar sebagai pelacur dan menghadang Yehuda di jalan ke Timna. Bukan karena nafsu — tapi karena ia melihat bahwa garis iman tidak boleh terputus.
+
+Ketika kehamilan Tamar terungkap dan Yehuda memerintahkan ia dibakar hidup-hidup, Tamar menunjukkan bukti: "Periksalah, siapa punya meterai, tali, dan tongkat ini." Yehuda mengakui: "Ia lebih benar dari aku."
+
+Park menggunakan kata yang sama dengan kata kunci di Kesimpulan: Tamar memiliki **godly zeal** — kecemburuan ilahi untuk memastikan garis kovenan tetap hidup.`,
+    kristus: `Tamar adalah instrumen kecemburuan Allah sendiri. Zeal Allah dan zeal Tamar adalah motivasi yang identik: tidak bisa diam melihat garis kovenan hampir terputus.
+
+Yesus memilih untuk tidak membersihkan silsilah-Nya dari skandal ini (Park hal. 80): "He did not mind being called a descendant of women who were stained with lawlessness, adultery and even incest."`,
+    park_quote: `"Tamar possessed godly zeal to continue the covenantal lineage, so that the lamp of the covenant would not be extinguished."`,
+    park_cite: "Abraham Park, Bab 11",
+    cermin: "Yehuda adalah pemegang sah garis kovenan. Tamar adalah orang luar. Tapi yang menjaga api menyala adalah Tamar. Siapa 'Tamar' dalam komunitasmu — orang yang tidak dianggap, tapi imannya paling menyala di antara semua orang yang 'seharusnya'?"
+  },
+
+  perez: {
+    gen: "Generasi ke-5",
+    nama: "Perez",
+    arti: '"Menerobos keluar" — karena ia menerobos keluar lebih dahulu dari saudaranya',
+    era: "Perbudakan Mesir · ±1800 SM",
+    peran: "Hak Lahir Sebelum Lahir · Pilihan Ilahi",
+    sejarah: `Perez adalah anak kembar Tamar dari Yehuda — lahir dari situasi yang penuh skandal. Saat Tamar melahirkan, bidan mengikat benang merah di tangan Zerah yang keluar pertama, dan berkata "Ini yang pertama keluar." Tapi kemudian Perez menerobos keluar — dan yang akhirnya lahir lebih dulu adalah Perez.
+
+Garis kovenan mengikuti Perez, bukan Zerah. Meskipun benang merah sudah diikat, meskipun Zerah sudah "ditandai" sebagai yang pertama.
+
+Park menggunakan ini untuk memperkuat pola yang sudah terlihat sejak Abraham: Allah secara aktif mengganti urutan yang ditetapkan manusia.`,
+    momen: "Menerobos dari rahim sebelum saudaranya yang sudah ditandai. Ini bukan tindakan yang bisa ia rencanakan atau usahakan — ia belum lahir. Tapi pilihan Allah sudah ada sebelum kelahiran.",
+    kristus: "Kristus — 'batu yang dibuang tukang bangunan menjadi batu penjuru.' Pilihan Allah selalu melangkahi ekspektasi manusia tentang siapa yang berhak dan siapa yang tidak.",
+    park_quote: `"Perez breaking out before Zerah symbolizes God's sovereignty — He is not bound by human conventions of firstborn rights or human markings. God chooses according to His own will."`,
+    park_cite: "Abraham Park, Bab 12",
+    cermin: "Perez lahir dari skandal tapi ada di silsilah Yesus. Adakah sesuatu dalam asal-usulmu — sesuatu yang kamu anggap memalukan atau tidak layak — yang Allah bisa pakai sebagai bagian dari cerita yang lebih besar dari dirimu?"
+  },
+
+  hezron: {
+    gen: "Generasi ke-6",
+    nama: "Hezron",
+    arti: '"Halaman yang dikelilingi tembok" atau "anak panah / peluru"',
+    era: "Perbudakan Mesir · ±1760 SM",
+    peran: "Anonimitas yang Bermakna · Setia Tanpa Catatan",
+    sejarah: `Hezron adalah salah satu nama yang paling tidak dikenal dalam silsilah Yesus. Nyaris tidak ada yang tahu kisahnya. Park memilih untuk menyoroti satu hal tentangnya: tempat kematiannya.
+
+"Hezron died in Caleb-ephrathah" — Caleb-Efrata. Nama tempat ini terhubung ke Efrata, nama kuno dari daerah Betlehem. Tempat di mana Kristus akan lahir.
+
+Bukan kebetulan geografis. Ini adalah sinyal dari administrasi Allah: bahkan tempat seseorang dikuburkan dapat menjadi bagian dari rencana yang jauh lebih besar dari hidupnya.
+
+Hezron juga turun ke Mesir bersama Yakub dalam rombongan 70 orang (Kej. 46:12) — ia adalah bagian dari generasi yang membawa kovenan masuk ke dalam perbudakan.`,
+    momen: "Dikuburkan di Caleb-Efrata — nama yang menggemakan Efrata/Betlehem. Tidak ada catatan tentang kemenangan atau kejadian besar. Yang Park soroti adalah lokasi kematiannya. Karena bahkan itu adalah bagian dari peta Allah.",
+    kristus: "Kristus yang lahir di Betlehem — kota yang sudah disiapkan oleh garis yang melewati Hezron dan banyak generasi tidak terkenal lainnya.",
+    park_quote: `"Even the location of Hezron's burial is recorded in God's administration. Nothing in the covenant line is accidental — not even where a person dies and is buried."`,
+    park_cite: "Abraham Park, Bab 13",
+    cermin: "Jika namamu muncul di silsilah seseorang seribu tahun dari sekarang, tanpa konteks apa pun — satu hal apa yang kamu ingin tercatat tentang hidupmu?"
+  },
+
+  ram: {
+    gen: "Generasi ke-7",
+    nama: "Ram",
+    arti: '"Yang ditinggikan" atau "yang agung"',
+    era: "Perbudakan Mesir · ±1720 SM",
+    peran: "Anak Kedua yang Dipilih · Pola Penggantian Ilahi",
+    sejarah: `Ram adalah anak kedua dari Hezron — bukan sulung. Anak sulungnya adalah Yerahmeel. Tapi dalam silsilah Yesus, yang masuk adalah Ram, bukan Yerahmeel.
+
+Park menggunakan Ram sebagai bukti terakhir dari pola yang sudah ia tunjukkan berulang kali: Allah secara aktif menempatkan Ram (anak kedua) dalam silsilah Yesus, menggantikan Yerahmeel (anak sulung). Pilihan aktif Allah yang tidak terikat logika kelahiran manusia.
+
+Ishak bukan Ismael. Yakub bukan Esau. Perez bukan Zerah. Ram bukan Yerahmeel. Setiap kali, Allah melangkahi ekspektasi tradisi. Dan setiap kali, itu adalah pernyataan tentang kebebasan dan kedaulatan-Nya.`,
+    momen: "Tidak ada momen dramatis yang dicatat. Ram ada karena Allah memilihnya. Itu saja. Dan itu sudah lebih dari cukup untuk masuk ke dalam silsilah Yesus.",
+    kristus: "Kristus sendiri adalah 'yang dibuang' — lahir di palungan, bukan di istana. Dipilih oleh Allah tapi ditolak oleh manusia. Pola pemilihan ilahi yang selalu melangkahi logika manusia.",
+    park_quote: `"God placed the second son Ram in the genealogy of Jesus Christ in the place of Jerahmeel, the first son. This shows God's sovereignty over lineage — He is not bound by the human convention of the firstborn."`,
+    park_cite: "Abraham Park, Bab 14",
+    cermin: "Allah memilih Ram karena Ia bebas memilih — bukan karena Ram lebih baik. Apakah ada sumber keamanan dalam pilihanmu yang masih bergantung pada prestasimu sendiri, bukan pada kebebasan Allah?"
+  },
+
+  amminadab: {
+    gen: "Generasi ke-8",
+    nama: "Amminadab",
+    arti: '"Bangsaku murah hati" atau "saudara dari kemuliaan/yang mulia"',
+    era: "Perbudakan Mesir & Keluaran · ±1650–1446 SM",
+    peran: "Pemimpin di Tengah Perbudakan · Setia Sebelum Pembebasan",
+    sejarah: `Amminadab hidup di era yang paling gelap sebelum Keluaran — 400 tahun perbudakan di Mesir. Hampir tidak ada catatan tentang iman individual yang bertahan. Tapi lampu kovenan tetap menyala, dan Amminadab adalah satu dari mereka yang membawanya.
+
+Ia adalah mertua Harun (kakak Musa) — putrinya Eliseba menikah dengan Harun. Ia adalah kepala suku Yehuda pada waktu Sensus di padang gurun (Bil. 1:7; 2:3; 7:12).
+
+Park menyoroti bahwa Amminadab memimpin bukan di saat kemerdekaan — ia memimpin saat Israel masih dalam perbudakan. Dan ketika Keluaran tiba, barisan suku Yehuda yang dipimpinnya berjalan pertama.`,
+    momen: "Memimpin suku Yehuda keluar dari Mesir — barisan paling depan dari seluruh Israel. 400 tahun perbudakan, dan keturunan Amminadab yang ada di garis depan saat pintu terbuka.",
+    kristus: "Kristus yang berjalan di depan umat-Nya — 'Akulah jalan.' Kepemimpinan yang tidak menunggu situasi aman, tapi membuka jalan bagi yang mengikuti.",
+    park_quote: `"Amminadab was faithful during the darkest period of Israel's history — the 400 years of slavery in Egypt. The lamp of the covenant was carried through him even when no one was recording it."`,
+    park_cite: "Abraham Park, Bab 15",
+    cermin: "Amminadab setia di tempat yang tidak ada yang melihat, selama 400 tahun perbudakan. Bagian mana dari imanmu yang hanya dilakukan ketika tidak ada yang melihat — dan apakah kualitasnya sama dengan yang dilakukan di depan umum?"
+  },
+
+  nahason: {
+    gen: "Generasi ke-9",
+    nama: "Nahason",
+    arti: '"Ular" atau "yang meramal dari ular" — nama yang tidak romantis untuk seorang pemimpin iman',
+    era: "Padang Gurun · ±1446–1406 SM",
+    peran: "Yang Pertama · Pemimpin di Garis Paling Depan",
+    sejarah: `Nahason adalah satu-satunya tokoh dalam Part 3 yang Park sebut secara eksplisit sebagai "yang pertama": pertama mempersembahkan persembahan saat Kemah Suci selesai dibangun (Bil. 7:12–17), dan pertama memimpin barisan suku Yehuda di setiap perjalanan Israel di padang gurun.
+
+Park menutup bab ini dengan aplikasi langsung kepada pembaca: ia meminta pembaca menjadi seperti Nahason — pemimpin yang bisa melihat apa yang orang lain tidak bisa lihat dalam memahami administrasi penebusan Allah.
+
+Nahason bukan hanya tokoh sejarah. Ia adalah model kepemimpinan yang Park tawarkan.`,
+    momen: "Barisan suku Yehuda berjalan paling depan di setiap perjalanan Israel — posisi paling berbahaya, yang pertama menghadapi musuh, yang pertama masuk wilayah baru. Nahason memimpin posisi itu selama 40 tahun di padang gurun.",
+    kristus: "Kristus yang berjalan di depan semua orang — yang mengatakan 'Ikutlah Aku' dari posisi terdepan, bukan dari belakang.",
+    park_quote: `"Nahshon was the first to offer his gift when the tabernacle was dedicated. God records who goes first. Nahshon's willingness to lead at the front — the most dangerous position — reflects the heart of a true servant of God."`,
+    park_cite: "Abraham Park, Bab 16",
+    cermin: "Nahason memimpin di padang gurun — bukan setelah sampai di tanah perjanjian. Apakah kamu bisa memimpin dengan setia di tempat yang belum sampai tujuannya — dan apakah kamu mau berjalan di posisi paling depan?"
+  },
+
+  salmon: {
+    gen: "Generasi ke-10",
+    nama: "Salmon",
+    arti: '"Jubah" atau "penutup" — makna yang memperlihatkan apa yang ia lakukan untuk Rahab',
+    era: "Awal Zaman Hakim · ±1406–1350 SM",
+    peran: "Menutup Masa Lalu dengan Jubah Kasih · Menikahi Rahab",
+    sejarah: `Salmon adalah prajurit Israel yang masuk Kanaan bersama Yosua. Ia menikahi Rahab — pelacur dari kota Yerikho yang diselamatkan karena menggantung benang merah di jendela ketika Israel menyerbu kota.
+
+Park menyoroti makna nama Salmon: "jubah" atau "penutup." Salmon secara harfiah menutup masa lalu Rahab dengan jubahnya — mengangkatnya dari status pelacur yang dikucilkan menjadi ibu dari Boaz, nenek dari Obed, buyut dari Isai, leluhur dari Daud dan Kristus.
+
+Ini adalah tindakan kasih yang sejajar dengan kasih karunia ilahi: menutup apa yang memalukan, bukan dengan melupakan, tapi dengan menjadikannya bagian dari cerita yang lebih besar.`,
+    momen: `Rahab menggantung benang merah di jendela — tanda iman aktif kepada Allah Israel yang belum pernah ia lihat bekerja secara langsung. Ketika seluruh Yerikho jatuh, satu keluarga yang bertanda benang merah hidup.
+
+Park menghubungkan benang merah Rahab dengan darah paskah di tiang pintu: keduanya adalah tanda iman aktif yang mengundang keselamatan ilahi.`,
+    kristus: "Salmon yang menutupi Rahab dengan jubahnya = Kristus yang menutupi dosa kita dengan darah-Nya. Bukan dengan melupakan apa yang ada di balik jubah itu, tapi dengan menanggungnya dan menutupinya.",
+    park_quote: `Park menulis: "seperti namanya Salmon, ia menutupi masa lalu Rahab yang memalukan seperti dengan jubah atau mantel." Pernikahan Salmon dengan Rahab adalah gambaran dari Kristus yang menutupi dosa kita dengan darah-Nya.`,
+    park_cite: "Abraham Park, Bab 17 (parafrase)",
+    cermin: "Rahab percaya kepada Allah Israel sebelum Israel masuk Kanaan — dari luar, tanpa pengalaman langsung, hanya dari berita tentang penyeberangan Laut Merah. Adakah orang di luar lingkaran imanmu yang imannya lebih menyala dari orang-orang di dalam?"
+  },
+
+  boaz: {
+    gen: "Generasi ke-11",
+    nama: "Boaz",
+    arti: '"Di dalam dia ada kekuatan" atau "kecepatan dan kekuatan"',
+    era: "Zaman Hakim · ±1322–1260 SM",
+    peran: "Penebus yang Merendah · Bayangan Kristus Paling Eksplisit",
+    sejarah: `Park menulis secara langsung: "Boaz appears as a Jesus-like figure." Ia adalah satu-satunya tokoh dalam Part 3 yang Park sebut eksplisit sebagai bayangan Kristus.
+
+Kaya tapi rendah hati. Turun ke ladang dan makan bersama pekerjanya. Tidur di lantai pengirikan bersama para petani. Menjadi go'el (kinsman-redeemer, penebus kerabat) bagi Ruth — bukan karena kewajiban (ada penebus lain yang lebih dekat), tapi karena ia mau.
+
+Ruth adalah perempuan Moab — bangsa yang berasal dari inses Lot dengan putrinya, yang ditolak untuk masuk ke dalam jemaat Allah sampai generasi kesepuluh (Ul. 23:3). Tapi Boaz menerimanya. Kovenan melampaui hukum.`,
+    momen: `Ruth memungut jelai di ladang Boaz — pekerjaan paling rendah, yang dilakukan oleh orang miskin dan janda. Boaz memperhatikannya dari kejauhan, memerintahkan para pekerjanya untuk sengaja meninggalkan gandum untuk Ruth.
+
+Kemudian Ruth datang ke lantai pengirikan malam itu, berbaring di dekat kaki Boaz, dan berkata: "Bentangkanlah jubahmu kepada hambamu." Dan Boaz menerimanya. Ia menjadi penebus.`,
+    kristus: "Boaz adalah gambaran Kristus yang paling lengkap: kaya-tapi-merendah, menebus yang tidak layak, menikahi yang asing, membayar harga penebusan yang tidak wajib ia tanggung. 'Ia kaya, tapi menjadi miskin karena kamu, supaya oleh kemiskinan-Nya kamu menjadi kaya.' (2 Kor. 8:9)",
+    park_quote: `"Boaz appears as a Jesus-like figure throughout the Book of Ruth. He was wealthy but came down to eat with his workers. He went out himself and slept on the threshing floor. He redeemed Ruth, an outcast, and took her as his wife."`,
+    park_cite: "Abraham Park, Bab 18",
+    cermin: "'Di mana engkau pergi, aku akan pergi.' Ruth mengucapkan itu kepada Naomi — manusia yang sedang dalam kesedihan. Apakah kamu bisa mengucapkan kalimat itu kepada Allah — dengan jujur, bukan sebagai deklarasi rohani, tapi sebagai komitmen konkret yang kamu pegang hari ini?"
+  },
+
+  obed: {
+    gen: "Generasi ke-12",
+    nama: "Obed",
+    arti: '"Pelayan" atau "yang menyembah" — dari akar kata yang berhubungan dengan pelayanan',
+    era: "Zaman Hakim · ±1260–1200 SM",
+    peran: "Yang Paling Sederhana · Setia dalam Hal Terkecil",
+    sejarah: `Park hanya punya dua poin tentang Obed: ia adalah "anak bagi Naomi" dan ia mendukung Naomi.
+
+Tidak ada kemenangan. Tidak ada momen dramatis. Tidak ada kalimat tentang imannya yang heroik. Hanya kesetiaan kepada nenek yang sudah tua dan kehilangan segalanya.
+
+Dan Park memilih ini sebagai argumen: "Tidak ada hidup yang tidak berarti dalam garis kovenan Allah. Kesetiaan dalam hal-hal kecil pun adalah bagian dari rantai kovenan."
+
+Penemuan Park yang paling mengejutkan: kata Ibrani untuk "merawat" Naomi yang dipakai di akhir kitab Ruth adalah akar dari kata **Amen** — kata yang dipakai umat Allah dalam doa sampai hari ini. Kesetiaan Obed terhubung langsung ke respons iman universal.`,
+    momen: "Lahir dari Ruth dan Boaz. Naomi mengangkatnya di atas panguannya — perempuan yang kembali ke Betlehem dengan tangan kosong, sekarang memegang cucu. 'Ia menjadi bagi Naomi seperti orang yang mengembalikan nyawa.' Momen terkecil menjadi momen terbesar.",
+    kristus: "Kristus yang datang bukan untuk dilayani tapi untuk melayani. Kebesaran dalam hal yang tampak kecil. Obed — pelayan — adalah nenek moyang dari Isai dan Daud, dari mana Kristus lahir.",
+    park_quote: `"Obed's faithful support of Naomi is recorded with the Hebrew word that shares a root with 'amen' — the universal word of faith's affirmation. In his small faithfulness, an echo of all prayer is preserved."`,
+    park_cite: "Abraham Park, Bab 19",
+    cermin: "Obed ada di silsilah Yesus bukan karena ia melakukan sesuatu yang luar biasa — tapi karena ia ada, setia, dan mendukung orang yang membutuhkan. Apakah kamu percaya bahwa kehadiranmu yang sederhana — tanpa cerita dramatis — sudah bermakna di mata Allah?"
+  },
+
+  isai: {
+    gen: "Generasi ke-13",
+    nama: "Isai",
+    arti: '"Ia hidup" (He lives) — makna yang terbukti dalam hidupnya sendiri',
+    era: "Akhir Zaman Hakim & Awal Monarki · ±1130–1060 SM",
+    peran: "Bapa yang Tidak Mengenali Anaknya · Saksi Providensi",
+    sejarah: `Isai adalah bapa dari delapan anak laki-laki — dan yang termuda, Daud, adalah yang ia lupakan saat Samuel datang mencari raja baru Israel.
+
+"Adakah anakmu yang lain?" — pertanyaan Samuel yang mengungkap kelupaan seorang bapa. Daud sedang di ladang menggembalakan domba, dianggap tidak perlu dipanggil.
+
+Park menyimpulkan dengan kalimat tentang arti nama Isai: "Jesse means 'He lives.'" Dan ia mengaitkan ini dengan Yesaya 11:1 — "Dan akan muncul tunas dari tunggul Isai." Bahkan saat semua harapan tampak terpotong seperti tunggul pohon, dari situlah Allah menyiapkan tunas Mesias.
+
+Isai kemudian menjadi saksi pertama dan paling dekat dari seluruh perjalanan Daud: dari pengurapan di depan matanya, masuk ke istana Saul, membunuh Goliat, melarikan diri dari Saul, sampai akhirnya naik takhta.`,
+    momen: "Saat Samuel datang, Isai menghadirkan tujuh anaknya — semua yang ia anggap layak. Allah menolak semuanya. 'Bukan yang dilihat manusia yang dilihat Allah.' Isai tidak ingat Daud sampai ditanya. Dan Daud yang terlupakan itulah yang dipilih.",
+    kristus: "'Dan akan muncul tunas dari tunggul Isai' (Yes. 11:1). Kristus lahir dari garis Isai — dari tunggul yang tampak sudah mati, dari dinasti yang hampir tidak punya harapan. Allah yang hidup selalu menyimpan tunas baru.",
+    park_quote: `"Jesse means 'He lives.' We may find ourselves in situations of despair where everything has been cut off and fallen with only a stump remaining. Despite all this, when we possess the faith as small as a mustard seed and absolutely trust in the living God, we will always be able to rise again."`,
+    park_cite: "Abraham Park, Bab 20",
+    cermin: "Daud sedang di ladang menggembalakan domba saat Samuel datang — tidak ada di tempat yang 'seharusnya.' Allah menemuinya di sana. Di mana 'ladangmu' sekarang — dan apakah kamu percaya Allah bisa menemuimu di sana, tanpa harus berada di tempat yang tepat dulu?"
+  },
+
+  daud: {
+    gen: "Generasi ke-14 — Kulminasi Part 3",
+    nama: "Daud",
+    arti: '"Yang dikasihi" — nama yang mengandung paradoks: dikasihi Allah, tapi menanggung lebih banyak penderitaan dari siapapun',
+    era: "Monarki · ±1040–970 SM",
+    peran: "Saluran Kovenan Mesiasis · Dibentuk Melalui 16 Tempat Pelarian",
+    sejarah: `Daud adalah titik kulminasi dari 14 generasi — dan Park menghabiskan lebih dari separuh babnya pada 10 tahun pengungsian, bukan pada masa kejayaannya.
+
+16 tempat pelarian Daud didokumentasikan Park secara terperinci — setiap tempat dengan nama, makna Ibrani, dan Mazmur yang lahir di sana. Ini bukan biografi. Ini adalah kuliah tentang nama-nama Allah yang hanya bisa dipelajari dalam penderitaan:
+
+Adullam = "tempat persembunyian" → Allah adalah persembunyianku
+Mizpeh = "menara pengawal" → nama Allah adalah menara yang kuat
+Carmel = "kebun anggur" → Allah adalah penjaga kebun anggurku
+
+Daud diurapi tiga kali — masing-masing membutuhkan penderitaan yang lebih dalam. Naik takhta membutuhkan melewati semua 16 tempat itu.`,
+    momen: `Mazmur 22 yang Daud tulis saat pelarian ternyata adalah nubuat langsung penderitaan Yesus di kayu salib:
+
+"Allahku, mengapa Engkau meninggalkan aku?" → Yesus di salib (Mat. 27:46)
+"Tulang-tulangku terlepas semua" → penyiksaan salib
+"Pakaianku mereka bagi-bagi, untuk jubahku mereka membuang undi" → tentara Roma
+
+Daud hidup di dalam nubuat itu tanpa menyadarinya sepenuhnya. Penderitaannya adalah nubuatan.`,
+    kristus: "Daud adalah 'Passageway of the Messianic Covenant' — saluran, bukan pemilik. Mazmur 22 yang ia tulis dari penderitaan pribadinya adalah nubuat penderitaan Kristus yang paling rinci di seluruh Perjanjian Lama.",
+    park_quote: `"A person after God's own heart does not refer to a perfect person. A person after God's own heart is a person who may have many faults, but repents thoroughly and resolves to live according to God's Word."`,
+    park_cite: "Abraham Park, Bab 26",
+    cermin: "'Orang yang berkenan di hati Allah bukan yang sempurna — tapi yang bertobat dengan sungguh-sungguh dan bertekad untuk hidup sesuai Firman Allah.' Apakah definisi itu membebaskan kamu atau justru semakin memberati — dan mengapa?"
+  }
+};
+
+/* ============================================================
+   FILTER
+   ============================================================ */
+function setFilter(era) {
+  // Update button states
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('filter-' + era).classList.add('active');
+
+  const cards = document.querySelectorAll('.era-card');
+  const sections = ['patriark', 'mesir', 'hakim', 'monarki'];
+
+  if (era === 'all') {
+    cards.forEach(c => c.style.display = '');
+    sections.forEach(s => {
+      const el = document.getElementById('section-' + s);
+      const grid = document.getElementById('grid-' + s);
+      if (el) el.style.display = '';
+      if (grid) grid.style.display = '';
+    });
+    document.getElementById('spotlight-gentil').style.display = '';
+
+  } else if (era === 'gentil') {
+    // Show all but highlight gentil
+    cards.forEach(c => {
+      const id = c.dataset.id;
+      c.style.display = (id === 'yehuda' || id === 'salmon' || id === 'boaz') ? '' : 'none';
+    });
+    sections.forEach(s => {
+      const el = document.getElementById('section-' + s);
+      const grid = document.getElementById('grid-' + s);
+      const hasVisible = grid && grid.querySelector('.era-card:not([style*="none"])');
+      if (el) el.style.display = hasVisible ? '' : 'none';
+      if (grid) grid.style.display = hasVisible ? '' : 'none';
+    });
+    document.getElementById('spotlight-gentil').style.display = '';
+
+  } else {
+    cards.forEach(c => {
+      c.style.display = c.dataset.era === era ? '' : 'none';
+    });
+    sections.forEach(s => {
+      const el = document.getElementById('section-' + s);
+      const grid = document.getElementById('grid-' + s);
+      if (el) el.style.display = s === era ? '' : 'none';
+      if (grid) grid.style.display = s === era ? '' : 'none';
+    });
+    document.getElementById('spotlight-gentil').style.display = era === 'hakim' ? '' : 'none';
+  }
+
+  // Stagger visible cards
+  let idx = 0;
+  document.querySelectorAll('.era-card').forEach(c => {
+    if (c.style.display === 'none') return;
+    c.style.animationName = 'none';
+    c.style.animationDelay = '';
+    // Force reflow then re-apply animation
+    void c.offsetWidth;
+    c.style.animationName = '';
+    c.style.animationDelay = (idx * 40) + 'ms';
+    idx++;
+  });
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+function openModal(id) {
+  const t = TOKOH[id];
+  if (!t) return;
+
+  document.getElementById('modal-gen-badge').textContent = t.gen + ' · ' + t.era;
+  document.getElementById('modal-title').textContent = t.nama;
+  document.getElementById('modal-meaning').textContent = t.arti;
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-section">
+      <div class="modal-section-label">Peran dalam Kovenan</div>
+      <p><strong>${t.peran}</strong></p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-label">Riwayat Singkat</div>
+      <p>${t.sejarah.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-label">Momen Kritis</div>
+      <p>${t.momen.replace(/\n\n/g, '</p><p>')}</p>
+    </div>
+
+    <div class="modal-christ-box">
+      <div class="modal-christ-label">🕯 Bayangan Kristus</div>
+      <p class="modal-christ-text">${t.kristus}</p>
+    </div>
+
+    <div class="modal-section" style="margin-top:20px">
+      <div class="modal-section-label">Dari Teks Park</div>
+      <div class="modal-park-quote">
+        <blockquote>${t.park_quote}</blockquote>
+        <cite>— ${t.park_cite}</cite>
+      </div>
+    </div>
+
+    <div class="modal-mirror">
+      <div class="modal-mirror-label">⏸ Cermin</div>
+      <p class="modal-mirror-q">${t.cermin}</p>
+    </div>
+
+    <a href="pendamping-baca.html" class="modal-link">
+      → Buka Pendamping Baca untuk bab ini
+    </a>
+  `;
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('modal').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+
+  // Focus management
+  setTimeout(() => {
+    document.querySelector('.modal-close').focus();
+  }, 50);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+// Keyboard: Escape menutup modal
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+
+</body>
+</html>

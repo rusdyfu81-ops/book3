@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jurnal Pelita — The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --green:       #2bb673;
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+  /* Fase warna */
+  --fase1: #1DADA8;
+  --fase2: #b8860b;
+  --fase3: #6b21a8;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-ui); font-size:16px; line-height:1.6; color:var(--text); background:var(--bg); }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+}
+
+/* NAV */
+.nav {
+  position:sticky; top:0; z-index:100; background:var(--teal-dark);
+  display:flex; align-items:center; gap:8px; padding:0 20px; height:48px;
+  overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.nav::-webkit-scrollbar { display:none; }
+.nav-brand { color:white; font-weight:800; font-size:13px; text-decoration:none; white-space:nowrap; flex-shrink:0; }
+.nav-link {
+  color:rgba(255,255,255,0.85); text-decoration:none; font-size:13px; font-weight:600;
+  white-space:nowrap; padding:4px 8px; border-radius:var(--radius-sm); flex-shrink:0; transition:background 0.2s;
+}
+.nav-link:hover, .nav-link:focus-visible { background:rgba(255,255,255,0.15); color:white; outline:none; }
+.nav-badge { margin-left:auto; flex-shrink:0; background:rgba(255,255,255,0.2); color:white; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:0.05em; }
+
+#storage-warning { display:none; background:#fff3cd; color:#7a5c00; padding:8px 20px; font-size:13px; text-align:center; }
+
+/* HERO — Tier L */
+.hero {
+  background: linear-gradient(150deg, #0a3d3b 0%, #0e7a77 45%, #1DADA8 100%);
+  color:white; padding:56px 24px 48px; text-align:center;
+}
+.hero-eyebrow { color:rgba(255,255,255,0.75); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; margin-bottom:12px; display:block; }
+.hero h1 { font-size:clamp(24px,5vw,42px); font-family:var(--font-ui); font-weight:800; line-height:1.2; color:white; margin-bottom:12px; }
+.hero .subtitle { color:rgba(255,255,255,0.85); font-size:16px; max-width:520px; margin:0 auto 28px; font-family:var(--font-content); font-style:italic; line-height:1.7; }
+.hero-phases { display:flex; gap:0; justify-content:center; max-width:440px; margin:0 auto; border-radius:var(--radius-sm); overflow:hidden; border:1px solid rgba(255,255,255,0.2); }
+.hero-phase { flex:1; padding:10px 8px; text-align:center; }
+.hero-phase:nth-child(1) { background:rgba(29,173,168,0.3); }
+.hero-phase:nth-child(2) { background:rgba(184,134,11,0.3); }
+.hero-phase:nth-child(3) { background:rgba(107,33,168,0.25); }
+.hero-phase-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.7); display:block; margin-bottom:2px; }
+.hero-phase-name { font-size:12px; font-weight:700; color:white; display:block; }
+
+/* MAIN */
+.main-wrap { max-width:780px; margin:0 auto; padding:32px 20px 80px; }
+
+/* OVERVIEW SECTION */
+.overview { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; margin-bottom:32px; }
+.overview-title { font-size:18px; font-weight:800; margin-bottom:16px; color:var(--text); }
+.progress-bars { display:flex; flex-direction:column; gap:12px; margin-bottom:20px; }
+.prog-row { display:grid; grid-template-columns:120px 1fr 40px; gap:8px; align-items:center; font-size:13px; }
+.prog-label { font-weight:700; color:var(--text-light); }
+.prog-track { height:8px; background:var(--bg2); border-radius:4px; overflow:hidden; }
+.prog-fill { height:100%; border-radius:4px; transition:width 0.4s ease; }
+.prog-count { font-size:12px; font-weight:700; color:var(--text-muted); text-align:right; }
+.overview-note { font-family:var(--font-content); font-style:italic; font-size:14px; color:var(--text-light); line-height:1.7; border-top:1px solid var(--border); padding-top:16px; }
+
+/* FASE HEADER */
+.fase-header {
+  display:flex; align-items:center; gap:14px; padding:20px 24px;
+  border-radius:var(--radius); margin-bottom:16px; margin-top:8px;
+}
+.fase-header.fase1 { background:linear-gradient(120deg, #0d5c59, #1DADA8); }
+.fase-header.fase2 { background:linear-gradient(120deg, #7a5009, #b8860b); }
+.fase-header.fase3 { background:linear-gradient(120deg, #3d0e6b, #6b21a8); }
+.fase-icon { font-size:28px; }
+.fase-text {}
+.fase-num { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.75); }
+.fase-name { font-size:20px; font-weight:800; color:white; line-height:1.2; }
+.fase-desc { font-size:13px; color:rgba(255,255,255,0.85); font-family:var(--font-content); font-style:italic; margin-top:2px; }
+
+/* WEEK CARD */
+.week-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--radius); margin-bottom:12px; overflow:hidden;
+  transition:box-shadow 0.15s;
+}
+.week-card.locked { opacity:0.55; }
+.week-card.done { border-left:4px solid var(--green); }
+.week-card:not(.locked):hover { box-shadow:var(--shadow); }
+
+.week-header {
+  display:flex; align-items:center; gap:12px; padding:16px 20px;
+  cursor:pointer; min-height:64px;
+}
+.week-header:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; }
+.week-card.locked .week-header { cursor:not-allowed; }
+.week-badge {
+  width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:800; color:white; flex-shrink:0;
+}
+.week-badge.f1 { background:var(--fase1); }
+.week-badge.f2 { background:var(--fase2); }
+.week-badge.f3 { background:#6b21a8; }
+.week-badge.done-badge { background:var(--green); }
+.week-badge.locked-badge { background:var(--border); color:var(--text-muted); }
+.week-meta { flex:1; }
+.week-title { font-size:15px; font-weight:800; color:var(--text); line-height:1.2; }
+.week-sub { font-size:12px; color:var(--text-muted); margin-top:2px; }
+.week-chevron { font-size:12px; color:var(--text-muted); transition:transform 0.2s; flex-shrink:0; }
+.week-card.open .week-chevron { transform:rotate(180deg); }
+.lock-icon { font-size:14px; color:var(--text-muted); flex-shrink:0; }
+
+.week-body { display:none; padding:0 20px 20px; border-top:1px solid var(--border); }
+.week-card.open .week-body { display:block; }
+
+/* Week body content */
+.week-teks {
+  background:var(--bg3); border-radius:var(--radius-sm); padding:14px 16px;
+  margin:16px 0; font-size:13px; color:var(--text-light); line-height:1.6;
+}
+.week-teks-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--teal-dark); margin-bottom:8px; display:block; }
+.week-teks-refs { display:flex; flex-wrap:wrap; gap:6px; }
+.teks-ref {
+  font-size:12px; font-weight:700; padding:3px 10px; border-radius:10px;
+  background:var(--white); border:1px solid var(--border); color:var(--text-light);
+}
+
+.week-park {
+  background:var(--bg2); border-left:3px solid var(--gold);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:12px 16px; margin:12px 0;
+}
+.week-park blockquote { font-family:var(--font-content); font-style:italic; font-size:14px; line-height:1.75; color:var(--text); margin-bottom:4px; }
+.week-park cite { font-size:11px; color:var(--text-muted); font-weight:700; }
+
+.week-prompt-label { font-size:13px; font-weight:800; color:var(--text); margin:16px 0 8px; }
+.week-prompt { font-family:var(--font-content); font-size:14px; line-height:1.75; color:var(--text-light); margin-bottom:12px; }
+.week-prompt-subs { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+.week-prompt-sub { font-family:var(--font-content); font-size:13px; color:var(--text-muted); padding-left:14px; border-left:2px solid var(--border); line-height:1.5; }
+
+textarea {
+  width:100%; min-height:140px; padding:14px 16px;
+  font-family:var(--font-content); font-size:14px; line-height:1.75;
+  color:var(--text); background:var(--bg); border:1.5px solid var(--border);
+  border-radius:var(--radius-sm); resize:vertical; transition:border-color 0.2s;
+}
+textarea:focus { outline:none; border-color:var(--teal); }
+textarea::placeholder { color:var(--text-muted); font-style:italic; }
+
+.save-row { display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+.save-indicator { font-size:11px; color:var(--green); font-weight:700; opacity:0; transition:opacity 0.3s; }
+.save-indicator.show { opacity:1; }
+.char-count { font-size:11px; color:var(--text-muted); }
+
+.complete-btn {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:13px 20px; margin-top:16px;
+  background:var(--teal-dark); color:white; border:none;
+  border-radius:var(--radius-sm); font-family:var(--font-ui); font-size:14px; font-weight:800;
+  cursor:pointer; transition:background 0.15s; min-height:48px;
+}
+.complete-btn:hover { background:#0a5c59; }
+.complete-btn:disabled { background:var(--border); color:var(--text-muted); cursor:not-allowed; }
+.complete-btn.done-btn { background:var(--green); cursor:default; }
+.complete-btn.done-btn:hover { background:var(--green); }
+
+/* CLOSING SECTION */
+.closing {
+  background:linear-gradient(150deg, #0a3d3b 0%, #0e7a77 100%);
+  border-radius:var(--radius-lg); padding:36px 28px; text-align:center;
+  margin-top:32px; color:white;
+}
+.closing-icon { font-size:48px; display:block; margin-bottom:16px; }
+.closing h2 { font-size:24px; font-weight:800; margin-bottom:12px; }
+.closing p { font-family:var(--font-content); font-style:italic; font-size:16px; line-height:1.8; color:rgba(255,255,255,0.88); max-width:520px; margin:0 auto 24px; }
+.closing-actions { display:flex; flex-direction:column; gap:10px; max-width:340px; margin:0 auto; }
+.btn-white {
+  background:white; color:var(--teal-dark); border:none;
+  padding:13px 24px; border-radius:var(--radius-sm);
+  font-family:var(--font-ui); font-size:14px; font-weight:800;
+  cursor:pointer; transition:background 0.15s; text-decoration:none;
+  display:flex; align-items:center; justify-content:center; gap:8px; min-height:48px;
+}
+.btn-white:hover { background:rgba(255,255,255,0.9); }
+.btn-outline-white {
+  background:none; color:white; border:2px solid rgba(255,255,255,0.4);
+  padding:13px 24px; border-radius:var(--radius-sm);
+  font-family:var(--font-ui); font-size:14px; font-weight:700;
+  cursor:pointer; transition:border-color 0.15s; text-decoration:none;
+  display:flex; align-items:center; justify-content:center; gap:8px; min-height:48px;
+}
+.btn-outline-white:hover { border-color:rgba(255,255,255,0.8); }
+
+@media (max-width:640px) {
+  .prog-row { grid-template-columns:100px 1fr 36px; }
+  .week-header { padding:14px 16px; }
+  .week-body { padding:0 16px 16px; }
+  .closing { padding:28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Sejarah Penebusan</a>
+  <a href="index.html" class="nav-link">← Beranda</a>
+  <a href="cermin-pribadi.html" class="nav-link">Cermin Pribadi</a>
+  <a href="pendamping-baca.html" class="nav-link">Pendamping Baca</a>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<div id="storage-warning">
+  ⚠️ Progress tidak bisa disimpan di mode penyamaran. Gunakan browser biasa agar catatanmu tersimpan selama 8 minggu ini.
+</div>
+
+<div class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Buku 3 · Pasca-Baca</span>
+  <h1>Jurnal Pelita</h1>
+  <p class="subtitle">"Kumpulkanlah sisa-sisa supaya tidak ada yang terbuang." — Yoh. 6:12</p>
+  <div class="hero-phases">
+    <div class="hero-phase">
+      <span class="hero-phase-num">Fase 1</span>
+      <span class="hero-phase-name">Melihat Lampu</span>
+    </div>
+    <div class="hero-phase">
+      <span class="hero-phase-num">Fase 2</span>
+      <span class="hero-phase-name">Menyusuri Jalur</span>
+    </div>
+    <div class="hero-phase">
+      <span class="hero-phase-num">Fase 3</span>
+      <span class="hero-phase-name">Menjadi Lampu</span>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="overview" id="overview">
+    <div class="overview-title">Progres 8 Minggu</div>
+    <div class="progress-bars">
+      <div class="prog-row">
+        <div class="prog-label">Fase 1 — Melihat</div>
+        <div class="prog-track"><div class="prog-fill" id="pf1" style="background:var(--fase1);width:0%"></div></div>
+        <div class="prog-count" id="pc1">0/2</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Fase 2 — Menyusuri</div>
+        <div class="prog-track"><div class="prog-fill" id="pf2" style="background:var(--fase2);width:0%"></div></div>
+        <div class="prog-count" id="pc2">0/3</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Fase 3 — Menjadi</div>
+        <div class="prog-track"><div class="prog-fill" id="pf3" style="background:var(--fase3);width:0%"></div></div>
+        <div class="prog-count" id="pc3">0/3</div>
+      </div>
+    </div>
+    <div class="overview-note" id="overview-note">
+      Jurnal ini tidak bisa dikerjakan terburu-buru. Setiap minggu terkunci sampai minggu sebelumnya selesai ditulis — bukan sebagai hukuman, tapi karena perjalanan ini punya urutan yang dijaga.
+    </div>
+  </div>
+
+  <!-- ====================================================== FASE 1 -->
+  <div class="fase-header fase1">
+    <div class="fase-icon">👁</div>
+    <div class="fase-text">
+      <div class="fase-num">Fase 1 · Minggu 1–2</div>
+      <div class="fase-name">Melihat Lampu</div>
+      <div class="fase-desc">Allah yang lebih besar dari segalanya — sebelum kamu melihat satu nama pun</div>
+    </div>
+  </div>
+
+  <!-- Minggu 1 -->
+  <div class="week-card" id="wcard-1">
+    <div class="week-header" onclick="toggleWeek(1)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(1)}">
+      <div class="week-badge f1" id="wbadge-1">1</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 1 — Allah yang Lebih Besar dari 10²⁵ Bintang</div>
+        <div class="week-sub">Fase 1 · Part 1, Bab 1 — skala yang mengubah cara membaca</div>
+      </div>
+      <div class="week-chevron" id="wchev-1">▼</div>
+    </div>
+    <div class="week-body" id="wbody-1">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">Yesaya 40:26</span>
+          <span class="teks-ref">Mazmur 8:3–4</span>
+          <span class="teks-ref">Park — Part 1, Bab 1</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"The works that the Lord carries out to save one soul are so great and His thoughts are so deep that even the boundlessly vast universe cannot be compared to one soul."</blockquote>
+        <cite>— Abraham Park, Part 1, hal. 34–35</cite>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Ini</div>
+      <div class="week-prompt">Park membuka buku ini bukan dengan silsilah, tapi dengan skala alam semesta. Ia butuh halaman 1–35 hanya untuk mempersiapkan satu argumen: Allah yang memilih 14 orang ini adalah Allah yang lebih besar dari semua yang pernah kamu bayangkan.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Bacalah Yesaya 40:26 dengan pelan. Bayangkan satu per satu bintang yang disebut namanya. Bagaimana fakta ini mengubah cara kamu membaca nama-nama kecil seperti Ram, Hezron, Amminadab?</div>
+        <div class="week-prompt-sub">Di bagian mana dalam hidupmu kamu masih melihat Allah sebagai "cukup besar untuk hal-hal besar, tapi tidak cukup hadir untuk hal-hal kecilmu"?</div>
+        <div class="week-prompt-sub">Tulis satu kalimat yang merangkum apa yang berubah dalam cara kamu melihat Allah setelah membaca Part 1.</div>
+      </div>
+      <textarea id="w1-journal" placeholder="Ambil waktu yang cukup. Tidak perlu terburu-buru menyelesaikan jurnal ini dalam satu duduk..." oninput="onJournalInput(1)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w1">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w1">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-1" onclick="completeWeek(1)" disabled>
+        ✓ Selesaikan Minggu 1
+      </button>
+    </div>
+  </div>
+
+  <!-- Minggu 2 -->
+  <div class="week-card locked" id="wcard-2">
+    <div class="week-header" onclick="toggleWeek(2)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(2)}">
+      <div class="week-badge locked-badge" id="wbadge-2">2</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 2 — Kovenan yang Tidak Bisa Dibatalkan</div>
+        <div class="week-sub">Fase 1 · Part 1–2 — fondasi ontologis lampu</div>
+      </div>
+      <div class="lock-icon" id="wlock-2">🔒</div>
+    </div>
+    <div class="week-body" id="wbody-2">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">Kejadian 15:17</span>
+          <span class="teks-ref">Ibrani 6:13–18</span>
+          <span class="teks-ref">Park — Part 1, Bab 2; Part 2</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"God's covenant is not altered due to human circumstances or to the passage of time, nor is it ever revoked or terminated in mid-course; it will certainly bear fruit."</blockquote>
+        <cite>— Abraham Park, Part 2</cite>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Ini</div>
+      <div class="week-prompt">Bacalah Kejadian 15:17 — momen di mana Allah sendiri berjalan di antara hewan yang dibelah, sementara Abraham tertidur. Ini adalah deklarasi unilateralitas kovenan yang paling dramatis di seluruh Alkitab.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Apakah ada janji Allah yang pernah kamu ragukan — bukan karena kamu tidak percaya Allah, tapi karena kamu melihat kegagalanmu dan mengira itu membatalkan janji itu?</div>
+        <div class="week-prompt-sub">Park membedakan: lampu tidak padam bukan karena Allah terus memperbarui komitmen setiap hari, tapi karena fondasi kovenan itu tidak memiliki mekanisme pembatalan. Bagaimana perbedaan ini mengubah cara kamu berdoa?</div>
+        <div class="week-prompt-sub">Tuliskan satu janji Allah yang kamu mau pegang lebih erat minggu ini — dan mengapa kamu sebelumnya melepaskannya.</div>
+      </div>
+      <textarea id="w2-journal" placeholder="Jurnal ini hanya terbuka setelah Minggu 1 selesai..." oninput="onJournalInput(2)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w2">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w2">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-2" onclick="completeWeek(2)" disabled>
+        ✓ Selesaikan Minggu 2
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================== FASE 2 -->
+  <div class="fase-header fase2" style="margin-top:28px;">
+    <div class="fase-icon">🗺</div>
+    <div class="fase-text">
+      <div class="fase-num">Fase 2 · Minggu 3–5</div>
+      <div class="fase-name">Menyusuri Jalur Lampu</div>
+      <div class="fase-desc">14 generasi dan 340 tahun kegelapan — lampu berjalan melalui orang-orang yang tidak sempurna</div>
+    </div>
+  </div>
+
+  <!-- Minggu 3 -->
+  <div class="week-card locked" id="wcard-3">
+    <div class="week-header" onclick="toggleWeek(3)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(3)}">
+      <div class="week-badge locked-badge" id="wbadge-3">3</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 3 — Tamar, Rahab, Ruth: Tiga Mata Rantai Kritis</div>
+        <div class="week-sub">Fase 2 · Part 3, Bab 8–19 — Gentil yang masuk ke dalam silsilah</div>
+      </div>
+      <div class="lock-icon" id="wlock-3">🔒</div>
+    </div>
+    <div class="week-body" id="wbody-3">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">Kejadian 38:1–30</span>
+          <span class="teks-ref">Yosua 2:1–21; 6:22–25</span>
+          <span class="teks-ref">Rut 1:16–18; 2:12</span>
+          <span class="teks-ref">Matius 1:3,5</span>
+          <span class="teks-ref">Park — Bab 8–9, 12, 17</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"These three women became the crucial links that helped the lamp of the covenant to continue burning... No obstacle on this earth could stand in the way of their living faith."</blockquote>
+        <cite>— Abraham Park, Conclusion, hal. 326–327</cite>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Ini</div>
+      <div class="week-prompt">Tamar, Rahab, dan Ruth adalah tiga perempuan dari luar Israel yang disebutkan oleh nama dalam silsilah Yesus. Park menyebut mereka "crucial links" — mata rantai kritis. Tanpa tindakan berani mereka, garis itu bisa terputus.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Park menggunakan kata yang sama untuk Tamar dan Allah: "zeal" — kecemburuan yang membara. Bagaimana memahami bahwa seorang perempuan di pinggir jalan ke Timna membawa kecemburuan yang sama dengan kecemburuan Allah?</div>
+        <div class="week-prompt-sub">Apakah ada momen dalam hidupmu di mana kamu bertindak dengan berani untuk menjaga sesuatu yang penting tetap hidup — bahkan ketika tidak ada yang mendukungmu?</div>
+        <div class="week-prompt-sub">Siapa "Rahab" di hidupmu — seseorang yang dianggap "dari luar" oleh komunitasmu, tapi yang mungkin justru sedang membawa lampu dengan iman yang lebih hidup dari orang dalam?</div>
+      </div>
+      <textarea id="w3-journal" placeholder="Terbuka setelah Minggu 2 selesai..." oninput="onJournalInput(3)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w3">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w3">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-3" onclick="completeWeek(3)" disabled>
+        ✓ Selesaikan Minggu 3
+      </button>
+    </div>
+  </div>
+
+  <!-- Minggu 4 -->
+  <div class="week-card locked" id="wcard-4">
+    <div class="week-header" onclick="toggleWeek(4)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(4)}">
+      <div class="week-badge locked-badge" id="wbadge-4">4</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 4 — 340 Tahun Kegelapan: Obor yang Tetap Menyala</div>
+        <div class="week-sub">Fase 2 · Part 4, Bab 22–24 — era hakim dan siklus yang berulang</div>
+      </div>
+      <div class="lock-icon" id="wlock-4">🔒</div>
+    </div>
+    <div class="week-body" id="wbody-4">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">Hakim-Hakim 2:11–19</span>
+          <span class="teks-ref">Hakim-Hakim 7:15–22</span>
+          <span class="teks-ref">Hakim-Hakim 16:28–30</span>
+          <span class="teks-ref">Ibrani 11:32–34</span>
+          <span class="teks-ref">Park — Bab 22–24</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"God chose people with imperfections and weaknesses as judges to save Israel in order to show them that the true savior and ruler of Israel is not man, but God Himself."</blockquote>
+        <cite>— Abraham Park, Part 4, hal. 165</cite>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Ini</div>
+      <div class="week-prompt">340 tahun yang Park sebut "lebih gelap dari Sodom." 12 hakim yang tidak satu pun sempurna. Siklus dosa yang berulang tujuh kali sampai Israel menyembah tujuh jenis berhala sekaligus. Dan lampu itu tidak padam. Gideon's 300 obor mengalahkan 135.000 pasukan — bukan karena 300 itu kuat, tapi karena Allah yang berperang.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Bacalah Hakim-Hakim 7:15–22 perlahan. 300 obor, kendi, dan sangkakala. Lalu pikirkan: apa "obor" yang ada di tanganmu sekarang yang kamu anggap terlalu kecil untuk berpengaruh?</div>
+        <div class="week-prompt-sub">Samson adalah hakim paling kontradiktif — hidup dalam dosa, tapi diakui di Ibrani 11 karena pertobatan finalnya. Apakah ada tindakan terakhir yang perlu kamu ambil untuk "merobohkan tiang" dalam hidupmu — bukan dramatis, tapi final dan jujur?</div>
+        <div class="week-prompt-sub">Era hakim adalah bukti bahwa Allah bekerja bukan hanya ketika umat-Nya setia. Bagaimana ini mengubah cara kamu memandang periode kering dalam hidupmu secara rohani?</div>
+      </div>
+      <textarea id="w4-journal" placeholder="Terbuka setelah Minggu 3 selesai..." oninput="onJournalInput(4)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w4">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w4">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-4" onclick="completeWeek(4)" disabled>
+        ✓ Selesaikan Minggu 4
+      </button>
+    </div>
+  </div>
+
+  <!-- Minggu 5 -->
+  <div class="week-card locked" id="wcard-5">
+    <div class="week-header" onclick="toggleWeek(5)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(5)}">
+      <div class="week-badge locked-badge" id="wbadge-5">5</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 5 — Salmon, Boaz, Obed: Lampu di Tempat Paling Gelap</div>
+        <div class="week-sub">Fase 2 · Part 3, Bab 15–19 — tiga generasi yang bertahan</div>
+      </div>
+      <div class="lock-icon" id="wlock-5">🔒</div>
+    </div>
+    <div class="week-body" id="wbody-5">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">Rut 2:1–23</span>
+          <span class="teks-ref">Rut 4:13–17</span>
+          <span class="teks-ref">Mazmur 56:8</span>
+          <span class="teks-ref">Park — Bab 15–19</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"Obed means 'worker' or 'servant.' He was the faithful helper of Naomi... The word 'nurse' used here comes from the Hebrew root <em>amen</em> — the word of faith that has been used by all believers throughout history."</blockquote>
+        <cite>— Abraham Park, Bab 19</cite>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Ini</div>
+      <div class="week-prompt">Salmon menikahi Rahab di awal era hakim. Boaz menebus Ruth di tengah era hakim paling gelap. Obed merawat Naomi di akhir era hakim. Tiga generasi, satu lampu — dan tidak satu pun dari mereka tahu bahwa mereka sedang membawa lampu yang akan menyulut Mesianik.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Obed tidak melakukan hal yang besar. Ia hanya merawat orang tua yang menua. Park menunjukkan bahwa tindakan sederhana itu berakar pada kata <em>amen</em>. Apa tindakan "Obed" dalam hidupmu — sesuatu yang sederhana, tidak terlihat, tapi yang mungkin sedang merawat nyala lampu pada seseorang?</div>
+        <div class="week-prompt-sub">Boaz adalah penebus (<em>go'el</em>) — ia turun ke posisi yang paling rendah untuk menebus seseorang yang tidak bisa menebus dirinya sendiri. Siapa "Ruth" dalam hidupmu yang sedang menunggu seseorang untuk datang dan berkata: "Aku yang menanggung ini"?</div>
+      </div>
+      <textarea id="w5-journal" placeholder="Terbuka setelah Minggu 4 selesai..." oninput="onJournalInput(5)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w5">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w5">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-5" onclick="completeWeek(5)" disabled>
+        ✓ Selesaikan Minggu 5
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================== FASE 3 -->
+  <div class="fase-header fase3" style="margin-top:28px;">
+    <div class="fase-icon">🕯</div>
+    <div class="fase-text">
+      <div class="fase-num">Fase 3 · Minggu 6–8</div>
+      <div class="fase-name">Menjadi Lampu</div>
+      <div class="fase-desc">Daud, panggilan generasi ini, dan pertanyaan yang Park tinggalkan untuk kamu</div>
+    </div>
+  </div>
+
+  <!-- Minggu 6 -->
+  <div class="week-card locked" id="wcard-6">
+    <div class="week-header" onclick="toggleWeek(6)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(6)}">
+      <div class="week-badge locked-badge" id="wbadge-6">6</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 6 — Daud: 16 Tempat Pelarian, 16 Wahyu tentang Allah</div>
+        <div class="week-sub">Fase 3 · Part 5, Bab 25–26 — pembentukan sebelum kemuliaan</div>
+      </div>
+      <div class="lock-icon" id="wlock-6">🔒</div>
+    </div>
+    <div class="week-body" id="wbody-6">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">1 Samuel 16:1–13</span>
+          <span class="teks-ref">Mazmur 57:1–3</span>
+          <span class="teks-ref">Mazmur 142:1–7</span>
+          <span class="teks-ref">2 Samuel 7:12–16</span>
+          <span class="teks-ref">Park — Bab 25–26</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"God was continuously training David by taking him through numerous difficulties and hardships so that David could perform the great work of redemptive history."</blockquote>
+        <cite>— Abraham Park, Part 5</cite>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Ini</div>
+      <div class="week-prompt">Park menunjukkan 16 tempat pelarian Daud — setiap tempat adalah titik di mana Daud belajar nama Allah yang baru: tempat persembunyian, menara yang kuat, Gembala yang merestorasi. Nama-nama Allah yang hanya bisa ditemukan dalam penderitaan.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Bacalah Mazmur 142. Perhatikan nada doanya — ia berbicara kepada Allah dari dalam gua, sendirian, dikepung musuh. Kapan terakhir kali kamu berdoa dengan intensitas seperti ini? Apa yang mencegahmu berdoa seperti ini sekarang?</div>
+        <div class="week-prompt-sub">Daud disebut "orang sesuai hati Allah" bukan karena sempurna, tapi karena bertobat dengan sungguh-sungguh. Park menulis: "repents thoroughly and resolves to live according to God's Word." Adakah satu area dalam hidupmu yang kamu tahu membutuhkan pertobatan seperti ini — tapi kamu terus menundanya?</div>
+        <div class="week-prompt-sub">Nama Allah yang mana yang kamu temukan justru di titik paling gelap hidupmu — yang tidak mungkin kamu temukan di tempat lain?</div>
+      </div>
+      <textarea id="w6-journal" placeholder="Terbuka setelah Minggu 5 selesai..." oninput="onJournalInput(6)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w6">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w6">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-6" onclick="completeWeek(6)" disabled>
+        ✓ Selesaikan Minggu 6
+      </button>
+    </div>
+  </div>
+
+  <!-- Minggu 7 -->
+  <div class="week-card locked" id="wcard-7">
+    <div class="week-header" onclick="toggleWeek(7)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(7)}">
+      <div class="week-badge locked-badge" id="wbadge-7">7</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 7 — Zeal: Api Kecemburuan yang Adalah Lampu Itu Sendiri</div>
+        <div class="week-sub">Fase 3 · Conclusion — zeal Allah dan zeal pembaca</div>
+      </div>
+      <div class="lock-icon" id="wlock-7">🔒</div>
+    </div>
+    <div class="week-body" id="wbody-7">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">2 Korintus 11:2</span>
+          <span class="teks-ref">Yesaya 9:7</span>
+          <span class="teks-ref">Hakim-Hakim 10:16</span>
+          <span class="teks-ref">Park — Conclusion</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"This zeal is the lamp, fiery and tall, burning brightly inside God's heart for the salvation of fallen mankind." — Abraham Park, Conclusion</blockquote>
+        <blockquote style="margin-top:8px;">"God's fervent zeal will unquenchably burn as the lamp of the covenant will continue to burn until… the people of God are resurrected and transfigured at the sound of the last trumpet when Jesus Christ returns." — Abraham Park, Conclusion</blockquote>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Ini</div>
+      <div class="week-prompt">Park mengakhiri buku ini dengan penemuan yang mengejutkan: kata yang dipakai untuk motivasi Tamar di Kejadian 38 dan kata yang dipakai untuk kecemburuan Allah di seluruh Alkitab adalah kata yang sama — <em>qin'ah</em>. Zeal. Api kecemburuan yang tidak bisa diam.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Park menulis bahwa Allah "tidak tahan melihat kesengsaraan Israel" — kata Ibrani yang dipakai adalah kata yang sama untuk seseorang yang sangat terganggu, sangat tergerak, tidak bisa diam. Apakah ada sesuatu di dunia ini yang membuatmu "tidak tahan" dengan cara seperti itu — yang memaksamu untuk bertindak?</div>
+        <div class="week-prompt-sub">Lampu itu bukan hanya sesuatu yang Allah pegang — Park menyebut roh manusia yang sudah ditebus sebagai "lampu Allah" (Amsal 20:27). Jika rohmu adalah lampu, seberapa terang kamu menyala sekarang? Apa yang membuat apimu kecil?</div>
+        <div class="week-prompt-sub">Tuliskan satu tindakan konkret yang kamu akan ambil minggu ini sebagai respons terhadap zeal Allah — bukan sebagai agenda, tapi sebagai persembahan.</div>
+      </div>
+      <textarea id="w7-journal" placeholder="Terbuka setelah Minggu 6 selesai..." oninput="onJournalInput(7)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w7">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w7">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-7" onclick="completeWeek(7)" disabled>
+        ✓ Selesaikan Minggu 7
+      </button>
+    </div>
+  </div>
+
+  <!-- Minggu 8 -->
+  <div class="week-card locked" id="wcard-8">
+    <div class="week-header" onclick="toggleWeek(8)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleWeek(8)}">
+      <div class="week-badge locked-badge" id="wbadge-8">8</div>
+      <div class="week-meta">
+        <div class="week-title">Minggu 8 — Lampu di Generasimu: Silsilah yang Belum Selesai</div>
+        <div class="week-sub">Fase 3 · Conclusion + Introduction — dari pembaca ke pembawa</div>
+      </div>
+      <div class="lock-icon" id="wlock-8">🔒</div>
+    </div>
+    <div class="week-body" id="wbody-8">
+      <div class="week-teks">
+        <span class="week-teks-label">📖 Teks Rujukan Minggu Ini</span>
+        <div class="week-teks-refs">
+          <span class="teks-ref">Yohanes 6:12</span>
+          <span class="teks-ref">Amsal 20:27</span>
+          <span class="teks-ref">Matius 5:14–16</span>
+          <span class="teks-ref">Park — Introduction &amp; Conclusion</span>
+        </div>
+      </div>
+
+      <div class="week-park">
+        <blockquote>"God's fervent zeal will unquenchably burn as the lamp of the covenant will continue to burn until the people of God are resurrected and transfigured at the sound of the last trumpet when Jesus Christ returns."</blockquote>
+        <cite>— Abraham Park, Conclusion</cite>
+      </div>
+
+      <div class="week-prompt-label">Pertanyaan Minggu Terakhir</div>
+      <div class="week-prompt">Silsilah itu berhenti di Daud dalam buku ini. Tapi lampu itu tidak berhenti. Ia terus menyala melalui 14 generasi berikutnya sampai Yesus — dan dari Yesus sampai hari ini. Kamu membaca ini di antara Paskah dan Kedatangan Kedua. Kamu ada di dalam silsilah yang masih berjalan.</div>
+      <div class="week-prompt-subs">
+        <div class="week-prompt-sub">Park menulis bahwa ia tidak mau "kasih karunia yang ia terima terbuang begitu saja" — dan ia mengutip Yoh. 6:12: "Kumpulkanlah sisa-sisa supaya tidak ada yang terbuang." Apa yang kamu kumpulkan dari 8 minggu ini yang tidak mau kamu biarkan terbuang?</div>
+        <div class="week-prompt-sub">Kepada siapa kamu akan membawa lampu ini? Sebutkan namanya — bukan kategori. Bukan "keluargaku" — tapi siapa spesifiknya?</div>
+        <div class="week-prompt-sub">Park menutup dengan kalimat: "Become living lamps of God." Bukan "pahami lampu" atau "ceritakan tentang lampu." Tapi <em>jadilah</em> lampunya. Apa satu hal yang akan berubah konkret dalam hidupmu setelah 8 minggu ini?</div>
+      </div>
+      <textarea id="w8-journal" placeholder="Ini adalah entri terakhir. Tidak perlu singkat. Tulis apa yang sungguh-sungguh ada di hatimu..." oninput="onJournalInput(8)"></textarea>
+      <div class="save-row">
+        <div class="save-indicator" id="save-w8">✓ Tersimpan</div>
+        <div class="char-count" id="cc-w8">0 karakter</div>
+      </div>
+      <button class="complete-btn" id="cbtn-8" onclick="completeWeek(8)" disabled>
+        🕯 Selesaikan Jurnal Pelita
+      </button>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing" id="closingSection" style="display:none;">
+    <span class="closing-icon">🕯</span>
+    <h2>Perjalanan 8 Minggu Selesai</h2>
+    <p>"There would be no greater joy than to see the readers of this humble book become true people of the cross... and become living lamps of God." — Abraham Park, Introduction</p>
+    <div class="closing-actions">
+      <a href="cermin-pribadi.html" class="btn-white">← Kembali ke Cermin Pribadi</a>
+      <a href="index.html" class="btn-outline-white">Beranda Ekosistem</a>
+    </div>
+  </div>
+
+</div><!-- /main-wrap -->
+
+<script>
+// ============================================================
+// STATE & STORAGE
+// ============================================================
+const STORAGE_KEY = 'sp-buku3-jurnal-v1';
+const MIN_CHARS = 80; // minimum karakter untuk unlock next week
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch(e) { return {}; }
+}
+function saveState(s) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); return true; }
+  catch(e) { showStorageWarning(); return false; }
+}
+function showStorageWarning() {
+  document.getElementById('storage-warning').style.display = 'block';
+}
+
+let state = loadState();
+const saveTimers = {};
+
+// ============================================================
+// WEEK CONFIG
+// ============================================================
+const WEEKS = [
+  { n:1, fase:1, faseClass:'f1' },
+  { n:2, fase:1, faseClass:'f1' },
+  { n:3, fase:2, faseClass:'f2' },
+  { n:4, fase:2, faseClass:'f2' },
+  { n:5, fase:2, faseClass:'f2' },
+  { n:6, fase:3, faseClass:'f3' },
+  { n:7, fase:3, faseClass:'f3' },
+  { n:8, fase:3, faseClass:'f3' },
+];
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  // Restore journal text
+  for (let i = 1; i <= 8; i++) {
+    const saved = (state.journals || {})[i];
+    if (saved) {
+      const ta = document.getElementById('w' + i + '-journal');
+      if (ta) { ta.value = saved; updateCharCount(i, saved.length); }
+    }
+  }
+  refreshUI();
+}
+
+function refreshUI() {
+  const completed = state.completed || {};
+  const journals  = state.journals  || {};
+
+  for (let i = 1; i <= 8; i++) {
+    const card    = document.getElementById('wcard-' + i);
+    const badge   = document.getElementById('wbadge-' + i);
+    const lock    = document.getElementById('wlock-' + i);
+    const chevron = document.getElementById('wchev-' + i);
+    const cbtn    = document.getElementById('cbtn-' + i);
+    const ta      = document.getElementById('w' + i + '-journal');
+    const wk      = WEEKS[i - 1];
+
+    // Is this week unlocked?
+    const unlocked = i === 1 || completed[i - 1];
+
+    // Is this week done?
+    const done = completed[i];
+
+    // Clear classes
+    card.classList.remove('locked', 'done', 'open');
+
+    if (!unlocked) {
+      // Locked
+      card.classList.add('locked');
+      badge.className = 'week-badge locked-badge';
+      badge.textContent = i;
+      if (lock) lock.style.display = 'block';
+      if (chevron) chevron.style.display = 'none';
+      if (ta) ta.disabled = true;
+    } else if (done) {
+      // Done
+      card.classList.add('done');
+      badge.className = 'week-badge done-badge';
+      badge.textContent = '✓';
+      if (lock) lock.style.display = 'none';
+      if (chevron) chevron.style.display = 'block';
+      if (cbtn) { cbtn.textContent = '✓ Minggu ' + i + ' sudah selesai'; cbtn.classList.add('done-btn'); cbtn.disabled = true; }
+      if (ta) ta.disabled = false;
+    } else {
+      // Unlocked, not done
+      badge.className = 'week-badge ' + wk.faseClass;
+      badge.textContent = i;
+      if (lock) lock.style.display = 'none';
+      if (chevron) chevron.style.display = 'block';
+      if (ta) ta.disabled = false;
+      // Auto-open first unlocked incomplete week
+      updateCompleteBtn(i);
+    }
+  }
+
+  // Auto-open first unlocked incomplete week
+  for (let i = 1; i <= 8; i++) {
+    if (!completed[i - 1] && i > 1) break;
+    if (!completed[i]) {
+      const card = document.getElementById('wcard-' + i);
+      if (!card.classList.contains('locked') && !card.classList.contains('open')) {
+        card.classList.add('open');
+        const chev = document.getElementById('wchev-' + i);
+        if (chev) chev.style.transform = 'rotate(180deg)';
+      }
+      break;
+    }
+  }
+
+  updateProgress();
+
+  // Show closing if all done
+  const allDone = Array.from({length:8},(_,i)=>completed[i+1]).every(Boolean);
+  if (allDone) {
+    document.getElementById('closingSection').style.display = 'block';
+  }
+}
+
+// ============================================================
+// TOGGLE WEEK
+// ============================================================
+function toggleWeek(n) {
+  const card = document.getElementById('wcard-' + n);
+  if (card.classList.contains('locked')) return;
+
+  const wasOpen = card.classList.contains('open');
+  card.classList.toggle('open', !wasOpen);
+  const chev = document.getElementById('wchev-' + n);
+  if (chev) chev.style.transform = wasOpen ? '' : 'rotate(180deg)';
+}
+
+// ============================================================
+// JOURNAL INPUT
+// ============================================================
+function onJournalInput(n) {
+  const ta = document.getElementById('w' + n + '-journal');
+  const len = ta.value.length;
+  updateCharCount(n, len);
+  updateCompleteBtn(n);
+
+  clearTimeout(saveTimers[n]);
+  saveTimers[n] = setTimeout(() => {
+    if (!state.journals) state.journals = {};
+    state.journals[n] = ta.value;
+    if (saveState(state)) flashSave(n);
+  }, 800);
+}
+
+function updateCharCount(n, len) {
+  const el = document.getElementById('cc-w' + n);
+  if (el) {
+    el.textContent = len < MIN_CHARS
+      ? len + ' / ' + MIN_CHARS + ' karakter minimum'
+      : len + ' karakter';
+    el.style.color = len >= MIN_CHARS ? 'var(--green)' : 'var(--text-muted)';
+  }
+}
+
+function updateCompleteBtn(n) {
+  const ta = document.getElementById('w' + n + '-journal');
+  const cbtn = document.getElementById('cbtn-' + n);
+  if (!ta || !cbtn) return;
+  const done = (state.completed || {})[n];
+  if (!done) {
+    cbtn.disabled = ta.value.trim().length < MIN_CHARS;
+  }
+}
+
+function flashSave(n) {
+  const el = document.getElementById('save-w' + n);
+  if (!el) return;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+// ============================================================
+// COMPLETE WEEK
+// ============================================================
+function completeWeek(n) {
+  const ta = document.getElementById('w' + n + '-journal');
+  if (!ta || ta.value.trim().length < MIN_CHARS) return;
+
+  if (!state.completed) state.completed = {};
+  if (!state.journals)  state.journals  = {};
+  state.completed[n] = true;
+  state.journals[n]  = ta.value;
+  saveState(state);
+
+  refreshUI();
+
+  // Scroll to next week if available
+  if (n < 8) {
+    setTimeout(() => {
+      const next = document.getElementById('wcard-' + (n + 1));
+      if (next) next.scrollIntoView({ behavior:'smooth', block:'start' });
+    }, 300);
+  } else {
+    setTimeout(() => {
+      document.getElementById('closingSection').scrollIntoView({ behavior:'smooth', block:'start' });
+    }, 300);
+  }
+}
+
+// ============================================================
+// PROGRESS
+// ============================================================
+function updateProgress() {
+  const completed = state.completed || {};
+  const f1 = [1,2].filter(n=>completed[n]).length;
+  const f2 = [3,4,5].filter(n=>completed[n]).length;
+  const f3 = [6,7,8].filter(n=>completed[n]).length;
+
+  document.getElementById('pf1').style.width = (f1/2*100) + '%';
+  document.getElementById('pf2').style.width = (f2/3*100) + '%';
+  document.getElementById('pf3').style.width = (f3/3*100) + '%';
+  document.getElementById('pc1').textContent = f1 + '/2';
+  document.getElementById('pc2').textContent = f2 + '/3';
+  document.getElementById('pc3').textContent = f3 + '/3';
+
+  const total = f1 + f2 + f3;
+  const note = document.getElementById('overview-note');
+  if (total === 0) {
+    note.textContent = 'Jurnal ini tidak bisa dikerjakan terburu-buru. Setiap minggu terkunci sampai minggu sebelumnya selesai ditulis — bukan sebagai hukuman, tapi karena perjalanan ini punya urutan yang dijaga.';
+  } else if (total < 4) {
+    note.textContent = 'Kamu sudah memulai. Teruslah. Setiap minggu yang kamu selesaikan membuka satu pintu berikutnya.';
+  } else if (total < 7) {
+    note.textContent = 'Kamu sedang di tengah perjalanan. Yang paling berat seringkali ada di Fase 3 — tapi itu juga yang paling mengubah.';
+  } else if (total < 8) {
+    note.textContent = 'Hampir selesai. Satu minggu lagi — dan ini adalah yang paling penting.';
+  } else {
+    note.textContent = 'Perjalanan 8 minggu selesai. Lampu yang sama yang dibawa Tamar, Rahab, Ruth, Boaz, Obed, Daud — sekarang ada di tanganmu.';
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+init();
+</script>
+</body>
+</html>

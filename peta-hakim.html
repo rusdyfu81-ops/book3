@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peta Era Hakim — The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Buku 3: The Unquenchable Lamp of the Covenant
+   Mengikuti DESIGN-SYSTEM_Buku3.md — LOCKED
+   ============================================================ */
+:root {
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --green:       #2bb673;
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+  /* Warna semantik era hakim */
+  --dark-era:    #2a1a0e;
+  --sin-red:     #c0392b;
+  --peace-green: var(--green);
+  --oppression:  #8B3A2A;
+  --covenant:    var(--gold);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Focus + Motion */
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ============================================================ NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--teal-dark);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 20px; height: 48px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-brand { color: white; font-weight: 800; font-size: 13px; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+.nav-link {
+  color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 600;
+  white-space: nowrap; padding: 4px 8px; border-radius: var(--radius-sm); flex-shrink: 0; transition: background 0.2s;
+}
+.nav-link:hover, .nav-link:focus-visible { background: rgba(255,255,255,0.15); color: white; outline: none; }
+.nav-badge {
+  margin-left: auto; flex-shrink: 0;
+  background: rgba(255,255,255,0.2); color: white;
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;
+}
+
+/* Storage warning */
+#storage-warning { display: none; background: #fff3cd; color: #7a5c00; padding: 8px 20px; font-size: 13px; text-align: center; }
+
+/* ============================================================ HERO — Tier S (Tool page) */
+.hero {
+  background: var(--bg3);
+  border-bottom: 2px solid var(--border);
+  color: var(--text);
+  padding: 48px 24px 40px;
+  text-align: center;
+}
+.hero-eyebrow { color: var(--teal); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; display: block; }
+.hero h1 {
+  font-size: clamp(20px, 4vw, 30px);
+  font-family: var(--font-ui); font-weight: 800; line-height: 1.2;
+  color: var(--text); margin-bottom: 12px;
+}
+.hero .subtitle { color: var(--text-light); font-size: 16px; max-width: 560px; margin: 0 auto 20px; }
+.hero-stats {
+  display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 16px;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num { font-size: 28px; font-weight: 800; color: var(--teal-dark); display: block; line-height: 1; }
+.hero-stat-num.dark { color: var(--dark-era); }
+.hero-stat-num.gold { color: var(--gold); }
+.hero-stat-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ============================================================ TABS */
+.tabs {
+  display: flex; justify-content: center; gap: 4px; padding: 20px 20px 0;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 8px 18px; background: none;
+  border: 2px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text-light); font-family: var(--font-ui); font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s; white-space: nowrap; min-height: 44px;
+}
+.tab-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
+.tab-btn.active { background: var(--teal-dark); border-color: var(--teal-dark); color: white; }
+
+/* ============================================================ MAIN WRAP */
+.main-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ============================================================ SECTION HEADER */
+.section-header { margin-bottom: 24px; }
+.section-header h2 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.section-header p { font-size: 14px; color: var(--text-light); font-family: var(--font-content); font-style: italic; }
+
+/* ============================================================ LEGEND */
+.legend {
+  display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  padding: 12px 16px; background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 12px; color: var(--text-light);
+}
+.legend-item { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+/* ============================================================ HORIZONTAL TIMELINE */
+.tl-outer {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+}
+.tl-outer::-webkit-scrollbar { height: 6px; }
+.tl-outer::-webkit-scrollbar-track { background: var(--bg2); border-radius: 3px; }
+.tl-outer::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.tl-canvas {
+  position: relative;
+  min-width: 900px;
+  padding: 0 0 20px;
+}
+
+/* Axis */
+.tl-axis {
+  position: relative; height: 32px; margin-bottom: 4px;
+  border-bottom: 2px solid var(--border);
+}
+.tl-tick {
+  position: absolute; bottom: 0; transform: translateX(-50%);
+  font-size: 10px; font-weight: 700; color: var(--text-muted);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.tl-tick::after { content: ''; display: block; width: 1px; height: 8px; background: var(--border); }
+.tl-axis-label {
+  position: absolute; bottom: -20px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
+}
+
+/* Dark era background band */
+.tl-dark-band {
+  position: absolute; top: 40px; bottom: 0;
+  background: linear-gradient(180deg, rgba(42,26,14,0.06) 0%, rgba(42,26,14,0.03) 100%);
+  pointer-events: none;
+  border-top: 2px solid rgba(42,26,14,0.12);
+}
+
+/* Rows */
+.tl-rows { position: relative; }
+
+/* Row for hakim */
+.tl-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 0 12px;
+  min-height: 48px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.tl-row:hover { background: rgba(29,173,168,0.04); }
+.tl-row-label {
+  text-align: right; padding-right: 12px;
+  font-size: 12px; font-weight: 700; color: var(--text);
+  display: flex; flex-direction: column; align-items: flex-end;
+  cursor: pointer;
+}
+.tl-row-label:hover .row-name { color: var(--teal-dark); }
+.row-name { font-size: 13px; font-weight: 800; line-height: 1.2; transition: color 0.15s; }
+.row-sub { font-size: 10px; color: var(--text-muted); font-weight: 600; }
+.tl-bar-cell {
+  position: relative; height: 48px; cursor: pointer;
+}
+
+/* Bar segments */
+.bar-opp {
+  position: absolute; height: 16px; top: 8px;
+  border-radius: 3px;
+  background: var(--sin-red); opacity: 0.5;
+}
+.bar-lead {
+  position: absolute; height: 24px; top: 12px;
+  border-radius: 4px;
+  transition: filter 0.18s;
+}
+.tl-bar-cell:hover .bar-lead { filter: brightness(1.1); }
+.bar-label {
+  position: absolute; top: 12px; height: 24px;
+  display: flex; align-items: center;
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9);
+  padding: 0 6px; pointer-events: none; white-space: nowrap;
+  font-family: var(--font-ui);
+}
+.bar-peace-note {
+  position: absolute; top: 38px;
+  font-size: 10px; color: var(--green); font-weight: 700;
+  font-family: var(--font-content); font-style: italic;
+  white-space: nowrap; pointer-events: none;
+}
+.bar-opp-label {
+  position: absolute; top: 8px; height: 16px;
+  display: flex; align-items: center;
+  font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.85);
+  padding: 0 4px; pointer-events: none; white-space: nowrap;
+}
+
+/* Covenant dots (Salmon, Boaz, Obed) */
+.cov-dot-row {
+  display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 0 12px; min-height: 52px;
+}
+.cov-dot-label { text-align: right; padding-right: 12px; font-size: 11px; font-weight: 800; color: var(--gold); display: flex; flex-direction: column; align-items: flex-end; }
+.cov-dot-label span { font-size: 9px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.cov-dot-cell { position: relative; height: 52px; }
+.cov-dot {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--gold); border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--gold), 0 2px 8px rgba(184,134,11,0.4);
+  cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  z-index: 10;
+}
+.cov-dot:hover { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 0 3px var(--gold), 0 4px 16px rgba(184,134,11,0.5); }
+.cov-dot-name {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 11px; font-weight: 800; color: var(--gold);
+  white-space: nowrap; font-family: var(--font-ui);
+}
+
+/* Divider row */
+.tl-divider {
+  display: grid; grid-template-columns: 120px 1fr; gap: 0 12px; height: 24px; align-items: center;
+}
+.tl-divider-label { text-align: right; padding-right: 12px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+.tl-divider-line { height: 1px; background: var(--border); }
+.tl-divider-line.gold-line { background: var(--gold); opacity: 0.4; }
+
+/* ============================================================ STAT CARDS */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 28px; }
+.stat-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 16px;
+  text-align: center;
+}
+.stat-card-num { font-size: 36px; font-weight: 800; color: var(--teal-dark); display: block; line-height: 1; margin-bottom: 4px; }
+.stat-card-num.red { color: var(--sin-red); }
+.stat-card-num.gold { color: var(--gold); }
+.stat-card-num.dark { color: var(--dark-era); }
+.stat-card-label { font-size: 12px; color: var(--text-light); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ============================================================ CYCLE VISUAL */
+.cycle-wrap { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 24px; }
+.cycle-wrap h3 { font-size: 15px; font-weight: 800; margin-bottom: 16px; color: var(--text); }
+.cycle-steps { display: flex; align-items: stretch; gap: 0; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+.cycle-step { flex: 1; padding: 16px 12px; text-align: center; position: relative; }
+.cycle-step::after {
+  content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+  font-size: 16px; font-weight: 700; color: var(--text-muted); z-index: 2;
+}
+.cycle-step:last-child::after { display: none; }
+.cycle-step.step-sin { background: #fef2f2; }
+.cycle-step.step-opp { background: #fdf0ed; }
+.cycle-step.step-cry { background: #fffbeb; }
+.cycle-step.step-peace { background: #f0fdf4; }
+.cycle-step-icon { font-size: 22px; margin-bottom: 6px; display: block; }
+.cycle-step-name { font-size: 12px; font-weight: 800; display: block; margin-bottom: 4px; }
+.step-sin .cycle-step-name { color: var(--sin-red); }
+.step-opp .cycle-step-name { color: var(--oppression); }
+.step-cry .cycle-step-name { color: #b45309; }
+.step-peace .cycle-step-name { color: var(--green); }
+.cycle-step-desc { font-size: 11px; color: var(--text-muted); font-family: var(--font-content); font-style: italic; line-height: 1.4; }
+.cycle-note {
+  font-family: var(--font-content); font-style: italic;
+  font-size: 14px; color: var(--text-light); margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+  line-height: 1.7;
+}
+
+/* ============================================================ HAKIM LIST (panel 2) */
+.hakim-list { display: flex; flex-direction: column; gap: 8px; }
+.hakim-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; cursor: pointer;
+  transition: box-shadow 0.15s;
+}
+.hakim-item:hover { box-shadow: var(--shadow); }
+.hakim-item.open { box-shadow: var(--shadow); }
+.hakim-header {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+  min-height: 44px;
+}
+.hakim-type-bar { width: 4px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+.type-major { background: var(--teal); }
+.type-minor { background: var(--border); }
+.type-special { background: var(--gold); }
+.type-oppressor { background: var(--sin-red); }
+.hakim-name { font-size: 15px; font-weight: 800; flex: 1; }
+.hakim-meta { font-size: 12px; color: var(--text-muted); display: flex; gap: 8px; align-items: center; }
+.hakim-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.badge-major { background: var(--teal-light); color: var(--teal-dark); }
+.badge-minor { background: var(--bg2); color: var(--text-muted); }
+.badge-special { background: #fef3c7; color: #92400e; }
+.badge-oppressor { background: #fef2f2; color: var(--sin-red); }
+.hakim-chevron { font-size: 12px; color: var(--text-muted); transition: transform 0.2s; }
+.hakim-item.open .hakim-chevron { transform: rotate(180deg); }
+
+.hakim-body {
+  display: none; padding: 0 16px 16px 16px; padding-left: 32px;
+  border-top: 1px solid var(--border);
+}
+.hakim-item.open .hakim-body { display: block; }
+
+.hakim-stats { display: flex; gap: 12px; flex-wrap: wrap; padding: 12px 0; }
+.hstat { background: var(--bg3); border-radius: var(--radius-sm); padding: 8px 12px; text-align: center; min-width: 80px; }
+.hstat-val { font-size: 18px; font-weight: 800; color: var(--teal-dark); display: block; }
+.hstat-val.red { color: var(--sin-red); }
+.hstat-val.gold { color: var(--gold); }
+.hstat-label { font-size: 10px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+
+.hakim-notes { font-family: var(--font-content); font-size: 14px; line-height: 1.8; color: var(--text-light); margin: 8px 0; }
+.hakim-notes p { margin-bottom: 8px; }
+.note-park {
+  background: var(--teal-light); border-left: 3px solid var(--teal);
+  padding: 10px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 10px 0; font-style: italic;
+}
+.note-theological {
+  background: var(--bg2); border-left: 3px solid var(--gold);
+  padding: 10px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 10px 0;
+}
+.degradasi-note {
+  background: #fef2f2; border-left: 3px solid var(--sin-red);
+  padding: 8px 12px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 13px; margin-top: 8px;
+}
+.idols-note { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+.idols-note strong { color: var(--text-light); }
+
+/* ============================================================ COVENANT LINEAGE (panel 3) */
+.cov-lineage { display: flex; flex-direction: column; gap: 20px; }
+.cov-person {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 20px 20px 24px;
+}
+.cov-person-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.cov-gold-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--gold); flex-shrink: 0; }
+.cov-person-name { font-size: 18px; font-weight: 800; color: var(--text); }
+.cov-person-gen { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+.cov-person-meaning { font-size: 13px; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+.cov-person-body { font-family: var(--font-content); font-size: 14px; line-height: 1.8; color: var(--text-light); }
+.cov-person-body p { margin-bottom: 10px; }
+.cov-highlight {
+  background: #fef3c7; border-left: 3px solid var(--gold);
+  padding: 10px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 10px 0; font-style: italic;
+}
+.cov-connection {
+  display: flex; align-items: center; gap: 8px; padding: 8px 0;
+  font-size: 13px; color: var(--text-muted); font-weight: 700;
+}
+.cov-connection::before { content: ''; flex: 1; height: 1px; background: var(--border); }
+.cov-connection::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ============================================================ MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 300;
+  align-items: center; justify-content: center; padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--white); border-radius: var(--radius-lg);
+  max-width: 520px; width: 100%;
+  box-shadow: var(--shadow-lg); overflow: hidden;
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(8px); } to { opacity: 1; transform: none; } }
+.modal-top-bar { height: 5px; }
+.modal-inner { padding: 24px 24px 28px; }
+.modal-close {
+  float: right; background: var(--bg2); border: none; width: 32px; height: 32px;
+  border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--text-light);
+  display: flex; align-items: center; justify-content: center; transition: background 0.15s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-badge {
+  display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px;
+  border-radius: 10px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;
+}
+.modal-name { font-size: 24px; font-weight: 800; color: var(--text); margin-bottom: 2px; }
+.modal-meaning { font-size: 13px; font-style: italic; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-content); }
+.modal-ref { font-size: 11px; font-weight: 700; color: var(--teal); margin-bottom: 16px; }
+.modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+.mstat { background: var(--bg3); border-radius: var(--radius-sm); padding: 10px 6px; text-align: center; }
+.mstat-val { font-size: 18px; font-weight: 800; color: var(--teal-dark); display: block; margin-bottom: 2px; }
+.mstat-val.zero { color: var(--sin-red); }
+.mstat-label { font-size: 10px; color: var(--text-muted); font-weight: 600; }
+.modal-cycle { display: flex; gap: 0; margin-bottom: 16px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+.mcycle-phase { flex: 1; padding: 6px 4px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.03em; }
+.mcp-sin { background: #fef2f2; color: var(--sin-red); }
+.mcp-opp { background: #fdf0ed; color: var(--oppression); }
+.mcp-cry { background: #fffbeb; color: #b45309; }
+.mcp-peace { background: #f0fdf4; color: var(--green); }
+.modal-div { height: 1px; background: var(--border); margin: 12px 0; }
+.modal-notes { font-family: var(--font-content); font-size: 14px; line-height: 1.8; color: var(--text-light); }
+.modal-notes p { margin-bottom: 8px; }
+.mn-park { background: var(--teal-light); border-left: 3px solid var(--teal); padding: 8px 12px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 8px 0; font-style: italic; }
+.mn-theo { background: var(--bg2); border-left: 3px solid var(--gold); padding: 8px 12px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 8px 0; }
+.mn-deg { background: #fef2f2; border-left: 3px solid var(--sin-red); padding: 8px 12px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 8px 0; }
+.modal-links { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+.modal-link {
+  font-size: 12px; font-weight: 700; color: var(--teal-dark);
+  text-decoration: none; padding: 5px 12px; border-radius: var(--radius-sm);
+  border: 1px solid var(--teal); transition: all 0.15s;
+}
+.modal-link:hover { background: var(--teal); color: white; }
+
+/* ============================================================ PARK QUOTE */
+.park-quote {
+  background: var(--bg2); border-radius: var(--radius);
+  padding: 20px 24px; margin: 24px 0;
+  border-left: 4px solid var(--teal-dark);
+}
+.park-quote blockquote {
+  font-family: var(--font-content); font-style: italic;
+  font-size: 16px; line-height: 1.8; color: var(--text); margin-bottom: 8px;
+}
+.park-quote cite { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+
+/* ============================================================ RESPONSIVE */
+@media (max-width: 640px) {
+  .tl-row { grid-template-columns: 90px 1fr; }
+  .tl-row-label { padding-right: 8px; }
+  .row-name { font-size: 11px; }
+  .cov-dot-row { grid-template-columns: 90px 1fr; }
+  .modal-stats { grid-template-columns: 1fr 1fr; }
+  .cycle-steps { flex-direction: column; }
+  .cycle-step::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Sejarah Penebusan</a>
+  <a href="index.html" class="nav-link">← Beranda</a>
+  <a href="pendamping-baca.html" class="nav-link">Pendamping Baca</a>
+  <a href="peta-kovenan.html" class="nav-link">Peta Kovenan</a>
+  <a href="galeri-nama-pelita.html" class="nav-link">Galeri Nama Pelita</a>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<div id="storage-warning">
+  ⚠️ Progress tidak bisa disimpan di mode penyamaran. Gunakan browser biasa untuk menyimpan perjalananmu.
+</div>
+
+<div class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Buku 3 · Part 4</span>
+  <h1>Peta Era Hakim</h1>
+  <p class="subtitle">340 tahun kegelapan — tapi lampu tidak padam. Setiap hakim yang lemah adalah bukti bahwa yang berperang adalah Allah sendiri.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num dark">±340</span>
+      <span class="hero-stat-label">Tahun Kegelapan</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">12</span>
+      <span class="hero-stat-label">Hakim Israel</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num gold">3</span>
+      <span class="hero-stat-label">Titik Kovenan Bertahan</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" style="color:var(--sin-red)">7</span>
+      <span class="hero-stat-label">Jenis Berhala di Akhir Era</span>
+    </div>
+  </div>
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab-btn active" onclick="switchTab('timeline')" role="tab" aria-selected="true">⏱ Timeline Hakim</button>
+  <button class="tab-btn" onclick="switchTab('daftar')" role="tab">📋 Daftar Hakim</button>
+  <button class="tab-btn" onclick="switchTab('kovenan')" role="tab">🕯 Jalur Kovenan</button>
+</div>
+
+<div class="main-wrap">
+
+  <!-- ======================================================= PANEL 1: TIMELINE -->
+  <div id="panel-timeline" class="panel active">
+    <div class="section-header">
+      <h2>Timeline Horizontal 340 Tahun</h2>
+      <p>Klik nama hakim untuk melihat detail. Garis emas = titik kovenan yang bertahan di tengah kegelapan.</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Hakim utama</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--border)"></div>Hakim minor</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#d4a017;border-radius:50%"></div>Hakim istimewa (kelahiran malaikat / nabi)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--sin-red);opacity:0.5"></div>Masa penindasan</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--gold);border-radius:50%"></div>Titik kovenan (Salmon · Boaz · Obed)</div>
+    </div>
+
+    <div class="tl-outer" id="tlOuter">
+      <div class="tl-canvas" id="tlCanvas">
+
+        <!-- Axis -->
+        <div class="tl-axis" id="tlAxis"></div>
+
+        <!-- Dark era band — injected by JS -->
+        <div class="tl-dark-band" id="tlDarkBand"></div>
+
+        <div class="tl-rows" id="tlRows">
+          <!-- Injected by JS -->
+        </div>
+
+      </div><!-- /tl-canvas -->
+    </div><!-- /tl-outer -->
+
+    <div class="park-quote" style="margin-top:32px;">
+      <blockquote>"God chose people with imperfections and weaknesses as judges to save Israel in order to show them that the true savior and ruler of Israel is not man, but God Himself."</blockquote>
+      <cite>— Abraham Park, The Unquenchable Lamp of the Covenant, hal. 165</cite>
+    </div>
+  </div>
+
+  <!-- ======================================================= PANEL 2: DAFTAR -->
+  <div id="panel-daftar" class="panel">
+    <div class="section-header">
+      <h2>Daftar 12 Hakim Israel</h2>
+      <p>Dari Otniel yang ideal sampai Samson yang kontradiktif — setiap hakim adalah cermin bagi pembaca.</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-card-num">240</span>
+        <span class="stat-card-label">Tahun Damai Tercatat</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card-num red">113+</span>
+        <span class="stat-card-label">Tahun Penindasan</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card-num gold">1</span>
+        <span class="stat-card-label">Hakim Perempuan</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card-num dark">0</span>
+        <span class="stat-card-label">Hakim Sempurna</span>
+      </div>
+    </div>
+
+    <div class="cycle-wrap">
+      <h3>Siklus yang Berulang — Diagnosis Manusia</h3>
+      <div class="cycle-steps">
+        <div class="cycle-step step-sin">
+          <span class="cycle-step-icon">⛓</span>
+          <span class="cycle-step-name">Dosa</span>
+          <span class="cycle-step-desc">Israel meninggalkan Allah, menyembah berhala bangsa lain</span>
+        </div>
+        <div class="cycle-step step-opp">
+          <span class="cycle-step-icon">⚔</span>
+          <span class="cycle-step-name">Penindasan</span>
+          <span class="cycle-step-desc">Musuh bangkit, Israel menderita di bawah tangan mereka</span>
+        </div>
+        <div class="cycle-step step-cry">
+          <span class="cycle-step-icon">🙏</span>
+          <span class="cycle-step-name">Seruan</span>
+          <span class="cycle-step-desc">Israel berseru kepada TUHAN karena tidak tahan lagi</span>
+        </div>
+        <div class="cycle-step step-peace">
+          <span class="cycle-step-icon">🕊</span>
+          <span class="cycle-step-name">Pembebasan</span>
+          <span class="cycle-step-desc">Allah mengutus hakim, musuh dikalahkan, damai dipulihkan</span>
+        </div>
+      </div>
+      <p class="cycle-note"><em>Refleksi editorial:</em> Siklus ini adalah bagian dari sejarah pribadi kita hari ini — sejarah manusia yang lemah. Pertobatan kita tidak selalu murni; kadang kita berseru karena tidak tahan, bukan karena cinta kepada Allah. Tapi Allah menjawab tetap saja.</p>
+    </div>
+
+    <div class="hakim-list" id="hakimList">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- ======================================================= PANEL 3: KOVENAN -->
+  <div id="panel-kovenan" class="panel">
+    <div class="section-header">
+      <h2>Jalur Kovenan yang Bertahan</h2>
+      <p>Di tengah 340 tahun yang lebih gelap dari Sodom, tiga nama ini membawa lampu kovenan tetap menyala.</p>
+    </div>
+
+    <div class="park-quote">
+      <blockquote>"These three women became the crucial links that helped the lamp of the covenant to continue burning... No obstacle on this earth could stand in the way of their living faith."</blockquote>
+      <cite>— Abraham Park, Conclusion, hal. 326–327</cite>
+    </div>
+
+    <div class="cov-lineage">
+
+      <div class="cov-person">
+        <div class="cov-person-head">
+          <div class="cov-gold-dot"></div>
+          <div>
+            <div class="cov-person-name">Salmon</div>
+            <div class="cov-person-gen">Generasi ke-10 · ~1400 SM</div>
+          </div>
+        </div>
+        <div class="cov-person-meaning">📖 Arti nama: "Jubah" atau "Penutup" (Ibrani: שַׂלְמוֹן)</div>
+        <div class="cov-person-body">
+          <p>Salmon adalah prajurit Israel yang masuk Kanaan bersama Yosua. Ia menikahi Rahab — perempuan Gentil dari Yerikho, mantan pelacur yang menyembunyikan mata-mata Israel dengan taruhan nyawanya.</p>
+          <div class="cov-highlight">
+            Park menulis bahwa seperti namanya, Salmon "menutupi masa lalu Rahab yang memalukan seperti dengan jubah atau mantel" — gambaran hidup dari Kristus yang menutupi dosa kita. <span style="font-size:0.85em;opacity:0.75;">(Abraham Park, Bab 17 — parafrase)</span>
+          </div>
+          <p>Salmon dan Rahab hidup di masa transisi: Israel baru masuk Kanaan, belum stabil, era hakim belum dimulai. Mereka adalah generasi yang membawa lampu dari padang gurun masuk ke era yang akan menjadi paling gelap dalam sejarah Israel.</p>
+          <p><strong>Karakter Kristus yang tercermin:</strong> Seperti Kristus menutup dosa kita dengan darah-Nya, Salmon menutup masa lalu Rahab dengan jubahnya — penerimaan tanpa syarat, pemulihan melalui pernikahan perjanjian.</p>
+        </div>
+      </div>
+
+      <div class="cov-connection">Lampu diwariskan</div>
+
+      <div class="cov-person">
+        <div class="cov-person-head">
+          <div class="cov-gold-dot"></div>
+          <div>
+            <div class="cov-person-name">Boaz</div>
+            <div class="cov-person-gen">Generasi ke-11 · ~1100 SM (Zaman Hakim)</div>
+          </div>
+        </div>
+        <div class="cov-person-meaning">📖 Arti nama: "Kekuatan" atau "Ketangkasan" (Ibrani: בֹּעַז)</div>
+        <div class="cov-person-body">
+          <p>Boaz hidup tepat di tengah-tengah era hakim yang paling gelap. Ia adalah orang kaya dari Betlehem yang turun ke ladang dan makan bersama para pekerjanya — simbol kerendahan hati yang luar biasa di zamannya.</p>
+          <div class="cov-highlight">
+            "Boaz appears as a Jesus-like figure. Rich, yet he came down to the threshing floor and slept there. He is the kinsman-redeemer who redeems Ruth the foreign woman." — Abraham Park
+          </div>
+          <p>Boaz menikahi Ruth — perempuan Moab yang datang dari bangsa musuh Israel. Tindakannya sebagai "penebus" (<em>go'el</em>) adalah salah satu gambaran Kristus paling eksplisit dalam Perjanjian Lama.</p>
+          <p><strong>Karakter Kristus yang tercermin:</strong> Boaz turun ke posisi yang paling rendah untuk menebus yang tidak bisa menebus dirinya sendiri — seperti Kristus yang mengosongkan diri-Nya untuk menjadi penebus manusia.</p>
+        </div>
+      </div>
+
+      <div class="cov-connection">Lampu diwariskan</div>
+
+      <div class="cov-person">
+        <div class="cov-person-head">
+          <div class="cov-gold-dot"></div>
+          <div>
+            <div class="cov-person-name">Obed</div>
+            <div class="cov-person-gen">Generasi ke-12 · ~1070 SM (Akhir Era Hakim)</div>
+          </div>
+        </div>
+        <div class="cov-person-meaning">📖 Arti nama: "Pelayan" atau "Penyembah" (Ibrani: עֹבֵד)</div>
+        <div class="cov-person-body">
+          <p>Obed hampir tidak memiliki catatan heroik. Alkitab hanya menyebut dua hal tentangnya: ia adalah "anak bagi Naomi" dan ia mendukung Naomi di hari tuanya.</p>
+          <div class="cov-highlight">
+            "The word 'nurse' used for Naomi caring for Obed comes from the same Hebrew root as <em>amen</em> — the word believers have used in prayer for thousands of years. Obed's simple faithfulness is woven into every prayer we pray." — Abraham Park
+          </div>
+          <p>Tidak ada kemenangan militer. Tidak ada momen dramatis. Hanya kesetiaan kepada orang tua yang menua — dilakukan di akhir era hakim yang paling kacau, saat siklus dosa Israel mencapai titik terparah.</p>
+          <p><strong>Yang paling mengejutkan:</strong> Park menunjukkan bahwa kata Ibrani untuk "merawat" Naomi adalah akar dari kata <em>amen</em> — respons iman universal umat Allah di semua zaman. Kesetiaan sederhana Obed terhubung ke setiap doa yang pernah dipanjatkan.</p>
+          <p><strong>Karakter Kristus yang tercermin:</strong> Seperti Kristus yang datang bukan untuk dilayani melainkan untuk melayani (Mat. 20:28), Obed membawa lampu bukan dengan kekuatan — tapi dengan pelayanan yang tidak terlihat.</p>
+        </div>
+      </div>
+
+    </div><!-- /cov-lineage -->
+
+    <div class="park-quote" style="margin-top: 32px;">
+      <blockquote>"It would not be an exaggeration to say that they had been born, had lived, and died for the purpose of fulfilling the divine work of redemption through Jesus Christ."</blockquote>
+      <cite>— Abraham Park, hal. 62</cite>
+    </div>
+
+    <div style="background:var(--bg2);border-radius:var(--radius);padding:20px 24px;margin-top:20px;">
+      <p style="font-family:var(--font-content);font-size:15px;line-height:1.9;color:var(--text);font-style:italic;">
+        Salmon, Boaz, dan Obed bukanlah orang-orang yang hidup di masa aman. Mereka hidup tepat di tengah periode yang Park sebut "lebih buruk dari Sodom." Tapi justru di sanalah lampu kovenan dinyalakan — bukan karena kondisinya baik, tapi karena <em>zeal</em> Allah yang tidak bisa diam melihat garis itu terputus.
+      </p>
+    </div>
+
+  </div><!-- /panel-kovenan -->
+
+</div><!-- /main-wrap -->
+
+<!-- ======================================================= MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-top-bar" id="modalTopBar"></div>
+    <div class="modal-inner">
+      <button class="modal-close" onclick="closeModalDirect()" aria-label="Tutup">✕</button>
+      <div class="modal-badge" id="modalBadge"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-meaning" id="modalMeaning"></div>
+      <div class="modal-ref" id="modalRef"></div>
+      <div class="modal-stats" id="modalStats"></div>
+      <div class="modal-cycle" id="modalCycle"></div>
+      <div class="modal-div"></div>
+      <div class="modal-notes" id="modalNotes"></div>
+      <div class="modal-links" id="modalLinks"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const TL_START = 1406; // BC — masuk Kanaan
+const TL_END   = 1050; // BC — Saul dinobatkan
+
+// pctX: posisi % pada timeline (kiri = 1406 BC, kanan = 1050 BC)
+function pctX(bc) {
+  return ((TL_START - bc) / (TL_START - TL_END) * 100).toFixed(3) + '%';
+}
+function pctW(bcStart, bcEnd) {
+  return ((bcStart - bcEnd) / (TL_START - TL_END) * 100).toFixed(3) + '%';
+}
+
+const JUDGES = [
+  {
+    id:'otniel', name:'Otniel', suku:'Yehuda', type:'major',
+    ref:'Hak 3:7–11', meaning:'"Singa Allah" (Ibrani: עָתְנִיאֵל)',
+    bcStart:1383, bcEnd:1344, leadYrs:40, peaceNote:'40 thn damai',
+    opp:{bcStart:1390, bcEnd:1383, enemy:'Kushan-Risyataim, Raja Mesopotamia', durStr:'8 tahun'},
+    notes:[
+      '<p>Otniel adalah hakim pertama Israel. Ia adalah keponakan Kaleb dari suku Yehuda — memimpin seluruh bangsa Israel bersatu.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> Otniel menjadi hakim karena <em>Roh TUHAN ada padanya</em> (Hak 3:10). Pola ini berulang: bukan kekuatan manusia, melainkan urapan ilahi yang memampukan hakim membebaskan Israel.</div>',
+      '<div class="mn-theo">⚡ <strong>Makna teologis:</strong> Otniel adalah "template" ideal — dipanggil Allah, diurapi Roh, menang atas musuh, membawa damai 40 tahun. Hakim-hakim berikutnya semakin jauh dari ideal ini. Kemerosotan dimulai dari sini.</div>'
+    ],
+    degradasi:'Hakim ideal. Alkitab mencatat: "negeri itu aman empat puluh tahun" (Hak 3:11). Tidak ada catatan dosa pribadi.',
+    berhala:['Baal-Baalim', 'Asytoret'],
+    color:'var(--teal)'
+  },
+  {
+    id:'ehud', name:'Ehud', suku:'Benyamin', type:'major',
+    ref:'Hak 3:12–30', meaning:'"Pujian" atau "Kekuatan" (Ibrani: אֵהוּד)',
+    bcStart:1327, bcEnd:1248, leadYrs:80, peaceNote:'80 thn damai',
+    opp:{bcStart:1344, bcEnd:1327, enemy:'Eglon, Raja Moab', durStr:'18 tahun'},
+    notes:[
+      '<p>Ehud adalah seorang kidal — hal yang tidak biasa di dunia kuno. Ia menyembunyikan pedang pendeknya di sisi kanan untuk membunuh Raja Eglon yang sangat gemuk.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> Allah memilih orang dari suku Benyamin — "anak tangan kanan" — yang justru kidal. Ironi ilahi: tangan kiri Ehud yang tidak diperiksa penjaga membawa kematian bagi penindas Israel.</div>',
+      '<div class="mn-theo">⚡ <strong>Catatan:</strong> Damai 80 tahun adalah yang terpanjang dalam seluruh era hakim. Tapi kata "aman" yang dipakai lebih pendek dari masa Otniel — sinyal halus bahwa kegelapan sedang mengumpul.</div>'
+    ],
+    degradasi:'Damai terpanjang dalam seluruh era hakim (80 tahun). Alkitab mencatat: "negeri itu aman delapan puluh tahun" (Hak 3:30).',
+    berhala:['Baal-Baalim', 'Asytoret'],
+    color:'var(--teal)'
+  },
+  {
+    id:'samgar', name:'Samgar', suku:'?', type:'minor',
+    ref:'Hak 3:31', meaning:'Nama Huriya — bukan nama Ibrani',
+    bcStart:1290, bcEnd:1285, leadYrs:0, peaceNote:null,
+    notes:[
+      '<p>Samgar membunuh 600 orang Filistin dengan tongkat penggaruk lembu. Namanya bukan nama Ibrani — kemungkinan besar ia bukan orang Israel murni.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> Samgar termasuk dalam periode 300 tahun yang Yefta sebut (Hak 11:26). Allah memakainya meski namanya asing di telinga Israel.</div>',
+      '<div class="mn-theo">⚡ <strong>Makna teologis:</strong> Allah tidak membutuhkan senjata canggih. Tongkat petani biasa cukup di tangan yang diurapi Allah. Daud dengan batu, Samson dengan rahang keledai, Samgar dengan tongkat penggaruk lembu.</div>'
+    ],
+    degradasi:'Durasi tidak tercatat. Termasuk dalam periode Ehud. Alkitab tidak menyebut kata "aman" atau "damai" sama sekali.',
+    berhala:['Baal-Baalim', 'Asytoret'],
+    color:'#a0c4c4'
+  },
+  {
+    id:'debora', name:'Debora', suku:'Efraim', type:'special',
+    ref:'Hak 4–5', meaning:'"Lebah" (Ibrani: דְּבוֹרָה)',
+    bcStart:1229, bcEnd:1190, leadYrs:40, peaceNote:'40 thn damai',
+    opp:{bcStart:1248, bcEnd:1229, enemy:'Yabin, Raja Kanaan & Sisera', durStr:'20 tahun'},
+    notes:[
+      '<p>Debora adalah satu-satunya hakim perempuan. Ia bukan hanya hakim — ia juga nabi yang duduk di bawah pohon palma antara Rama dan Betel, mengadili perkara Israel.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> Debora bangkit ketika para lelaki tidak berani. Ia disebut "ibu di Israel" — bukan pemimpin militer, tapi ibu yang melindungi anaknya. Ketika Barak ragu maju tanpa Debora, ia berkata: perempuan yang akan mendapat kehormatan, bukan engkau.</div>',
+      '<div class="mn-theo">⚡ <strong>Makna teologis:</strong> Allah yang memilih perempuan ketika laki-laki gagal bertanggung jawab — bukan sebagai penghakiman, tapi sebagai demonstrasi bahwa Ia tidak dibatasi oleh ekspektasi sosial.</div>'
+    ],
+    degradasi:'Alkitab mencatat: "negeri itu aman empat puluh tahun" (Hak 5:31). Namun perlu nabi perempuan — Barak ragu maju tanpa Debora.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram'],
+    color:'#d4a017'
+  },
+  {
+    id:'gideon', name:'Gideon', suku:'Manasye', type:'major',
+    ref:'Hak 6–8', meaning:'"Penebang" atau "Pejuang" (Ibrani: גִּדְעוֹן)',
+    bcStart:1184, bcEnd:1145, leadYrs:40, peaceNote:'40 thn damai',
+    opp:{bcStart:1190, bcEnd:1184, enemy:'Orang Midian & Amalek', durStr:'7 tahun'},
+    notes:[
+      '<p>Gideon menerima panggilan Allah saat bersembunyi di tempat pemerasan anggur untuk mengirik gandum — gambaran betapa takutnya Israel di bawah penindasan Midian. Malaikat TUHAN memanggilnya: <em>"Pahlawan yang gagah perkasa!"</em></p>',
+      '<div class="mn-park">📖 <strong>Strategi ilahi:</strong> Allah menyaring 32.000 pasukan menjadi hanya <strong>300 orang</strong> — supaya Israel tidak menyombongkan diri. Dengan kendi, obor, dan sangkakala, 300 orang memporak-porandakan 135.000 pasukan Midian (Hak 8:10).</div>',
+      '<div class="mn-theo">⚡ <strong>Obor Gideon adalah lampu kovenan dalam miniatur.</strong> 300 obor di tengah kegelapan mengalahkan 135.000 tentara. Ini bukan strategi militer — ini visualisasi fisik dari tesis seluruh buku: lampu yang tidak bisa dipadamkan oleh kegelapan.</div>',
+      '<div class="mn-deg">⚠️ Setelah menang, Gideon membuat efod dari emas rampasan. Seluruh Israel berzina rohani dengan menyembahnya. Kemenangan militer tidak menjamin kesetiaan rohani.</div>'
+    ],
+    degradasi:'Alkitab mencatat: "negeri itu aman empat puluh tahun" (Hak 8:28). Namun Gideon membuat efod yang kemudian disembah Israel — benih berhala baru ditanam di masa damainya sendiri.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Efod Gideon'],
+    color:'var(--teal)'
+  },
+  {
+    id:'abimelekh', name:'Abimelekh', suku:'Manasye', type:'oppressor',
+    ref:'Hak 9', meaning:'"Ayahku adalah Raja" (Ibrani: אֲבִימֶלֶךְ)',
+    bcStart:1145, bcEnd:1143, leadYrs:3, peaceNote:null,
+    opp:{bcStart:1145, bcEnd:1143, enemy:'Abimelekh (perampas kekuasaan)', durStr:'3 tahun kekacauan'},
+    notes:[
+      '<p>Abimelekh adalah anak gelap Gideon dari gundiknya di Sikhem. Ia membunuh 70 saudara tirinya di atas satu batu, menyisakan hanya Yotam yang bungsu yang bersembunyi.</p>',
+      '<div class="mn-park">📖 <strong>Catatan Alkitab:</strong> Abimelekh bukan hakim yang dipanggil Allah — ia perampas kekuasaan. Masa 3 tahunnya berakhir tragis: seorang perempuan melempar batu kilangan menimpanya, dan ia minta pembantunya menusuk dia supaya tidak dikatakan mati oleh perempuan (Hak 9:54).</div>',
+      '<div class="mn-theo">⚡ <strong>Makna teologis:</strong> Abimelekh adalah produk dari efod Gideon — dosa sang ayah menghasilkan anak yang bahkan lebih jahat. Ini adalah demonstrasi mengapa Allah melarang berhala: dosa memiliki anak-anak yang lebih besar dari dirinya sendiri.</div>'
+    ],
+    degradasi:'Bukan hakim — perampas kekuasaan. Tidak ada damai sama sekali. Menyembah Baal-Berit. Membunuh 70 saudara tirinya.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Efod Gideon', 'Baal-Berit'],
+    color:'var(--sin-red)'
+  },
+  {
+    id:'tola', name:'Tola', suku:'Isakhar', type:'minor',
+    ref:'Hak 10:1–2', meaning:'"Cacing merah" / pewarna kirmizi (Ibrani: תּוֹלָע)',
+    bcStart:1143, bcEnd:1121, leadYrs:23, peaceNote:null,
+    notes:[
+      '<p>Tola muncul setelah kekacauan masa Abimelekh. Ia meninggalkan kampung halamannya dan menetap di Samir di Pegunungan Efraim sampai akhir hidupnya.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> Tola dikontraskan dengan Demas dalam PB yang meninggalkan Paulus karena "mencintai dunia ini." Tola adalah gambaran seorang hamba yang tidak mencari kenyamanan — ia pergi ke tempat yang membutuhkan dan tinggal di sana sampai mati.</div>',
+      '<div class="mn-theo">⚡ <strong>Pertanyaan cermin:</strong> "Apakah kita melayani di tempat yang membutuhkan, atau kita mencari posisi yang nyaman?" — Tidak semua pelayanan harus dramatis. Tola memimpin 23 tahun tanpa satu catatan kemenangan militer pun.</div>'
+    ],
+    degradasi:'Alkitab hanya mencatat masa jabatan 23 tahun — tidak ada kata "aman" atau "damai". Tidak ada kebangkitan rohani yang tercatat.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Efod Gideon', 'Baal-Berit'],
+    color:'#9a9a9a'
+  },
+  {
+    id:'yair', name:'Yair', suku:'Gilead', type:'minor',
+    ref:'Hak 10:3–5', meaning:'"Ia menerangi" atau "Pencerah" (Ibrani: יָאִיר)',
+    bcStart:1143, bcEnd:1121, leadYrs:22, peaceNote:null,
+    notes:[
+      '<p>Yair orang Gilead memimpin Israel 22 tahun — kemungkinan bersamaan dengan Tola di wilayah berbeda. Abraham Park mencatat bahwa Yair mengajarkan Firman Allah sebagai pencegah kejahatan.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> Nama tempat pemakaman Yair — <em>Kamon</em>, dari kata "naik" — menjadi tanda kehormatan dari rakyat. "Firman Allah ditanam di dalam hati masyarakat melalui pengajaran yang setia adalah warisan terbesar seorang pemimpin."</div>',
+      '<div class="mn-deg">⚠️ Catatan yang tersisa: 30 anak, 30 keledai, 30 kota. Apakah nama-nama anaknya dan kekayaan mereka mengalihkan perhatian dari pekerjaan Allah? Alkitab tidak menyebut kata "aman" di masanya.</div>'
+    ],
+    degradasi:'Alkitab hanya mencatat masa jabatan 22 tahun — tidak ada kata "aman". Catatan satu-satunya: 30 anak, 30 keledai, 30 kota.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Efod Gideon', 'Baal-Berit'],
+    color:'#9a9a9a'
+  },
+  {
+    id:'yefta', name:'Yefta', suku:'Gilead', type:'major',
+    ref:'Hak 11–12', meaning:'"Ia membuka" (Ibrani: יִפְתָּח)',
+    bcStart:1104, bcEnd:1099, leadYrs:6, peaceNote:null,
+    opp:{bcStart:1121, bcEnd:1104, enemy:'Orang Amon (18 thn) + Filistin (bersamaan)', durStr:'18 tahun penindasan Amon'},
+    notes:[
+      '<p>Yefta adalah anak harlot yang diusir oleh saudara-saudaranya. Ketika bangsa ini dalam bahaya, para tua-tua Gilead datang memohon bantuannya.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park mengutip kalimat Allah:</strong> "Hati Allah berkobar sehingga Ia tidak tahan melihat kesengsaraan Israel" — kata Ibrani yang dipakai: <em>tidak tahan, sangat terganggu, cemburu dengan gairah</em>. Allah yang <em>zealous</em> tidak bisa diam melihat umat-Nya menderita.</div>',
+      '<div class="mn-theo">⚡ <strong>Kontradiksi Yefta:</strong> Dipanggil oleh manusia, bukan oleh Allah. Membuat sumpah ceroboh tentang anaknya. 6 tahun jabatan — terpendek di antara hakim utama. Tapi Allah tetap memakai tangannya untuk membebaskan Israel.</div>'
+    ],
+    degradasi:'6 tahun jabatan — terpendek di antara hakim utama. Di masa ini Israel menyembah 7 jenis berhala sekaligus (Hak 10:6). Dipanggil bukan oleh Allah tapi dipaksa para tua-tua Gilead.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Ilah-ilah Sidon', 'Ilah-ilah Moab', 'Ilah-ilah Amon', 'Ilah-ilah Filistin'],
+    color:'var(--teal)'
+  },
+  {
+    id:'ibzan', name:'Ibzan', suku:'Betlehem', type:'minor',
+    ref:'Hak 12:8–10', meaning:'Tidak jelas (mungkin "Cepat" atau "Aktif")',
+    bcStart:1099, bcEnd:1093, leadYrs:7, peaceNote:null,
+    notes:[
+      '<p>Ibzan dari Betlehem (mungkin Betlehem Yehuda). Alkitab mencatat: 30 anak dinikahkan keluar, 30 istri diambil dari luar untuk anak-anaknya.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> "Dari sisi luar, rekam jejak hidup Ibzan terlihat cemerlang dan megah. Namun... ia mengabaikan rakyat dan hidup secara sembrono dalam dosa." Lalu Park langsung kontras: "Rekam jejak hidup Yesus tidak menunjukkan kehidupan yang egois atau kehidupan kemegahan untuk diri-Nya sendiri."</div>',
+      '<div class="mn-theo">⚡ <strong>Pertanyaan cermin:</strong> "Apakah kita memimpin untuk memperbesar nama keluarga kita, atau untuk memperbesar nama Allah?" — Ibzan sibuk mengatur 60 pernikahan sementara Israel tenggelam dalam 7 jenis berhala.</div>'
+    ],
+    degradasi:'7 tahun jabatan — tidak ada kata "damai". Catatan: 30 anak dinikahkan keluar, 30 istri dari luar. Masa Filistin masih menindas.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Ilah-ilah Sidon', 'Ilah-ilah Moab', 'Ilah-ilah Amon', 'Ilah-ilah Filistin'],
+    color:'#9a9a9a'
+  },
+  {
+    id:'elon', name:'Elon', suku:'Zebulon', type:'minor',
+    ref:'Hak 12:11–12', meaning:'"Pohon ek" atau "Kekuatan" (Ibrani: אֵילוֹן)',
+    bcStart:1093, bcEnd:1084, leadYrs:10, peaceNote:null,
+    notes:[
+      '<p>Elon dari Zebulon. Alkitab mencatat hanya dua hal: masa jabatan 10 tahun dan tempat pemakaman. Tidak ada satu peristiwa yang dicatat.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> "Sangat disayangkan bahwa Elon tidak meninggalkan satu pun pencapaian rohani atau pencapaian yang menginspirasi meski ia adalah orang yang cakap dan kuat." Namanya berarti kekuatan — tapi ia memimpin tanpa meninggalkan warisan apapun.</div>',
+      '<div class="mn-theo">⚡ <strong>Pertanyaan cermin:</strong> "Apakah kita akan hidup seperti pohon ek yang kuat tapi tidak berbuah? Kekuatan yang tidak digunakan untuk Allah adalah kekuatan yang sia-sia." — Park mengkontraskan Elon dengan Epafroditus yang menuangkan hidupnya bagi Paulus dan Injil.</div>'
+    ],
+    degradasi:'10 tahun jabatan — tidak ada kata "damai", tidak ada catatan apapun selain masa jabatan dan tempat pemakaman.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Ilah-ilah Sidon', 'Ilah-ilah Moab', 'Ilah-ilah Amon', 'Ilah-ilah Filistin'],
+    color:'#9a9a9a'
+  },
+  {
+    id:'abdon', name:'Abdon', suku:'Efraim', type:'minor',
+    ref:'Hak 12:13–15', meaning:'"Pelayan" atau "Penyembah" (Ibrani: עַבְדּוֹן)',
+    bcStart:1084, bcEnd:1077, leadYrs:8, peaceNote:null,
+    notes:[
+      '<p>Abdon memiliki 40 anak dan 30 cucu — semuanya naik 70 ekor keledai. Di zaman itu, naik keledai adalah simbol kekayaan dan kemewahan.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> "Ia bekerja sebagai \'hamba manusia,\' mengerahkan kekuatannya dan menginvestasikan hidupnya hanya untuk urusan pribadinya." Nama "Abdon" berarti pelayan — tapi ia menjadi pelayan kepentingan pribadinya sendiri, bukan pelayan Allah.</div>',
+      '<div class="mn-theo">⚡ <strong>Ironi nama:</strong> Abdon — "pelayan" — tapi tidak melayani Allah. Nama yang ia bawa setiap hari adalah panggilan yang ia abaikan setiap hari. Apakah kita hidup sesuai dengan nama rohani yang kita bawa?</div>'
+    ],
+    degradasi:'8 tahun jabatan — tidak ada kata "damai". Catatan: 40 anak + 30 cucu naik 70 keledai. Simbol kemewahan di tengah penindasan Filistin yang masih berjalan.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Ilah-ilah Sidon', 'Ilah-ilah Moab', 'Ilah-ilah Amon', 'Ilah-ilah Filistin'],
+    color:'#9a9a9a'
+  },
+  {
+    id:'samson', name:'Samson', suku:'Dan', type:'special',
+    ref:'Hak 13–16', meaning:'"Matahari kecil" atau "Seperti matahari" (Ibrani: שִׁמְשׁוֹן)',
+    bcStart:1121, bcEnd:1102, leadYrs:20, peaceNote:null,
+    opp:{bcStart:1121, bcEnd:1082, enemy:'Orang-orang Filistin (40 thn total)', durStr:'40 tahun penindasan Filistin'},
+    notes:[
+      '<p>Samson adalah hakim yang paling kontradiktif. Kelahirannya diumumkan malaikat (paralel dengan kelahiran Yesus). Tapi hidupnya: melacur di Gaza, menikahi perempuan Filistin, melanggar sumpah nazir, memberikan rahasia kekuatannya kepada Delilah.</p>',
+      '<div class="mn-park">📖 <strong>Abraham Park:</strong> "Penulis Ibrani mencatat Samson sebagai pria iman (Ibr 11:32). Meskipun Samson kehilangan kedua matanya karena memberikan rahasianya, ia bertobat dengan sungguh-sungguh dan berseru kepada Allah. Karena ia merebut kesempatan terakhirnya, Allah mengakui hidupnya sebagai hidup iman."</div>',
+      '<div class="mn-theo">⚡ <strong>Paradoks terbesar di seluruh era hakim:</strong> Samson membunuh lebih banyak orang di kematiannya daripada selama hidupnya. Tubuh yang telah rusak, mata yang telah hilang, rambut yang telah dicukur — masih bisa dipakai Allah untuk satu tindakan final yang menggenapkan panggilan hidupnya.</div>',
+      '<div class="mn-deg">⚠️ Pertanyaan Park kepada pembaca: "Seperti Samson, jangan pernah melewatkan kesempatan untuk bertobat ketika itu diberikan. Jika kita memiliki roh yang menyesal dan bertobat dengan segenap hati, kita dapat menyelesaikan, seperti Samson, pekerjaan besar Allah."</div>'
+    ],
+    degradasi:'20 tahun jabatan — nol damai. Alkitab tidak pernah menyebut "aman" di masa Samson. Bertarung sendirian, tidak pernah memimpin pasukan. Kemerosotan era hakim mencapai titik paling rendah.',
+    berhala:['Baal-Baalim', 'Asytoret', 'Ilah-ilah Aram', 'Ilah-ilah Sidon', 'Ilah-ilah Moab', 'Ilah-ilah Amon', 'Ilah-ilah Filistin'],
+    color:'#d4a017'
+  }
+];
+
+// Covenant lineage positions (approximate BC dates)
+const COV_LINEAGE = [
+  { name:'Salmon', gen:'Gen ke-10', meaning:'Jubah / Penutup', bc:1390 },
+  { name:'Boaz', gen:'Gen ke-11', meaning:'Kekuatan', bc:1130 },
+  { name:'Obed', gen:'Gen ke-12', meaning:'Pelayan / Penyembah', bc:1090 }
+];
+
+// ============================================================
+// TIMELINE RENDERING
+// ============================================================
+function buildTimeline() {
+  const canvas = document.getElementById('tlCanvas');
+  const axis   = document.getElementById('tlAxis');
+  const rows   = document.getElementById('tlRows');
+  const darkBand = document.getElementById('tlDarkBand');
+
+  // Canvas min-width proportional to years
+  const MIN_W = 900;
+  canvas.style.minWidth = MIN_W + 'px';
+
+  // Dark band (1390–1050 BC = era hakim)
+  darkBand.style.left  = pctX(1390);
+  darkBand.style.width = pctW(1390, 1050);
+
+  // Axis ticks
+  const ticks = [1406, 1350, 1300, 1250, 1200, 1150, 1100, 1050];
+  ticks.forEach(bc => {
+    const tick = document.createElement('div');
+    tick.className = 'tl-tick';
+    tick.style.left = pctX(bc);
+    tick.textContent = bc + ' SM';
+    axis.appendChild(tick);
+  });
+  const axLabel = document.createElement('div');
+  axLabel.className = 'tl-axis-label';
+  axLabel.textContent = '← Lebih dini · Waktu bergerak ke kanan · Lebih baru →';
+  axis.appendChild(axLabel);
+
+  // Divider: era pembagian tanah
+  const div1 = buildDividerRow('1406–1390 SM', 'Penaklukan Kanaan & Pembagian Tanah', false);
+  rows.appendChild(div1);
+
+  // Salmon covenant dot (before era hakim)
+  const covSalmon = buildCovRow(COV_LINEAGE[0]);
+  rows.appendChild(covSalmon);
+
+  // Divider: era hakim dimulai
+  const div2 = buildDividerRow('1390 SM', '▼  Era Hakim Dimulai', true);
+  rows.appendChild(div2);
+
+  // Judge rows
+  JUDGES.forEach(j => {
+    const row = buildJudgeRow(j);
+    rows.appendChild(row);
+  });
+
+  // Covenant dots (Boaz & Obed) — within era hakim
+  const covBoaz = buildCovRow(COV_LINEAGE[1]);
+  rows.appendChild(covBoaz);
+  const covObed = buildCovRow(COV_LINEAGE[2]);
+  rows.appendChild(covObed);
+
+  // Divider: end of era
+  const div3 = buildDividerRow('1050 SM', '▲  Era Hakim Berakhir → Raja Saul', true);
+  rows.appendChild(div3);
+}
+
+function buildDividerRow(label, text, gold) {
+  const div = document.createElement('div');
+  div.className = 'tl-divider';
+  div.innerHTML = `<div class="tl-divider-label">${label}</div><div class="tl-divider-line${gold ? ' gold-line' : ''}" title="${text}"></div>`;
+  return div;
+}
+
+function buildJudgeRow(j) {
+  const row = document.createElement('div');
+  row.className = 'tl-row';
+
+  // Label
+  const label = document.createElement('div');
+  label.className = 'tl-row-label';
+  label.innerHTML = `<span class="row-name">${j.name}</span><span class="row-sub">${j.suku} · ${j.bcStart}–${j.bcEnd} SM</span>`;
+  label.setAttribute('role', 'button');
+  label.setAttribute('tabindex', '0');
+  label.onclick = () => openModal(j);
+  label.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') openModal(j); };
+
+  // Bar cell
+  const cell = document.createElement('div');
+  cell.className = 'tl-bar-cell';
+  cell.onclick = () => openModal(j);
+
+  // Oppression bar
+  if (j.opp && j.type !== 'oppressor') {
+    const oppBar = document.createElement('div');
+    oppBar.className = 'bar-opp';
+    oppBar.style.left  = pctX(j.opp.bcStart);
+    oppBar.style.width = pctW(j.opp.bcStart, j.opp.bcEnd);
+    oppBar.title = j.opp.enemy + ' · ' + j.opp.durStr;
+    cell.appendChild(oppBar);
+  }
+
+  // Lead bar
+  if (j.bcStart > j.bcEnd) {
+    const leadDur = j.bcStart - j.bcEnd;
+    const barColor = j.color || 'var(--teal)';
+    const bar = document.createElement('div');
+    bar.className = 'bar-lead';
+    bar.style.left       = pctX(j.bcStart);
+    bar.style.width      = pctW(j.bcStart, j.bcEnd);
+    bar.style.background = (j.type === 'oppressor')
+      ? 'linear-gradient(90deg, var(--sin-red) 0%, #e74c3c 100%)'
+      : `linear-gradient(90deg, ${barColor} 0%, ${barColor}cc 100%)`;
+    bar.title = j.name + ' · ' + leadDur + ' thn';
+    cell.appendChild(bar);
+
+    // Bar label (if wide enough)
+    if (leadDur > 10) {
+      const lbl = document.createElement('div');
+      lbl.className = 'bar-label';
+      lbl.style.left  = pctX(j.bcStart);
+      lbl.style.maxWidth = pctW(j.bcStart, j.bcEnd);
+      lbl.textContent = j.name + ' · ' + (j.leadYrs || leadDur) + ' thn';
+      cell.appendChild(lbl);
+    }
+
+    // Peace note
+    if (j.peaceNote) {
+      const peace = document.createElement('div');
+      peace.className = 'bar-peace-note';
+      peace.style.left = pctX(j.bcStart);
+      peace.textContent = '☮ ' + j.peaceNote;
+      cell.appendChild(peace);
+    }
+  }
+
+  row.appendChild(label);
+  row.appendChild(cell);
+  return row;
+}
+
+function buildCovRow(cov) {
+  const row = document.createElement('div');
+  row.className = 'cov-dot-row';
+
+  const label = document.createElement('div');
+  label.className = 'cov-dot-label';
+  label.innerHTML = `${cov.name}<span>${cov.gen}</span>`;
+
+  const cell = document.createElement('div');
+  cell.className = 'cov-dot-cell';
+
+  const dot = document.createElement('div');
+  dot.className = 'cov-dot';
+  dot.style.left = pctX(cov.bc);
+  dot.title = cov.name + ' — ' + cov.meaning;
+  dot.setAttribute('role', 'button');
+  dot.setAttribute('tabindex', '0');
+  dot.setAttribute('aria-label', 'Titik kovenan: ' + cov.name);
+  dot.onclick = () => switchTab('kovenan');
+  dot.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') switchTab('kovenan'); };
+
+  const dotName = document.createElement('div');
+  dotName.className = 'cov-dot-name';
+  dotName.style.left = `calc(${pctX(cov.bc)} + 14px)`;
+  dotName.textContent = '✦ ' + cov.name;
+
+  cell.appendChild(dot);
+  cell.appendChild(dotName);
+  row.appendChild(label);
+  row.appendChild(cell);
+  return row;
+}
+
+// ============================================================
+// DAFTAR HAKIM RENDERING
+// ============================================================
+function buildHakimList() {
+  const list = document.getElementById('hakimList');
+  JUDGES.forEach(j => {
+    const item = document.createElement('div');
+    item.className = 'hakim-item';
+    item.id = 'hitem-' + j.id;
+
+    const badgeMap = { major:'badge-major', minor:'badge-minor', special:'badge-special', oppressor:'badge-oppressor' };
+    const badgeText = { major:'Hakim Utama', minor:'Hakim Minor', special:'Hakim Istimewa', oppressor:'Bukan Hakim' };
+    const typeBarMap = { major:'type-major', minor:'type-minor', special:'type-special', oppressor:'type-oppressor' };
+    const dur = j.bcStart - j.bcEnd;
+    const oppDur = j.opp ? (j.opp.bcStart - j.opp.bcEnd) : 0;
+
+    item.innerHTML = `
+      <div class="hakim-header" onclick="toggleHakim('${j.id}')">
+        <div class="hakim-type-bar ${typeBarMap[j.type]}"></div>
+        <div class="hakim-name">${j.name}</div>
+        <div class="hakim-meta">
+          <span>${j.bcStart}–${j.bcEnd} SM</span>
+          <span class="hakim-badge ${badgeMap[j.type]}">${badgeText[j.type]}</span>
+          <span>Suku ${j.suku}</span>
+        </div>
+        <div class="hakim-chevron">▼</div>
+      </div>
+      <div class="hakim-body">
+        <div class="hakim-stats">
+          <div class="hstat">
+            <span class="hstat-val">${j.leadYrs || dur}</span>
+            <span class="hstat-label">Thn Jabatan</span>
+          </div>
+          <div class="hstat">
+            <span class="hstat-val${oppDur === 0 ? '' : ' red'}">${oppDur || '—'}</span>
+            <span class="hstat-label">Thn Penindasan</span>
+          </div>
+          <div class="hstat">
+            <span class="hstat-val${j.peaceNote ? '' : ' zero'}">${j.peaceNote ? j.leadYrs : '0'}</span>
+            <span class="hstat-label">Thn Damai</span>
+          </div>
+          <div class="hstat">
+            <span class="hstat-val gold">${j.berhala.length}</span>
+            <span class="hstat-label">Jenis Berhala</span>
+          </div>
+        </div>
+        <div class="hakim-notes">${j.notes.join('')}</div>
+        <div class="degradasi-note">📖 ${j.degradasi}</div>
+        ${j.berhala.length ? `<div class="idols-note"><strong>Berhala yang disembah:</strong> ${j.berhala.join(' · ')}</div>` : ''}
+      </div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+function toggleHakim(id) {
+  const item = document.getElementById('hitem-' + id);
+  item.classList.toggle('open');
+}
+
+// ============================================================
+// MODAL
+// ============================================================
+let currentJudge = null;
+
+function openModal(j) {
+  currentJudge = j;
+  const dur = j.bcStart - j.bcEnd;
+  const oppDur = j.opp ? (j.opp.bcStart - j.opp.bcEnd) : 0;
+
+  const badgeMap = { major:'background:var(--teal-light);color:var(--teal-dark)', minor:'background:var(--bg2);color:var(--text-muted)', special:'background:#fef3c7;color:#92400e', oppressor:'background:#fef2f2;color:var(--sin-red)' };
+  const badgeText = { major:'Hakim Utama', minor:'Hakim Minor', special:'Hakim Istimewa', oppressor:'Perampas Kekuasaan' };
+  const barColorMap = { major:'var(--teal)', minor:'var(--border)', special:'var(--gold)', oppressor:'var(--sin-red)' };
+
+  document.getElementById('modalTopBar').style.background = barColorMap[j.type];
+  document.getElementById('modalBadge').textContent = badgeText[j.type];
+  document.getElementById('modalBadge').style = badgeMap[j.type] + ';border-radius:10px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:0.05em;';
+  document.getElementById('modalName').textContent = j.name;
+  document.getElementById('modalMeaning').textContent = j.meaning;
+  document.getElementById('modalRef').textContent = j.ref + ' · Suku ' + j.suku;
+  document.getElementById('modalStats').innerHTML = `
+    <div class="mstat"><span class="mstat-val">${j.leadYrs || dur}</span><span class="mstat-label">Thn Jabatan</span></div>
+    <div class="mstat"><span class="mstat-val${oppDur > 0 ? ' zero' : ''}">${oppDur || '—'}</span><span class="mstat-label">Thn Penindasan</span></div>
+    <div class="mstat"><span class="mstat-val${j.peaceNote ? '' : ' zero'}">${j.peaceNote ? j.leadYrs : '0'}</span><span class="mstat-label">Thn Damai</span></div>
+  `;
+  document.getElementById('modalCycle').innerHTML = `
+    <div class="mcycle-phase mcp-sin">Dosa</div>
+    <div class="mcycle-phase mcp-opp">Penindasan</div>
+    <div class="mcycle-phase mcp-cry">Seruan</div>
+    <div class="mcycle-phase mcp-peace">${j.peaceNote ? '✓ Damai' : '✗ Damai'}</div>
+  `;
+  document.getElementById('modalNotes').innerHTML = j.notes.join('');
+  document.getElementById('modalLinks').innerHTML = `<a href="pendamping-baca.html" class="modal-link">→ Pendamping Baca</a>`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+// ============================================================
+// TABS
+// ============================================================
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    const ids = ['timeline', 'daftar', 'kovenan'];
+    btn.classList.toggle('active', ids[i] === id);
+  });
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 56, behavior: 'smooth' });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+buildTimeline();
+buildHakimList();
+</script>
+</body>
+</html>

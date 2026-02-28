@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peta Kovenan — The Unquenchable Lamp of the Covenant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Buku 3
+   ============================================================ */
+:root {
+  --teal:        #1DADA8;
+  --teal-dark:   #0e7a77;
+  --teal-light:  #e8f7f7;
+  --gold:        #b8860b;
+  --gold-light:  rgba(184,134,11,0.12);
+  --gold-border: rgba(184,134,11,0.3);
+  --green:       #2bb673;
+  --maroon:      #7a1a1a;
+  --maroon-dark: #3a0a0a;
+  --maroon-light:rgba(122,26,26,0.12);
+
+  --bg:          #f7f5f0;
+  --bg2:         #edeae3;
+  --bg3:         #ede9e1;
+  --text:        #4D4D4D;
+  --text-light:  #6d6d6d;
+  --text-muted:  #9a9a9a;
+  --border:      #d4cfc8;
+  --white:       #ffffff;
+
+  --shadow:      0 2px 8px rgba(0,0,0,0.08);
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
+  --shadow-lg:   0 4px 16px rgba(0,0,0,0.12);
+
+  --radius:      12px;
+  --radius-sm:   8px;
+  --radius-lg:   16px;
+
+  --font-ui:     'Nunito', sans-serif;
+  --font-content:'Lora', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+button, .nav-link { min-height: 44px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ============================================================ NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--teal-dark);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 20px; height: 48px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-brand { color: white; font-weight: 800; font-size: 13px; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+.nav-link {
+  color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 600;
+  white-space: nowrap; padding: 4px 8px; border-radius: var(--radius-sm);
+  flex-shrink: 0; transition: background 0.2s; display: flex; align-items: center;
+}
+.nav-link:hover, .nav-link:focus-visible { background: rgba(255,255,255,0.15); color: white; outline: none; }
+.nav-badge {
+  margin-left: auto; flex-shrink: 0; background: rgba(255,255,255,0.2); color: white;
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;
+}
+
+/* ============================================================ HERO — Tier M */
+.hero {
+  background: var(--bg3); border-bottom: 2px solid var(--border);
+  color: var(--text); padding: 48px 24px 40px; text-align: center;
+}
+.hero-eyebrow { color: var(--teal); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; display: block; }
+.hero h1 { font-size: clamp(22px, 4.5vw, 36px); font-family: var(--font-ui); font-weight: 800; line-height: 1.2; color: var(--text); margin-bottom: 12px; }
+.hero .subtitle { color: var(--text-light); font-size: 16px; max-width: 600px; margin: 0 auto 28px; font-family: var(--font-content); font-style: italic; }
+
+/* TAB BAR */
+.tab-bar {
+  display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; padding: 0 20px;
+}
+.tab-btn {
+  padding: 8px 18px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--white); font-size: 13px; font-weight: 700; color: var(--text-light);
+  cursor: pointer; transition: all 0.15s; white-space: nowrap; min-height: 44px; display: flex; align-items: center;
+}
+.tab-btn:hover { border-color: var(--teal); color: var(--teal-dark); }
+.tab-btn.active { background: var(--teal-dark); border-color: var(--teal-dark); color: white; }
+
+/* ============================================================ MAIN WRAP */
+.main-wrap { max-width: 920px; margin: 0 auto; padding: 40px 24px 100px; }
+
+/* ============================================================
+   TAB PANELS
+   ============================================================ */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ============================================================
+   PANEL 1: TIMELINE UTAMA (vertikal)
+   ============================================================ */
+
+/* LEGEND */
+.timeline-legend {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
+  padding: 16px 20px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--text-light); }
+.legend-dot {
+  width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+}
+.legend-dot.gen { background: var(--teal-dark); }
+.legend-dot.cov { background: var(--gold); }
+.legend-dot.dark { background: var(--maroon); }
+.legend-dot.light { background: var(--green); border: 2px solid var(--green); }
+
+/* TIMELINE CONTAINER */
+.timeline-container {
+  position: relative;
+  padding-left: 60px; /* ruang untuk label tahun */
+}
+
+/* Garis vertikal utama */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 44px;
+  top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--teal) 0%, var(--teal-dark) 40%, var(--maroon) 60%, var(--teal-dark) 85%, var(--teal) 100%);
+  border-radius: 2px;
+}
+
+/* ERA BLOCK — container untuk satu era */
+.era-block {
+  position: relative;
+  margin-bottom: 0;
+}
+
+/* ERA HEADER — label era di kiri garis */
+.era-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 6px 0 4px;
+}
+
+/* NODE — titik di garis */
+.timeline-node {
+  position: absolute;
+  left: -24px; /* relatif ke padding-left: 60px, jadi di posisi garis */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+  flex-shrink: 0;
+}
+.timeline-node.node-gen { background: var(--teal-dark); }
+.timeline-node.node-cov { background: var(--gold); width: 20px; height: 20px; left: -26px; }
+.timeline-node.node-event { background: var(--green); }
+.timeline-node.node-dark { background: var(--maroon); }
+.timeline-node.node-light { background: #f0c040; }
+
+/* YEAR LABEL */
+.year-label {
+  position: absolute;
+  left: -58px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-align: right;
+  width: 48px;
+  white-space: nowrap;
+}
+
+/* ITEM CARD */
+.timeline-item {
+  position: relative;
+  margin-bottom: 8px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.timeline-item:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--teal);
+}
+
+.timeline-item.covenant-item {
+  border-left: 4px solid var(--gold);
+  background: linear-gradient(to right, rgba(184,134,11,0.04) 0%, var(--white) 100%);
+}
+
+.timeline-item.dark-era {
+  border-left: 4px solid var(--maroon);
+  background: linear-gradient(to right, rgba(122,26,26,0.06) 0%, var(--white) 100%);
+}
+
+.timeline-item.light-point {
+  border-left: 4px solid var(--green);
+  background: linear-gradient(to right, rgba(43,182,115,0.06) 0%, var(--white) 100%);
+}
+
+.item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.item-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.item-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.item-badge.gen { background: var(--teal-light); color: var(--teal-dark); }
+.item-badge.cov { background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold-border); }
+.item-badge.dark { background: var(--maroon-light); color: var(--maroon); }
+.item-badge.light-bg { background: rgba(43,182,115,0.12); color: #1a7a4a; }
+
+.item-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.55;
+  font-family: var(--font-content);
+}
+
+.item-expand {
+  display: none;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.timeline-item.open .item-expand {
+  display: block;
+}
+
+.item-expand p {
+  font-family: var(--font-content);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.item-expand .park-note {
+  background: var(--bg3);
+  border-left: 3px solid var(--gold);
+  padding: 10px 14px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.item-expand .park-cite {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-align: right;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.item-expand .ref-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal-dark);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--teal-light);
+  transition: opacity 0.15s;
+}
+.item-expand .ref-link:hover { opacity: 0.8; }
+
+/* ERA SEPARATOR — periode gelap */
+.dark-era-band {
+  position: relative;
+  margin: 4px 0;
+  padding: 20px 16px 20px 16px;
+  background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%);
+  border-radius: var(--radius);
+  color: white;
+  border-left: 4px solid #c0392b;
+}
+
+.dark-band-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 6px;
+}
+
+.dark-band-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.dark-band-sub {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.dark-band-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dark-stat {
+  text-align: center;
+}
+.dark-stat-num { font-size: 20px; font-weight: 800; color: #f09090; }
+.dark-stat-label { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 600; }
+
+/* Light points inside dark era */
+.light-in-dark {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.light-in-dark-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f0c040;
+  margin-bottom: 8px;
+}
+.light-in-dark-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.light-dot-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+}
+.light-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #f0c040;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   PANEL 2: 6 KOVENAN
+   ============================================================ */
+.cov-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.cov-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.cov-card-header {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cov-num {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.cov-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.cov-ref {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-content);
+  font-style: italic;
+}
+
+.cov-card-body {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cov-row {
+  display: flex;
+  gap: 10px;
+}
+
+.cov-row-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 80px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.cov-row-val {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.55;
+  font-family: var(--font-content);
+}
+
+.cov-christ-box {
+  margin-top: 4px;
+  padding: 10px 12px;
+  background: var(--gold-light);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-sm);
+}
+.cov-christ-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.cov-christ-text {
+  font-size: 13px;
+  color: var(--text);
+  font-family: var(--font-content);
+  line-height: 1.55;
+}
+
+.cov-unity-note {
+  background: linear-gradient(135deg, #1a3a2a, var(--teal-dark));
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  color: white;
+  margin-top: 8px;
+}
+.cov-unity-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 8px;
+}
+.cov-unity-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 8px;
+}
+.cov-unity-text {
+  font-family: var(--font-content);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ============================================================
+   PANEL 3: JALUR TIGA PEREMPUAN GENTIL
+   ============================================================ */
+.gentil-intro {
+  background: linear-gradient(150deg, #2a1a00, #5a3500);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  color: white;
+  margin-bottom: 28px;
+  border: 1px solid var(--gold-border);
+}
+.gentil-intro-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(184,134,11,0.7); margin-bottom: 8px;
+}
+.gentil-intro-title { font-size: 18px; font-weight: 800; color: white; margin-bottom: 8px; }
+.gentil-intro-text {
+  font-family: var(--font-content); font-style: italic;
+  font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.85);
+}
+
+.gentil-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 40px;
+}
+
+.gentil-timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px; top: 16px; bottom: 16px;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--maroon) 50%, var(--gold) 100%);
+  border-radius: 2px;
+}
+
+.gentil-entry {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.gentil-node {
+  position: absolute;
+  left: -32px;
+  top: 18px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.gentil-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  border-left: 4px solid var(--gold);
+}
+
+.gentil-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.gentil-name { font-size: 18px; font-weight: 800; color: var(--text); }
+.gentil-gen { font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 0.05em; text-transform: uppercase; }
+.gentil-origin {
+  font-size: 12px; color: var(--text-muted); font-family: var(--font-content); font-style: italic;
+  margin-bottom: 10px;
+}
+
+.gentil-crisis {
+  background: var(--bg2); border-radius: var(--radius-sm); padding: 10px 14px;
+  margin-bottom: 10px;
+}
+.gentil-crisis-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--maroon); margin-bottom: 4px;
+}
+.gentil-crisis-text { font-size: 13px; color: var(--text); line-height: 1.6; font-family: var(--font-content); }
+
+.gentil-faith {
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.gentil-faith-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.gentil-faith-text { font-size: 13px; color: var(--text-light); line-height: 1.6; font-family: var(--font-content); font-style: italic; }
+
+.gentil-connector {
+  text-align: center;
+  padding: 8px 0;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gentil-conclusion {
+  margin-top: 8px;
+  background: var(--bg2);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+.gentil-conclusion-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--teal-dark); margin-bottom: 8px;
+}
+.gentil-conclusion-text {
+  font-family: var(--font-content); font-size: 14px; line-height: 1.75; color: var(--text); margin-bottom: 10px;
+}
+.gentil-park-quote {
+  background: var(--bg3); border-left: 3px solid var(--gold);
+  padding: 12px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.gentil-park-quote blockquote { font-family: var(--font-content); font-style: italic; font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 4px; }
+.gentil-park-quote cite { font-size: 11px; color: var(--text-muted); font-style: normal; font-weight: 700; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 13px; color: var(--text-muted); }
+
+/* ============================================================ RESPONSIVE */
+@media (max-width: 640px) {
+  .main-wrap { padding: 24px 16px 80px; }
+  .timeline-container { padding-left: 48px; }
+  .year-label { left: -46px; width: 38px; font-size: 9px; }
+  .cov-grid { grid-template-columns: 1fr; }
+  .dark-band-stats { gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Sejarah Penebusan</a>
+  <a href="index.html" class="nav-link">← Beranda</a>
+  <a href="pendamping-baca.html" class="nav-link">Pendamping Baca</a>
+  <a href="galeri-nama-pelita.html" class="nav-link">Galeri Nama Pelita</a>
+  <a href="tabel-generasi.html" class="nav-link">Tabel Generasi</a>
+  <a href="peta-hakim.html" class="nav-link">Peta Era Hakim</a>
+  <span class="nav-badge">Buku 3</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Ekosistem Self Journey · Buku 3</span>
+  <h1>Peta Kovenan</h1>
+  <p class="subtitle">Dari Kejadian 3:15 sampai Daud — satu lampu yang tidak padam melewati 1.163 tahun, enam kovenan, dan 340 tahun kegelapan.</p>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="setTab('timeline')" id="tab-timeline">📍 Timeline Utama</button>
+    <button class="tab-btn" onclick="setTab('kovenan')" id="tab-kovenan">⚡ Enam Kovenan</button>
+    <button class="tab-btn" onclick="setTab('gentil')" id="tab-gentil">🕯 Jalur Perempuan Gentil</button>
+  </div>
+</section>
+
+<!-- MAIN WRAP -->
+<div class="main-wrap">
+
+  <!-- ============================================================
+       PANEL 1: TIMELINE UTAMA
+       ============================================================ -->
+  <div class="tab-panel active" id="panel-timeline">
+
+    <div class="timeline-legend">
+      <div class="legend-item"><div class="legend-dot gen"></div>Generasi dalam Silsilah</div>
+      <div class="legend-item"><div class="legend-dot cov"></div>Kovenan Baru</div>
+      <div class="legend-item"><div class="legend-dot dark"></div>Era Hakim (Bahaya)</div>
+      <div class="legend-item"><div class="legend-dot light"></div>Titik Cahaya di Kegelapan</div>
+    </div>
+
+    <div class="timeline-container">
+
+      <!-- ── PROTO-GOSPEL ── -->
+      <div class="era-block">
+        <div class="timeline-item covenant-item" onclick="toggleItem(this)">
+          <div class="timeline-node node-cov"></div>
+          <span class="year-label">±4000 SM</span>
+          <div class="item-top">
+            <div class="item-title">Protokovenan — Kejadian 3:15</div>
+            <span class="item-badge cov">Kovenan 1</span>
+          </div>
+          <p class="item-desc">"Aku akan mengadakan permusuhan antara engkau dan perempuan ini, antara keturunanmu dan keturunannya." — Janji pertama tentang penebusan, sebelum silsilah dimulai.</p>
+          <div class="item-expand">
+            <p>Ini adalah proto-evangelium — "Injil pertama." Diucapkan Allah kepada ular (iblis) setelah kejatuhan Adam dan Hawa, sebelum ada manusia yang layak menerima janji itu. Park menunjukkan bahwa seluruh silsilah Matius 1 adalah kelanjutan dari satu kalimat ini: "benih perempuan" yang akan meremukkan kepala ular adalah Yesus Kristus.</p>
+            <div class="park-note">"God's covenant is a pronouncement of God's unilateral grace."</div>
+            <div class="park-note" style="margin-top:6px;">"Since God's covenant is sovereignly administered, it is an eternally unchangeable and utterly unbreakable promise."</div>
+            <span class="park-cite">— Abraham Park, Bab 2 (dua kalimat terpisah)</span>
+            <a href="kalkulator-kovenan.html" class="ref-link">→ Lihat detail di Kalkulator Kovenan</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── NOE ── -->
+      <div class="era-block">
+        <div class="timeline-item covenant-item" onclick="toggleItem(this)">
+          <div class="timeline-node node-cov"></div>
+          <span class="year-label">±2350 SM</span>
+          <div class="item-top">
+            <div class="item-title">Kovenan Nuh — Pelangi</div>
+            <span class="item-badge cov">Kovenan 2</span>
+          </div>
+          <p class="item-desc">Allah berjanji tidak akan lagi menghancurkan bumi dengan air bah. Pelangi sebagai tanda kovenan — pembaruan janji penebusan setelah penghakiman.</p>
+          <div class="item-expand">
+            <p>Park menunjukkan bahwa setiap kovenan baru tidak membatalkan yang sebelumnya — ia memperdalam dan memperluas. Kovenan Nuh memperbarui janji Protokovenan bahwa Allah tidak akan melepaskan dunia begitu saja: Ia berkomitmen pada kelangsungan ciptaan sebagai arena penebusan.</p>
+            <p>Pelangi = Kristus sebagai pelangi harapan abadi yang menghubungkan surga dan bumi.</p>
+            <div class="park-note">"God renewed His covenant in every generation. These covenants are not mutually exclusive. They are all founded upon and linked to the covenants that were already established."</div>
+            <span class="park-cite">— Abraham Park, Bab 2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ABRAHAM ── -->
+      <div class="era-block">
+        <div class="timeline-item covenant-item" onclick="toggleItem(this)">
+          <div class="timeline-node node-cov"></div>
+          <span class="year-label">±2091 SM</span>
+          <div class="item-top">
+            <div class="item-title">Kovenan Abraham — Generasi ke-1</div>
+            <span class="item-badge cov">Kovenan 3</span>
+          </div>
+          <p class="item-desc">Tiga lapisan kovenan: tanah (Kej. 12), keturunan sebagai bintang (Kej. 15 — kovenan pembelahan hewan), sunat (Kej. 17). Lampu kovenan mulai menyala.</p>
+          <div class="item-expand">
+            <p>Kovenan Kej. 15 adalah yang paling dramatis: Allah sendiri yang berjalan di antara potongan hewan yang dibelah — bukan Abraham. Ini berarti Allah sendiri yang menanggung konsekuensi jika kovenan dilanggar. Inilah bukti unilateralitas kovenan yang sesungguhnya.</p>
+            <p>Park menyoroti bahwa kata "keturunan" di Kej. 22:17 berbentuk tunggal dalam bahasa Ibrani — menunjuk langsung kepada satu keturunan, yaitu Kristus (dikutip dalam Gal. 3:16).</p>
+            <div class="park-note">Park menjelaskan bahwa kata "keturunan" di Kej. 22:17 berbentuk tunggal dalam bahasa Ibrani — menunjuk langsung kepada satu keturunan, yaitu Kristus, sebagaimana dikonfirmasi Paulus dalam Gal. 3:16.</div>
+            <span class="park-cite">— Abraham Park, Bab 3 (parafrase)</span>
+            <a href="galeri-nama-pelita.html" class="ref-link">→ Lihat kartu Abraham</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gen 2-4 ringkas -->
+      <div class="era-block">
+        <div class="timeline-item" onclick="toggleItem(this)">
+          <div class="timeline-node node-gen"></div>
+          <span class="year-label">±2000–1860 SM</span>
+          <div class="item-top">
+            <div class="item-title">Ishak, Yakub, Yehuda — Generasi ke-2, 3, 4</div>
+            <span class="item-badge gen">3 Generasi</span>
+          </div>
+          <p class="item-desc">Moriah (Ishak). Pergumulan Peniel (Yakub). Skandal Tamar — dan zeal-nya yang menjaga garis kovenan dari kepunahan.</p>
+          <div class="item-expand">
+            <p>Yakub turun ke Mesir bersama 70 anggota keluarga (termasuk Hezron, generasi ke-6) — lampu kovenan masuk ke dalam perbudakan. Tapi kovenan Abraham sudah diucapkan: "keturunanmu akan menjadi seperti bintang."</p>
+            <p>Tamar adalah "crucial link" pertama — Gentil yang <em>zeal</em>-nya melebihi pemegang kovenan itu sendiri. Garis tidak terputus bukan karena Yehuda, tapi karena Tamar.</p>
+            <a href="galeri-nama-pelita.html" class="ref-link">→ Galeri Nama Pelita: Ishak, Yakub, Yehuda</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SINAI ── -->
+      <div class="era-block">
+        <div class="timeline-item covenant-item" onclick="toggleItem(this)">
+          <div class="timeline-node node-cov"></div>
+          <span class="year-label">±1446 SM</span>
+          <div class="item-top">
+            <div class="item-title">Kovenan Sinai — Taurat dan Darah Perjanjian</div>
+            <span class="item-badge cov">Kovenan 4</span>
+          </div>
+          <p class="item-desc">Keluaran dari Mesir. Taurat diberikan. Sistem persembahan sebagai bayangan pengorbanan Kristus. Amminadab dan Nahason memimpin suku Yehuda keluar dari Mesir.</p>
+          <div class="item-expand">
+            <p>Park mencatat bahwa Kovenan Sinai memiliki posisi yang unik dalam rangkaian kovenan: ia adalah kovenan yang digenapi sekaligus dilampaui oleh Kristus. Darah yang disiramkan di atas mezbah dan bangsa Israel (Kel. 24) adalah bayangan langsung dari darah perjanjian baru di Perjanjian Terakhir.</p>
+            <p>Generasi ke-8 (Amminadab) dan ke-9 (Nahason) adalah pemimpin suku Yehuda pada era Keluaran ini — mereka membawa lampu kovenan melewati 400 tahun perbudakan.</p>
+            <a href="galeri-nama-pelita.html" class="ref-link">→ Galeri: Amminadab &amp; Nahason</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Salmon memasuki Kanaan -->
+      <div class="era-block">
+        <div class="timeline-item light-point" onclick="toggleItem(this)">
+          <div class="timeline-node node-event"></div>
+          <span class="year-label">±1406 SM</span>
+          <div class="item-top">
+            <div class="item-title">Salmon memasuki Kanaan — Menikahi Rahab</div>
+            <span class="item-badge light-bg">Generasi ke-10</span>
+          </div>
+          <p class="item-desc">Prajurit Israel menikahi Rahab dari Yerikho — Gentil ke-2. Salmon menutupi masa lalu Rahab "dengan jubahnya." Lampu tetap menyala di pintu masuk tanah perjanjian.</p>
+          <div class="item-expand">
+            <p>Ini adalah momen penting: Israel baru masuk Kanaan, belum stabil, zaman hakim belum dimulai. Salmon dan Rahab adalah generasi peralihan — membawa lampu dari padang gurun ke era yang akan menjadi paling gelap dalam seluruh sejarah Israel.</p>
+            <div class="park-note">Park menulis: "seperti namanya Salmon, ia menutupi masa lalu Rahab yang memalukan seperti dengan jubah atau mantel." Apa yang dilakukan Salmon kepada Rahab adalah gambaran dari apa yang dilakukan Kristus kepada kita.</div>
+            <span class="park-cite">— Abraham Park, Bab 17 (parafrase)</span>
+            <a href="galeri-nama-pelita.html" class="ref-link">→ Galeri: Salmon &amp; Rahab</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ERA HAKIM — DARK BAND ── -->
+      <div class="dark-era-band">
+        <div class="dark-band-label">⚠ Bahaya Kovenan · ±1370–1050 SM</div>
+        <div class="dark-band-title">Era Hakim — 340 Tahun Kegelapan</div>
+        <p class="dark-band-sub">Park: "lebih gelap dari Sodom dan Gomora." Hampir seluruh generasi dihapus dari silsilah Yesus. Tapi lampu tidak padam.</p>
+        <div class="dark-band-stats">
+          <div class="dark-stat">
+            <div class="dark-stat-num">±340</div>
+            <div class="dark-stat-label">Tahun</div>
+          </div>
+          <div class="dark-stat">
+            <div class="dark-stat-num">12</div>
+            <div class="dark-stat-label">Hakim</div>
+          </div>
+          <div class="dark-stat">
+            <div class="dark-stat-num">6+</div>
+            <div class="dark-stat-label">Siklus Kejatuhan</div>
+          </div>
+          <div class="dark-stat">
+            <div class="dark-stat-num">3</div>
+            <div class="dark-stat-label">Titik Cahaya</div>
+          </div>
+        </div>
+        <div class="light-in-dark">
+          <div class="light-in-dark-label">🕯 Titik Cahaya yang Bertahan</div>
+          <div class="light-in-dark-items">
+            <div class="light-dot-item">
+              <div class="light-dot"></div>
+              <span><strong>Boaz</strong> (Generasi ke-11) — Penebus Ruth yang asing. Zaman hakim paling gelap — tapi Boaz disebut Park "sosok yang menyerupai Yesus."</span>
+            </div>
+            <div class="light-dot-item">
+              <div class="light-dot"></div>
+              <span><strong>Ruth</strong> (Gentil ke-3) — "Di mana engkau pergi, aku akan pergi." Iman paling murni: tanpa paksaan, tanpa keuntungan yang terlihat.</span>
+            </div>
+            <div class="light-dot-item">
+              <div class="light-dot"></div>
+              <span><strong>Obed</strong> (Generasi ke-12) — "Ia mendukung Naomi." Kesetiaan dalam hal paling sederhana, di tengah kekacauan yang mengelilinginya.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Isai -->
+      <div class="era-block" style="margin-top:8px">
+        <div class="timeline-item" onclick="toggleItem(this)">
+          <div class="timeline-node node-gen"></div>
+          <span class="year-label">±1130 SM</span>
+          <div class="item-top">
+            <div class="item-title">Isai — "Ia Hidup" — Generasi ke-13</div>
+            <span class="item-badge gen">Generasi ke-13</span>
+          </div>
+          <p class="item-desc">Akhir zaman hakim, awal kerajaan. Bapa yang tidak mengenali anaknya sendiri sebagai raja. Dari tunggul Isai akan tumbuh tunas Mesias (Yes. 11:1).</p>
+          <div class="item-expand">
+            <p>Park menghubungkan nama Isai ("He lives") dengan Yesaya 11:1: bahkan saat garis tampak seperti tunggul yang sudah mati, Allah yang hidup selalu menyimpan tunas baru.</p>
+            <a href="galeri-nama-pelita.html" class="ref-link">→ Galeri: Isai</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── KOVENAN DAUD ── -->
+      <div class="era-block">
+        <div class="timeline-item covenant-item" onclick="toggleItem(this)">
+          <div class="timeline-node node-cov"></div>
+          <span class="year-label">±1010 SM</span>
+          <div class="item-top">
+            <div class="item-title">Kovenan Daud — Takhta yang Kekal</div>
+            <span class="item-badge cov">Kovenan 5</span>
+          </div>
+          <p class="item-desc">Allah berjanji kepada Daud: "Aku akan meneguhkan takhta kerajaanmu untuk selama-lamanya." Kovenan yang hanya bisa diemban oleh Kristus — karena tidak ada manusia yang takhta-nya benar-benar kekal.</p>
+          <div class="item-expand">
+            <p>Park menunjukkan bahwa Kovenan Daud adalah titik pemisah antara Periode Pertama dan Kedua dalam silsilah Matius. Kulminasi Periode Pertama adalah Daud sebagai raja — kemudian dosa Daud dengan istri Uria menjadi awal Periode Kedua yang penuh kejatuhan.</p>
+            <p>Tapi kovenan tetap ada: "Aku tidak akan mencabut kasih setia-Ku dari padanya." Bahkan dosa Daud tidak membatalkan kovenan — ini adalah bukti paling kuat dari unilateralitas kovenan Allah.</p>
+            <div class="park-note">Park mengutip 2 Taw. 21:7: "TUHAN tidak mau memusnahkan keluarga Daud karena perjanjian yang telah dibuat-Nya dengan Daud, dan karena Ia telah berjanji memberikan lampu kepadanya dan kepada anak-anaknya selama-lamanya." Dosa Daud tidak memadamkan lampu — karena itu lampu Allah, bukan lampu Daud.</div>
+            <span class="park-cite">— Abraham Park, Bab 26 (parafrase)</span>
+            <a href="galeri-nama-pelita.html" class="ref-link">→ Galeri: Daud</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daud -->
+      <div class="era-block">
+        <div class="timeline-item light-point" onclick="toggleItem(this)">
+          <div class="timeline-node node-gen"></div>
+          <span class="year-label">±1040–970 SM</span>
+          <div class="item-top">
+            <div class="item-title">Daud — Generasi ke-14 · Kulminasi Periode Pertama</div>
+            <span class="item-badge light-bg">Generasi ke-14</span>
+          </div>
+          <p class="item-desc">16 tempat pelarian, 3 urapan, 1 kejatuhan besar. "Passageway of the Messianic Covenant." Mazmur 22-nya adalah nubuat langsung penderitaan Kristus di salib.</p>
+          <div class="item-expand">
+            <p>Park menghabiskan lebih dari separuh bab Daud pada masa pengungsian, bukan masa kejayaannya. 16 tempat pelarian masing-masing mengungkapkan satu nama Allah yang hanya bisa ditemukan dalam penderitaan.</p>
+            <p>Daud disebut Park sebagai "saluran kovenan Mesiasis" — bukan pemilik, tapi pintu lewat menuju Kristus.</p>
+            <div class="park-note">"David is the focal point and the most important figure in the genealogy of Jesus Christ... God was molding David into a leader of faith who could fulfill His administration in the history of redemption."</div>
+            <span class="park-cite">— Abraham Park, hal. 288</span>
+            <a href="galeri-nama-pelita.html" class="ref-link">→ Galeri: Daud</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Note tentang Periode 2 & 3 -->
+      <div class="era-block">
+        <div style="padding: 16px 20px; background: var(--bg2); border-radius: var(--radius); border: 1px dashed var(--border); margin-top: 8px;">
+          <p style="font-size:13px; color: var(--text-muted); font-family: var(--font-content); font-style: italic; line-height:1.65;">
+            Buku 3 mencakup Periode Pertama (Abraham → Daud). Periode Kedua (Daud → Pembuangan Babel) dan Periode Ketiga (Pembuangan → Yesus) akan dibahas dalam buku-buku Abraham Park berikutnya. Lampu yang sama — terus menyala.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /timeline-container -->
+  </div><!-- /panel-timeline -->
+
+  <!-- ============================================================
+       PANEL 2: ENAM KOVENAN
+       ============================================================ -->
+  <div class="tab-panel" id="panel-kovenan">
+
+    <div class="cov-unity-note" style="margin-bottom:28px">
+      <div class="cov-unity-label">Prinsip Utama</div>
+      <div class="cov-unity-title">Semua Kovenan adalah Satu Kovenan</div>
+      <p class="cov-unity-text">"God renewed His covenant in every generation. These covenants are not mutually exclusive. They are all founded upon and linked to the covenants that were already established. Thus, there is continuity and unity in all the covenants of God." — Abraham Park, Bab 2</p>
+    </div>
+
+    <div class="cov-grid">
+
+      <!-- Kovenan 1 -->
+      <div class="cov-card">
+        <div class="cov-card-header">
+          <div class="cov-num">Kovenan ke-1 · ±4000 SM</div>
+          <div class="cov-name">Protokovenan</div>
+          <div class="cov-ref">Kejadian 3:15 · Taman Eden</div>
+        </div>
+        <div class="cov-card-body">
+          <div class="cov-row"><span class="cov-row-label">Pihak</span><span class="cov-row-val">Allah kepada ular (iblis) — manusia adalah penerima janji ini</span></div>
+          <div class="cov-row"><span class="cov-row-label">Isi Pokok</span><span class="cov-row-val">"Aku akan mengadakan permusuhan... benih perempuan akan meremukkan kepalamu."</span></div>
+          <div class="cov-row"><span class="cov-row-label">Sifat</span><span class="cov-row-val">Pertama, unilateral, diucapkan sebelum ada yang memintanya</span></div>
+          <div class="cov-christ-box">
+            <div class="cov-christ-label">Penggenapan dalam Kristus</div>
+            <p class="cov-christ-text">Kristus adalah "benih perempuan" yang meremukkan kepala iblis di salib. Seluruh silsilah Matius 1 adalah perjalanan menuju satu momen ini.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kovenan 2 -->
+      <div class="cov-card">
+        <div class="cov-card-header">
+          <div class="cov-num">Kovenan ke-2 · ±2350 SM</div>
+          <div class="cov-name">Kovenan Nuh</div>
+          <div class="cov-ref">Kejadian 6–9 · Setelah Air Bah</div>
+        </div>
+        <div class="cov-card-body">
+          <div class="cov-row"><span class="cov-row-label">Pihak</span><span class="cov-row-val">Allah kepada Nuh, keturunannya, dan seluruh makhluk hidup</span></div>
+          <div class="cov-row"><span class="cov-row-label">Isi Pokok</span><span class="cov-row-val">Allah tidak akan menghancurkan bumi dengan air bah lagi. Pelangi sebagai tanda.</span></div>
+          <div class="cov-row"><span class="cov-row-label">Sifat</span><span class="cov-row-val">Universal — mencakup seluruh ciptaan, bukan hanya Israel</span></div>
+          <div class="cov-christ-box">
+            <div class="cov-christ-label">Penggenapan dalam Kristus</div>
+            <p class="cov-christ-text">Kristus adalah pelangi harapan abadi — jembatan antara penghakiman Allah dan kasih karunia-Nya. Ia adalah "Nuh baru" yang menyelamatkan manusia dari air bah dosa.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kovenan 3 -->
+      <div class="cov-card">
+        <div class="cov-card-header">
+          <div class="cov-num">Kovenan ke-3 · ±2091 SM</div>
+          <div class="cov-name">Kovenan Abraham</div>
+          <div class="cov-ref">Kejadian 12; 15; 17 · Tiga Lapisan</div>
+        </div>
+        <div class="cov-card-body">
+          <div class="cov-row"><span class="cov-row-label">Pihak</span><span class="cov-row-val">Allah kepada Abraham — dipanggil dari Ur Kasdim</span></div>
+          <div class="cov-row"><span class="cov-row-label">Isi Pokok</span><span class="cov-row-val">Tanah Kanaan · keturunan sebanyak bintang · melaluinya semua bangsa diberkati</span></div>
+          <div class="cov-row"><span class="cov-row-label">Tanda</span><span class="cov-row-val">Sunat — tanda kovenan di tubuh</span></div>
+          <div class="cov-row"><span class="cov-row-label">Unilateral</span><span class="cov-row-val">Kej. 15: Allah yang berjalan di antara hewan belahan, menanggung sendiri konsekuensi kovenan</span></div>
+          <div class="cov-christ-box">
+            <div class="cov-christ-label">Penggenapan dalam Kristus</div>
+            <p class="cov-christ-text">"Keturunan" di Kej. 22:17 berbentuk tunggal = Kristus (Gal. 3:16). "Semua bangsa diberkati" = keselamatan universal melalui Injil.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kovenan 4 -->
+      <div class="cov-card">
+        <div class="cov-card-header">
+          <div class="cov-num">Kovenan ke-4 · ±1446 SM</div>
+          <div class="cov-name">Kovenan Sinai</div>
+          <div class="cov-ref">Keluaran 19–24 · Gunung Sinai</div>
+        </div>
+        <div class="cov-card-body">
+          <div class="cov-row"><span class="cov-row-label">Pihak</span><span class="cov-row-val">Allah kepada Israel melalui Musa</span></div>
+          <div class="cov-row"><span class="cov-row-label">Isi Pokok</span><span class="cov-row-val">Taurat — Sepuluh Perintah dan seluruh sistem hukum. Israel menjadi umat pilihan yang terpisah.</span></div>
+          <div class="cov-row"><span class="cov-row-label">Tanda</span><span class="cov-row-val">Darah perjanjian yang disiramkan atas mezbah dan bangsa Israel (Kel. 24)</span></div>
+          <div class="cov-christ-box">
+            <div class="cov-christ-label">Penggenapan dalam Kristus</div>
+            <p class="cov-christ-text">Darah perjanjian Sinai adalah bayangan darah Kristus di Perjanjian Terakhir. Hukum Taurat "mengajar" kita kepada Kristus (Gal. 3:24) — cermin yang menunjukkan kebutuhan akan Penebus.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kovenan 5 -->
+      <div class="cov-card">
+        <div class="cov-card-header">
+          <div class="cov-num">Kovenan ke-5 · ±1010 SM</div>
+          <div class="cov-name">Kovenan Daud</div>
+          <div class="cov-ref">2 Samuel 7 · Dinasti Daud</div>
+        </div>
+        <div class="cov-card-body">
+          <div class="cov-row"><span class="cov-row-label">Pihak</span><span class="cov-row-val">Allah kepada Daud melalui nabi Natan</span></div>
+          <div class="cov-row"><span class="cov-row-label">Isi Pokok</span><span class="cov-row-val">"Aku akan meneguhkan takhta kerajaanmu untuk selama-lamanya." Keturunan Daud akan mendirikan rumah bagi Allah.</span></div>
+          <div class="cov-row"><span class="cov-row-label">Unilateral</span><span class="cov-row-val">"Kasih setia-Ku tidak akan Kucabut dari padanya" — bahkan dosa Daud tidak membatalkan kovenan ini</span></div>
+          <div class="cov-christ-box">
+            <div class="cov-christ-label">Penggenapan dalam Kristus</div>
+            <p class="cov-christ-text">Takhta yang "kekal" hanya bisa diemban oleh Kristus — karena tidak ada raja manusia yang takhta-nya benar-benar kekal. "Keturunan Daud" menurut daging, "Anak Allah" menurut Roh (Rm. 1:3–4).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kovenan 6 -->
+      <div class="cov-card">
+        <div class="cov-card-header">
+          <div class="cov-num">Kovenan ke-6 · ±626 SM (nubuat)</div>
+          <div class="cov-name">Kovenan Baru</div>
+          <div class="cov-ref">Yeremia 31:31–34 · Kovenan di Hati</div>
+        </div>
+        <div class="cov-card-body">
+          <div class="cov-row"><span class="cov-row-label">Pihak</span><span class="cov-row-val">Allah kepada Israel dan Yehuda — dinubuatkan oleh Yeremia</span></div>
+          <div class="cov-row"><span class="cov-row-label">Isi Pokok</span><span class="cov-row-val">"Aku akan menaruh Taurat-Ku dalam batin mereka dan menuliskannya dalam hati mereka." Pengampunan dosa yang sempurna.</span></div>
+          <div class="cov-row"><span class="cov-row-label">Perbedaan</span><span class="cov-row-val">Bukan di loh batu (Sinai) — tapi di hati. Bukan hukum dari luar, tapi transformasi dari dalam.</span></div>
+          <div class="cov-christ-box">
+            <div class="cov-christ-label">Penggenapan dalam Kristus</div>
+            <p class="cov-christ-text">Kristus adalah Mediator kovenan baru ini (Ibr. 8:6). Di Perjanjian Terakhir: "Ini adalah darah-Ku, darah perjanjian yang baru." Setiap orang percaya adalah bagian dari kovenan ini sekarang.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cov-grid -->
+
+    <div class="cov-unity-note">
+      <div class="cov-unity-label">Satu Prinsip yang Menopang Segalanya</div>
+      <div class="cov-unity-title">Kovenan Tidak Bisa Dibatalkan oleh Kegagalan Manusia</div>
+      <p class="cov-unity-text">"God's covenant is not altered due to human circumstances or to the passage of time, nor is it ever revoked or terminated in mid-course; it will certainly bear fruit." — Lampu tidak padam bukan karena manusia menjaganya dengan baik. Lampu tidak padam karena kovenan yang menyalakannya tidak memiliki mekanisme pembatalan.</p>
+    </div>
+
+  </div><!-- /panel-kovenan -->
+
+  <!-- ============================================================
+       PANEL 3: JALUR TIGA PEREMPUAN GENTIL
+       ============================================================ -->
+  <div class="tab-panel" id="panel-gentil">
+
+    <div class="gentil-intro">
+      <div class="gentil-intro-label">🕯 Mata Rantai Kritis</div>
+      <div class="gentil-intro-title">Tiga Perempuan Gentil dalam Silsilah Yesus</div>
+      <p class="gentil-intro-text">Ketiganya Gentil. Ketiganya memiliki reputasi yang kotor. Ketiganya bertindak pada momen garis kovenan hampir terputus — bukan oleh serangan dari luar, tapi oleh kegagalan penjaganya dari dalam. Kasih karunia tidak menunggu orang yang sempurna. Ia mencari orang yang bergerak.</p>
+    </div>
+
+    <div class="gentil-timeline">
+
+      <!-- TAMAR -->
+      <div class="gentil-entry">
+        <div class="gentil-node"></div>
+        <div class="gentil-card">
+          <div class="gentil-card-top">
+            <div>
+              <div class="gentil-name">Tamar</div>
+              <div class="gentil-gen">Perempuan Gentil ke-1 · Bersama Yehuda (Generasi ke-4) · ±1750 SM</div>
+            </div>
+          </div>
+          <p class="gentil-origin">Kemungkinan Kanaan atau Aram. Janda dari Er (anak Yehuda), kemudian dari Onan. Menunggu Syela (anak ketiga) — tapi Yehuda tidak pernah memberikannya.</p>
+
+          <div class="gentil-crisis">
+            <div class="gentil-crisis-label">⚠ Krisis yang Ia Hadapi</div>
+            <p class="gentil-crisis-text">Yehuda — pemegang garis kovenan — telah menyerah. Ia tidak bermaksud memberikan Syela. Garis Yehuda hampir berakhir: dua anak sudah mati, satu ditahan. Tidak ada yang akan meneruskan garis kovenan.</p>
+          </div>
+
+          <div class="gentil-faith">
+            <div class="gentil-faith-icon">🕯</div>
+            <p class="gentil-faith-text">Tamar menyamar sebagai pelacur dan menghadang Yehuda di jalan ke Timna. Bukan karena nafsu — tapi karena ia melihat bahwa garis iman tidak boleh terputus. Park menyebutnya: <strong>"godly zeal to continue the covenantal lineage."</strong> Kecemburuan yang sama dengan kecemburuan Allah sendiri.</p>
+          </div>
+
+          <div style="margin-top:12px; padding: 10px 14px; background: var(--bg2); border-radius: var(--radius-sm); font-size:13px; color:var(--text);">
+            <strong>Hasilnya:</strong> Perez lahir dari Tamar dan Yehuda. Garis kovenan berlanjut. Yehuda mengakui: <em>"Ia lebih benar dari aku."</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="gentil-connector">↓ ±350 tahun berlalu · 9 generasi · perbudakan Mesir dan Keluaran ↓</div>
+
+      <!-- RAHAB -->
+      <div class="gentil-entry">
+        <div class="gentil-node"></div>
+        <div class="gentil-card">
+          <div class="gentil-card-top">
+            <div>
+              <div class="gentil-name">Rahab</div>
+              <div class="gentil-gen">Perempuan Gentil ke-2 · Bersama Salmon (Generasi ke-10) · ±1406 SM</div>
+            </div>
+          </div>
+          <p class="gentil-origin">Perempuan Kanaan dari kota Yerikho. Bekerja sebagai pelacur. Dari bangsa yang sedang dalam proses dihancurkan Israel.</p>
+
+          <div class="gentil-crisis">
+            <div class="gentil-crisis-label">⚠ Krisis yang Ia Hadapi</div>
+            <p class="gentil-crisis-text">Israel baru masuk Kanaan — belum stabil. Garis kovenan akan memasuki era paling gelap dalam sejarahnya (zaman hakim). Siapa yang akan membawa lampu masuk ke era itu?</p>
+          </div>
+
+          <div class="gentil-faith">
+            <div class="gentil-faith-icon">🕯</div>
+            <p class="gentil-faith-text">Rahab menyembunyikan dua mata-mata Israel dan menggantung benang merah di jendela — tanda iman aktif kepada Allah yang belum pernah ia lihat. Park menghubungkan benang merah ini dengan darah paskah di tiang pintu: keduanya adalah tanda iman yang mengundang keselamatan ilahi.</p>
+          </div>
+
+          <div style="margin-top:12px; padding: 10px 14px; background: var(--bg2); border-radius: var(--radius-sm); font-size:13px; color:var(--text);">
+            <strong>Hasilnya:</strong> Salmon menikahi Rahab. Namanya masuk dalam silsilah Yesus. Dari garis mereka lahir Boaz — yang akan menjadi penebus bagi perempuan Gentil ketiga.
+          </div>
+        </div>
+      </div>
+
+      <div class="gentil-connector">↓ ±1 generasi berlalu · memasuki era hakim yang paling gelap ↓</div>
+
+      <!-- RUTH -->
+      <div class="gentil-entry">
+        <div class="gentil-node"></div>
+        <div class="gentil-card">
+          <div class="gentil-card-top">
+            <div>
+              <div class="gentil-name">Ruth</div>
+              <div class="gentil-gen">Perempuan Gentil ke-3 · Bersama Boaz (Generasi ke-11) · ±1322 SM</div>
+            </div>
+          </div>
+          <p class="gentil-origin">Perempuan Moab. Bangsa yang lahir dari inses Lot dengan putrinya. Menurut Ulangan 23:3, orang Moab tidak boleh masuk ke dalam jemaat Allah sampai generasi ke-10.</p>
+
+          <div class="gentil-crisis">
+            <div class="gentil-crisis-label">⚠ Krisis yang Ia Hadapi</div>
+            <p class="gentil-crisis-text">Suaminya meninggal. Ia bebas kembali ke Moab — tidak ada kewajiban untuk ikut Naomi. Tidak ada keuntungan yang terlihat dari mengikuti Allah Israel. Naomi sendiri sudah putus asa.</p>
+          </div>
+
+          <div class="gentil-faith">
+            <div class="gentil-faith-icon">🕯</div>
+            <p class="gentil-faith-text"><em>"Di mana engkau pergi, aku akan pergi. Di mana engkau bermalam, aku akan bermalam. Allahmu adalah Allahku."</em> — Park menyebut ini sebagai iman paling murni dalam buku ini: tanpa paksaan, tanpa keuntungan yang terlihat, hanya kesetiaan yang melampaui alasan.</p>
+          </div>
+
+          <div style="margin-top:12px; padding: 10px 14px; background: var(--bg2); border-radius: var(--radius-sm); font-size:13px; color:var(--text);">
+            <strong>Hasilnya:</strong> Boaz menebus Ruth. Obed lahir. "Ia menjadi bagi Naomi seperti orang yang mengembalikan nyawa." Dari Obed lahir Isai, dari Isai lahir Daud.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /gentil-timeline -->
+
+    <div class="gentil-conclusion">
+      <div class="gentil-conclusion-label">Tesis Park tentang Tiga Perempuan Ini</div>
+      <p class="gentil-conclusion-text">Ketiga perempuan ini bukan catatan kaki yang menarik dalam silsilah Yesus. Mereka adalah argumen teologis buku ini. Park menunjukkan bahwa di setiap momen ketika garis kovenan hampir terputus oleh kegagalan dari dalam — Allah menyiapkan seseorang dari luar yang iman dan kecemburuannya (<em>zeal</em>) melebihi iman penjaga garis itu sendiri.</p>
+      <p class="gentil-conclusion-text">Kasih karunia tidak bekerja melalui yang paling layak. Ia bekerja melalui yang paling bergerak.</p>
+      <div class="gentil-park-quote">
+        <blockquote>"These three women became the crucial links that helped the lamp of the covenant to continue burning... No obstacle on this earth could stand in the way of their living faith."</blockquote>
+        <cite>— Abraham Park, Conclusion hal. 326–327</cite>
+      </div>
+    </div>
+
+  </div><!-- /panel-gentil -->
+
+</div><!-- /main-wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  Ekosistem Self Journey · Buku 3 · <em>The Unquenchable Lamp of the Covenant</em> — Abraham Park
+</footer>
+
+<!-- ============================================================ JS -->
+<script>
+function setTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  window.scrollTo({ top: document.querySelector('.main-wrap').offsetTop - 60, behavior: 'smooth' });
+}
+
+function toggleItem(el) {
+  el.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
